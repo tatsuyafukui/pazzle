@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../organisms/header';
 
 class Top extends Component {
 
@@ -8,7 +9,7 @@ class Top extends Component {
 
         return (
             <div>
-                <h1>header</h1>
+                <Header/>
                 <h1>image</h1>
                 <h1>upload</h1>
                 <h1>selection</h1>

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import Top from './pages/top';
 
 const App: React.FC = () => {

@@ -5,9 +5,11 @@ import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
 import Spinner from './atoms/Spinner/Spinner';
+import { Route, Redirect } from 'react-router-dom';
+import Playing from './pages/playing';
 
-const loadingSelector = (state: any) => state.loading;
-const userSelector = (state: any) => state.user;
+const loadingSelector = (state: any) => state.authReducer.loading;
+const userSelector = (state: any) => state.authReducer.user;
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,12 +25,19 @@ const App: React.FC = () => {
   }
 
   if (!user) {
-    return <Landing />;
+
+    return (
+      <div className={styles.App}>
+        <Route exact path={'/'} component={Landing} />
+
+      </div>
+    );
   }
 
   return (
     <div className={styles.App}>
-      <Top />
+      <Route exact path={'/'} component={Top} />
+      <Route exact path={'/play/:id'} component={Playing} />
     </div>
   );
 };

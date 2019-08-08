@@ -3,23 +3,27 @@ import { db } from '../config/firebase';
 const COLLECTION_START = 'COLLECTION_START';
 const COLLECTION_SUCCESS = 'COLLECTION_SUCCESS';
 const COLLECTION_FAIL = 'COLLECTION_FAIL';
+const ACTIVE_IMAGE_SUCCESS= 'ACTIVE_IMAGE_SUCCESS';
 
 interface IImages {
   path: string,
   name: string,
   user_id: string,
+  id: string,
 }
 
 interface IinitialState {
-  images: [IImages] | null;
-  imagesLoading: boolean;
-  imagesError: null | string;
+  images: [IImages] | [],
+  loading: boolean,
+  error: null | string,
+  activeImage: any
 }
 
-export const initialState: IinitialState = {
-  images: null,
-  imagesLoading: false,
-  imagesError: null,
+const initialState: IinitialState = {
+  images: [],
+  loading: false,
+  error: null,
+  activeImage: null,
 };
 
 // action
@@ -31,13 +35,51 @@ export const collectionCheck = (uid: string) => {
       .collection('images')
       .get()
       .then(snapshot => {
-        if (snapshot.empty) return;
+
         let arr: any = [];
+        if (snapshot.empty) {
+          dispatch(collectionSuccess([]));
+          return;
+        }
         snapshot.forEach(item => {
-          arr.push(item.data());
+          const image = {
+            id: item.id,
+            ...item.data()
+          };
+          arr.push(image);
         });
         dispatch(collectionSuccess(arr));
+      })
+      .catch((e) => {
+        dispatch(collectionFail(e));
       });
+  };
+};
+
+export const activeImage = (uid: string, imageId: string) => {
+  return (dispatch: any) => {
+    dispatch(collectionStart());
+    db.collection('users')
+      .doc(uid)
+      .collection('images')
+      .doc(imageId)
+      .get()
+      .then(documentSnapshot => {
+        dispatch(activeImageSuccess(documentSnapshot.data()));
+      })
+      .catch((e) => {
+        dispatch(collectionFail(e));
+      });
+  };
+};
+
+// action
+export const addCollection = (images: [IImages], image: IImages) => {
+  return (dispatch: any) => {
+    dispatch(collectionStart());
+    const newImages: any  = [...images];
+    newImages.push(image);
+    dispatch(collectionSuccess(newImages));
   };
 };
 
@@ -47,17 +89,24 @@ const collectionStart = () => {
   };
 };
 
-const collectionSuccess = (collectionData: [IImages]) => {
+const collectionSuccess = (collectionData: [IImages] | []) => {
   return {
     type: COLLECTION_SUCCESS,
     collectionData: collectionData,
   };
 };
 
+const activeImageSuccess = (imageData: any) => {
+  return {
+    type: ACTIVE_IMAGE_SUCCESS,
+    imageData: imageData,
+  };
+};
+
 const collectionFail = (error: any) => {
   return {
     type: COLLECTION_FAIL,
-    imagesError: error,
+    error: error,
   };
 };
 
@@ -67,20 +116,26 @@ const collectionReducer = (state = initialState, action: any) => {
     case COLLECTION_START:
       return {
         ...state,
-        imagesLoading: true,
+        loading: true,
       };
     case COLLECTION_SUCCESS:
       return {
         ...state,
-        imagesLoading: false,
+        loading: false,
         images: action.collectionData,
       };
     case COLLECTION_FAIL:
       return {
         ...state,
-        imagesError: action.imagesError,
-        imagesLoading: false,
+        error: action.error,
+        loading: false,
       };
+    case ACTIVE_IMAGE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        activeImage: action.imageData
+      }
     default:
       return state;
   }

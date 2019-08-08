@@ -8,14 +8,16 @@ import { Provider } from 'react-redux';
 import authReducer from './modules/auth';
 import collectionReducer from './modules/collection';
 import thunk from 'redux-thunk';
+import pieceReducer from './modules/pieses';
 
 
 const reducer = combineReducers({
   authReducer,
-  collectionReducer
+  collectionReducer,
+  pieceReducer,
 });
 
-const store = createStore(authReducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 const app = (
   <BrowserRouter>

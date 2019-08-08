@@ -3,7 +3,7 @@ import * as styles from './header.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickLogin, clickLogout } from '../../modules/auth';
 import Logo from '../../atoms/Logo/logo';
-const userSelector = (state: any) => state.user;
+const userSelector = (state: any) => state.authReducer.user;
 
 const Header: React.FC = (props: any) => {
   const dispatch = useDispatch();

@@ -1,32 +1,56 @@
-
 const PIECE_START = 'PIECE_START';
 const PIECE_SUCCESS = 'PIECE_SUCCESS';
+const MODE_SUCCESS = 'MODE_SUCCESS';
+
 const PIECE_FAIL = 'PIECE_FAIL';
 
-
 interface IInitialState {
-  piece: any,
-  mode: number,
-  pieceId: any
+  mode: number;
+  columns: any;
 }
 
 const initialState: IInitialState = {
-  piece: [],
+  columns: [
+    {
+      id: 0,
+      tasks: [1, 2, 3],
+    },
+    {
+      id: 1,
+      tasks: [4, 5, 6],
+    },
+    {
+      id: 2,
+      tasks: [7, 8, 9],
+    },
+  ],
   mode: 3,
-  pieceId: []
 };
 
 // action
-export const changePiece = (newPiece: any) => {
+export const changeColumns = (newColumns: any) => {
   return (dispatch: any) => {
-    dispatch(pieseSuccess(newPiece));
+    dispatch(columnsSuccess(newColumns));
   };
 };
 
-const pieseSuccess = (pieceData: any) => {
+export const changeMode = (newMode: number) => {
+  return (dispatch: any) => {
+    dispatch(modeSuccess(newMode));
+  };
+};
+
+const columnsSuccess = (newColumns: any) => {
   return {
     type: PIECE_SUCCESS,
-    pieceData: pieceData,
+    newColumns: newColumns,
+  };
+};
+
+const modeSuccess = (newMode: number) => {
+  return {
+    type: MODE_SUCCESS,
+    newMode: newMode,
   };
 };
 
@@ -36,7 +60,12 @@ const pieceReducer = (state = initialState, action: any) => {
     case PIECE_SUCCESS:
       return {
         ...state,
-        pieceId: action.pieceData,
+        columns: action.newColumns,
+      };
+    case MODE_SUCCESS:
+      return {
+        ...state,
+        mode: action.newMode,
       };
     default:
       return state;

@@ -10,7 +10,6 @@ import collectionReducer from './modules/collection';
 import thunk from 'redux-thunk';
 import pieceReducer from './modules/pieses';
 
-
 const reducer = combineReducers({
   authReducer,
   collectionReducer,

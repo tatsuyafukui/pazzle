@@ -3,20 +3,20 @@ import { db } from '../config/firebase';
 const COLLECTION_START = 'COLLECTION_START';
 const COLLECTION_SUCCESS = 'COLLECTION_SUCCESS';
 const COLLECTION_FAIL = 'COLLECTION_FAIL';
-const ACTIVE_IMAGE_SUCCESS= 'ACTIVE_IMAGE_SUCCESS';
+const ACTIVE_IMAGE_SUCCESS = 'ACTIVE_IMAGE_SUCCESS';
 
 interface IImages {
-  path: string,
-  name: string,
-  user_id: string,
-  id: string,
+  path: string;
+  name: string;
+  user_id: string;
+  id: string;
 }
 
 interface IinitialState {
-  images: [IImages] | [],
-  loading: boolean,
-  error: null | string,
-  activeImage: any
+  images: [IImages] | [];
+  loading: boolean;
+  error: null | string;
+  activeImage: any;
 }
 
 const initialState: IinitialState = {
@@ -35,7 +35,6 @@ export const collectionCheck = (uid: string) => {
       .collection('images')
       .get()
       .then(snapshot => {
-
         let arr: any = [];
         if (snapshot.empty) {
           dispatch(collectionSuccess([]));
@@ -44,13 +43,13 @@ export const collectionCheck = (uid: string) => {
         snapshot.forEach(item => {
           const image = {
             id: item.id,
-            ...item.data()
+            ...item.data(),
           };
           arr.push(image);
         });
         dispatch(collectionSuccess(arr));
       })
-      .catch((e) => {
+      .catch(e => {
         dispatch(collectionFail(e));
       });
   };
@@ -67,7 +66,7 @@ export const activeImage = (uid: string, imageId: string) => {
       .then(documentSnapshot => {
         dispatch(activeImageSuccess(documentSnapshot.data()));
       })
-      .catch((e) => {
+      .catch(e => {
         dispatch(collectionFail(e));
       });
   };
@@ -77,7 +76,7 @@ export const activeImage = (uid: string, imageId: string) => {
 export const addCollection = (images: [IImages], image: IImages) => {
   return (dispatch: any) => {
     dispatch(collectionStart());
-    const newImages: any  = [...images];
+    const newImages: any = [...images];
     newImages.push(image);
     dispatch(collectionSuccess(newImages));
   };
@@ -134,8 +133,8 @@ const collectionReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        activeImage: action.imageData
-      }
+        activeImage: action.imageData,
+      };
     default:
       return state;
   }

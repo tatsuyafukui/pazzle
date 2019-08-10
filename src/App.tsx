@@ -25,11 +25,9 @@ const App: React.FC = () => {
   }
 
   if (!user) {
-
     return (
       <div className={styles.App}>
         <Route exact path={'/'} component={Landing} />
-
       </div>
     );
   }

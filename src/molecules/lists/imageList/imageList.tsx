@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { collectionCheck } from '../../../modules/collection'
+import { collectionCheck } from '../../../modules/collection';
 import Spinner from '../../../atoms/Spinner/Spinner';
 import styles from './imageList.css';
 import { Link } from 'react-router-dom';
@@ -17,9 +17,7 @@ const ImageList: React.FC = () => {
 
   useEffect(() => {
     dispatch(collectionCheck(user.uid));
-  }, [user,dispatch]);
-
-
+  }, [user, dispatch]);
 
   if (loading) {
     return <Spinner />;
@@ -27,9 +25,14 @@ const ImageList: React.FC = () => {
 
   let imageElements = images.map((image: any, i: number) => {
     return (
-      <div key={i} className={(i+1)%3===0?styles.lastImageCollectionContainer:styles.imageCollectionContainer}>
+      <div
+        key={i}
+        className={(i + 1) % 3 === 0 ? styles.lastImageCollectionContainer : styles.imageCollectionContainer}
+      >
         <div className={styles.imageCollection}>
-          <Link to={`/play/${image.id}`}><img src={image.path} alt={image.name} /></Link>
+          <Link to={`/play/${image.id}`}>
+            <img src={image.path} alt={image.name} />
+          </Link>
         </div>
       </div>
     );
@@ -37,31 +40,30 @@ const ImageList: React.FC = () => {
 
   let lineElements = [];
   const finalElements = [];
-  for (let i=1; i <= imageElements.length; i++) {
-    lineElements.push(imageElements[i-1]);
+  for (let i = 1; i <= imageElements.length; i++) {
+    lineElements.push(imageElements[i - 1]);
 
-    if(i % 3 === 0) {
+    if (i % 3 === 0) {
       finalElements.push(
         <div key={i} className={styles.imageCollectionLine}>
           {lineElements}
         </div>
       );
       lineElements = [];
-    } else if(i === imageElements.length) {
+    } else if (i === imageElements.length) {
       // dammy が必要な数
-      [...Array(3-i%3)].forEach((_, i, arr) => {
+      [...Array(3 - (i % 3))].forEach((_, i, arr) => {
         let pushElement = (
           <div key={i} className={styles.imageCollectionContainer}>
-            <div className={styles.imageCollection}>
-            </div>
+            <div className={styles.imageCollection}></div>
           </div>
         );
-        if(arr.length === 1 || i === 1) {
+        if (arr.length === 1 || i === 1) {
           pushElement = (
             <div key={i} className={styles.lastImageCollectionContainer}>
               <div className={styles.imageCollection} />
             </div>
-          )
+          );
         }
         lineElements.push(pushElement);
       });
@@ -72,7 +74,7 @@ const ImageList: React.FC = () => {
       );
     }
   }
-  console.log(images)
+  console.log(images);
   return (
     <div className={styles.imageList}>
       <div className={styles.typeTab}>
@@ -81,9 +83,7 @@ const ImageList: React.FC = () => {
           <li>playing</li>
         </ul>
       </div>
-      <div className={styles.collectionContainer}>
-        {finalElements}
-      </div>
+      <div className={styles.collectionContainer}>{finalElements}</div>
     </div>
   );
 };

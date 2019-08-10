@@ -1,17 +1,9 @@
 import React from 'react';
 
-const Square: React.FC = (props) => {
+const Square: React.FC = props => {
+  const style = {};
 
-  const style = {
-
-  };
-
-
-  return (
-    <div className={'square'}>
-      {props.children}
-    </div>
-  )
+  return <div className={'square'}>{props.children}</div>;
 };
 
 export default Square;

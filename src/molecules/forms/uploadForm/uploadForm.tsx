@@ -21,10 +21,10 @@ const UploadForm: React.FC = () => {
     const canvas: any = document.getElementById('canvas');
     const image = new Image();
     const reader = new FileReader();
-    image.crossOrigin = "Anonymous";
+    image.crossOrigin = 'Anonymous';
     reader.addEventListener('load', (event: any) => {
       image.addEventListener('load', () => {
-        if(!canvas) return;
+        if (!canvas) return;
         const dstWidth = 900;
         const dstHeight = 900;
         canvas.width = dstWidth;
@@ -41,14 +41,14 @@ const UploadForm: React.FC = () => {
           barr[i] = bin.charCodeAt(i);
           i++;
         }
-        const blob = new Blob([barr], {type: 'image/jpeg'});
+        const blob = new Blob([barr], { type: 'image/jpeg' });
         setFile({
           data: blob,
           name: imageObject.name,
         });
       });
       image.src = event.target.result;
-      console.log(event.target.result)
+      console.log(event.target.result);
     });
     reader.readAsDataURL(event.currentTarget.files[0]);
   };
@@ -57,7 +57,6 @@ const UploadForm: React.FC = () => {
     event.preventDefault();
     const uuid = require('uuid/v1')();
     const task = storage.ref(`pazzle/${user.uid}/${uuid}/${file.name}`).put(file.data);
-
 
     task.on(
       'state_changed',
@@ -74,13 +73,15 @@ const UploadForm: React.FC = () => {
             .doc(user.uid)
             .collection('images')
             .add(newImage)
-            .then((addDoc) => {
+            .then(addDoc => {
               // setState images;
               console.log('Document successfully written!');
-              dispatch(addCollection(images, {
-                ...newImage,
-                id: addDoc.id
-              }));
+              dispatch(
+                addCollection(images, {
+                  ...newImage,
+                  id: addDoc.id,
+                })
+              );
             })
             .catch(e => {
               console.error('Error writing document: ', e);
@@ -92,7 +93,7 @@ const UploadForm: React.FC = () => {
 
   return (
     <form className={styles.form} onSubmit={submitHandler}>
-      <canvas style={{maxWidth: '300px', maxHeight: '300px'}} id="canvas" width="0" height="0" />
+      <canvas style={{ maxWidth: '300px', maxHeight: '300px' }} id="canvas" width="0" height="0" />
       <label className={styles.label}>
         写真を選ぶ
         <input

@@ -48,7 +48,7 @@ export const authCheck = () => {
   return (dispatch: any) => {
     dispatch(authStart());
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user)
+      console.log(user);
 
       dispatch(authSuccess(user));
     });

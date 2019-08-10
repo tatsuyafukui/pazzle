@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../organisms/header/header';
 import Main from '../organisms/main/main';
 
-
 const NotFound: React.FC = () => {
   return (
     <div>

@@ -1,111 +1,80 @@
-import React, { ChangeEvent, useEffect, useLayoutEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import Header from '../organisms/header/header';
 import Main from '../organisms/main/main';
 import { useDispatch, useSelector } from 'react-redux';
 import { activeImage } from '../modules/collection';
 import { RouteComponentProps } from 'react-router-dom';
 import Spinner from '../atoms/Spinner/Spinner';
-import styles from './playing.css';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import CanvasList from '../molecules/lists/canvasList/canvasList';
-import { changePiece } from '../modules/pieses';
-import Canvas from '../molecules/Canvas/canvas';
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
+import { changeColumns, changeMode } from '../modules/pieses';
+import Column from '../molecules/columns/column';
+import { getNewColumns, createCanvasList, shuffleArray, createStartColumns } from '../lib/canvas';
 
 interface MatchParams {
   id: string;
 }
-interface Props extends RouteComponentProps<MatchParams> {
-}
+interface Props extends RouteComponentProps<MatchParams> {}
 
-
-const idSelector = (state: any) => state.pieceReducer.pieceId;
 const userSelector = (state: any) => state.authReducer.user;
 const imageSelector = (state: any) => state.collectionReducer.activeImage;
 const loadingSelector = (state: any) => state.collectionReducer.loading;
+const columnsSelector = (state: any) => state.pieceReducer.columns;
+const modeSelector = (state: any) => state.pieceReducer.mode;
 
-const Playing: React.FC<Props> = (props) => {
+const Playing: React.FC<Props> = props => {
   const user = useSelector(userSelector);
-  const id = useSelector(idSelector);
-
+  const columns = useSelector(columnsSelector);
+  const mode = useSelector(modeSelector);
   const image = useSelector(imageSelector);
   const loading = useSelector(loadingSelector);
-  const [mode, setMode] = useState(3);
-  const [canvas, setCanvas]: any = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(activeImage(user.uid, props.match.params.id))
+    dispatch(activeImage(user.uid, props.match.params.id));
   }, []);
-
-
-
-  if(loading || image === null) {
-    return <Spinner/>;
-  }
 
   const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const modeNumber = parseInt(event.target.value);
-    setMode(modeNumber);
+    dispatch(changeMode(modeNumber));
   };
 
   const startClickHandler = () => {
-    var img = new Image();
-    img.crossOrigin = "Anonymous";
-
-    img.onload = function() {
-      const canvasArr: any = [];
-      let size = 0;
-      if (mode === 3) size = 300;
-      if (mode === 6) size = 150;
-      if (mode === 9) size = 100;
-      let sy = 0;
-      let sx = 0;
-      for (let i = 0; i < (mode * mode); i++) {
-        // const canvas: any = document.getElementById(`canvas${i}`);
-        var canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        const ctx: any = canvas.getContext('2d');
-        ctx.drawImage(img, sx, sy, size, size, 0, 0, size, size);
-
-        canvasArr.push({
-          url: canvas.toDataURL("image/png"),
-          id: i
-        });
-        sx += size;
-        if ((i + 1) % mode === 0) {
-          sy += size;
-          sx = 0;
-        }
-      }
-      setCanvas(canvasArr)
-    }
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.addEventListener('load', () => {
+      const canvasList = createCanvasList(img, mode);
+      const afterShuffleCanvasList = shuffleArray(canvasList);
+      const StartColumns = createStartColumns(mode, afterShuffleCanvasList);
+      dispatch(changeColumns(StartColumns));
+    });
     img.src = image.path;
   };
-  const onDragEnd = (result: any) => {
+
+  const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
-    if(!destination) return;
-    if(
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) return;
+    if (!destination) return;
+    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
-    const newCanvasIds = Array.from(canvas);// 1~9
+    const newColumns = getNewColumns(columns, source, destination);
 
-
-    newCanvasIds.splice(source.index, 1); //元のようぞ削除
-    newCanvasIds.splice(destination.index, 0, canvas[source.index]); //移動
-    // dispatch(changePiece(newCanvasIds));
-    setCanvas(newCanvasIds)
+    dispatch(changeColumns(newColumns));
   };
+
+  if (loading || image === null || image === undefined) {
+    return <Spinner />;
+  }
+
+  const columnsEl = columns.map((column: any) => {
+    return <Column key={column.id} id={column.id} mode={mode} canvasList={column.tasks} />;
+  });
 
   return (
     <div>
       <Header />
       <Main>
         <h1>GAME</h1>
-        <div >
+        <div>
           <img src={image.path} id={'img'} />
           <select id={'mode'} onChange={changeHandler}>
             <option value={3}>easy</option>
@@ -114,25 +83,10 @@ const Playing: React.FC<Props> = (props) => {
           </select>
           <button onClick={startClickHandler}>スタート</button>
         </div>
-        <DragDropContext
-          onDragEnd={onDragEnd}
-        >
+        <DragDropContext onDragEnd={onDragEnd}>
           <div>
             <h1>parts</h1>
-            <Droppable droppableId={'test'}>
-              {(provided) => (
-                <div ref={provided.innerRef}>
-                  <CanvasList
-                    mode={mode}
-                    innerRef={provided.innerRef}
-                    {...provided.droppableProps}
-                    startClickHandler={canvas}
-                  />
-                  {/*<Canvas id={} size={} index={}/>*/}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>{columnsEl}</div>
           </div>
         </DragDropContext>
       </Main>

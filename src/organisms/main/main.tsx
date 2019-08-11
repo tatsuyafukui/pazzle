@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import UploadForm from '../../molecules/forms/uploadForm/uploadForm';
+import React from 'react';
+import styles from './main.css';
 
-class Main extends Component {
-  render() {
-    return (
-      <main>
-        <UploadForm />
-      </main>
-    );
-  }
+interface IProps {
+  title: string;
 }
+
+const Main: React.FC = props => {
+  return <main className={styles.main}>{props.children}</main>;
+};
 
 export default Main;

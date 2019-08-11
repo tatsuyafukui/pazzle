@@ -1,0 +1,46 @@
+.App {
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::selection {
+    color: #16325c;
+    background: #8be0e6;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font: 100%/1.5 "Lato", "Hiragino Maru Gothic Pro", "Meiryo UI", Meiryo, "MS PGothic", sans-serif;
+    color: #5876a3;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.7142857143;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+}
+
+h1, h2, h3, h4, h5, h6, ul {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}

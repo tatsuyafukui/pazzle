@@ -1,3 +1,60 @@
 .header {
-    color: blue;
+    width: 100%;
+    color: #2b546a;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    height: 70px;
+    background-color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    line-height: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    box-shadow: 0 1px 3px rgba(160,166,179,0.3);
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    font-size: 18px;
+    text-align: right;
+    padding: 0 0 0 30px;
+}
+
+.twitter {
+    padding-right: 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 16px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    border: 10px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    outline: none;
+    font-weight: inherit;
+    vertical-align: middle;
+    width: 100%;
+    background-color: rgb(85, 172, 238);
+}
+
+.logout {
+    padding-right: 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 16px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    border: 10px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    outline: none;
+    font-weight: inherit;
+    vertical-align: middle;
+    width: 100%;
+    background-color: rgb(221, 75, 57);
 }

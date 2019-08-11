@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import authReducer from '../modules/auth';
 import collectionReducer from '../modules/collection';
 import pieceReducer from '../modules/pieses';
+import { create } from 'react-test-renderer';
+import Spinner from '../atoms/Spinner/Spinner';
 
 const reducer = combineReducers({
   authReducer,
@@ -25,6 +27,9 @@ const app = (
 );
 
 it('renders without crashing', () => {
+  // let tree = create(<Spinner/>);
+  // expect(tree.toJSON()).toMatchSnapshot();
+
   const div = document.createElement('div');
   ReactDOM.render(app, div);
   ReactDOM.unmountComponentAtNode(div);

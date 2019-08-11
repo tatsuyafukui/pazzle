@@ -5,7 +5,7 @@ import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
 import Spinner from './atoms/Spinner/Spinner';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Playing from './pages/playing';
 
 const loadingSelector = (state: any) => state.authReducer.loading;

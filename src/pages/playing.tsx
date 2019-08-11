@@ -32,7 +32,7 @@ const Playing: React.FC<Props> = props => {
 
   useEffect(() => {
     dispatch(activeImage(user.uid, props.match.params.id));
-  }, []);
+  }, [dispatch, props.match.params.id, user.uid]);
 
   const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const modeNumber = parseInt(event.target.value);

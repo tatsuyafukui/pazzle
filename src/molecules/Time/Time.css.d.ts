@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly border: string;
+  readonly "time": string;
 };
 export = styles;
+

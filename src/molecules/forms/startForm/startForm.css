@@ -1,0 +1,9 @@
+.startForm {
+    display: flex;
+    justify-content: center;
+}
+
+.menuItem {
+    margin: 5px;
+}
+

@@ -1,4 +1,6 @@
 import { DraggableLocation } from 'react-beautiful-dnd';
+import { ICanvas, IColumn } from '../types';
+
 
 export const shuffleArray = (arr: ICanvas[]): ICanvas[] => {
   const newArray = [...arr];
@@ -19,10 +21,6 @@ export const getSize = (mode: number): number => {
   return size;
 };
 
-interface IColumn {
-  id: number;
-  tasks: ICanvas[];
-}
 export const createStartColumns = (mode: number, canvasList: ICanvas[]): IColumn[] => {
   const columns: any = [...Array(mode)].map(
     (_, i): IColumn => {
@@ -44,10 +42,6 @@ export const createStartColumns = (mode: number, canvasList: ICanvas[]): IColumn
   return columns;
 };
 
-interface ICanvas {
-  url: string;
-  id: number;
-}
 export const createCanvasList = (img: HTMLImageElement, mode: number): ICanvas[] => {
   const size: number = getSize(mode);
   let sy = 0;
@@ -62,6 +56,7 @@ export const createCanvasList = (img: HTMLImageElement, mode: number): ICanvas[]
     canvasArr.push({
       url: getCanvasPartsURL(img, sx, sy, size),
       id: i,
+      isCorrect: false,
     });
 
     sx += size;
@@ -90,8 +85,9 @@ export const getNewColumns = (
   let changeColumn = [...columns];
   const startCanvasList = columns[parseInt(source.droppableId)].tasks;
   const startTasks = Array.from(startCanvasList);
-  startTasks.splice(source.index, 1);
 
+  startTasks.splice(source.index, 1);
+  // parseInt(source.droppableId)0,1,2...+3
   if (source.droppableId === destination.droppableId) {
     startTasks.splice(destination.index, 0, startCanvasList[source.index]); //移動
   } else {

@@ -2,14 +2,21 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styles from './canvas.css';
 
-interface IProps {
-  id: number;
+interface ICanvas {
   url: string;
+  id: number;
+  isCorrect: boolean;
+}
+interface IProps {
   index: number;
   size: string;
+  item: ICanvas
 }
 
 const Canvas: React.FC<IProps> = props => {
+
+  const { id, url, isCorrect } = props.item;
+
   const style = {
     width: props.size,
     height: props.size,
@@ -19,15 +26,19 @@ const Canvas: React.FC<IProps> = props => {
   };
 
   return (
-    <Draggable draggableId={`${props.id}`} index={props.index} key={props.id}>
+    <Draggable draggableId={`${id}`} index={props.index} key={id}>
       {(provided, snapshot) => (
         <div
-          // className={styles.firstLine}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <img src={props.url} style={style} className={snapshot.isDragging ? styles.border : ''} />
+          <div>
+            <img src={url}
+                 style={{...style, border:isCorrect? '3px solid lightgreen': 'none'}}
+                 className={snapshot.isDragging ? styles.border : ''}
+            />
+          </div>
         </div>
       )}
     </Draggable>

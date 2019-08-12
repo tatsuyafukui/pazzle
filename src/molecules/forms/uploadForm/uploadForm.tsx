@@ -104,7 +104,7 @@ const UploadForm: React.FC = () => {
           accept="image/png,image/jpg,image/bmp"
         />
       </label>
-      <Button type={'submit'} className={buttonStyles.button}>
+      <Button type={'submit'}>
         アップロード
       </Button>
     </form>

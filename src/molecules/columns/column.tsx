@@ -1,25 +1,41 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import CanvasList from '../lists/canvasList/canvasList';
+import Canvas from '../../atoms/Canvas/canvas';
 
-interface IProps {
+interface ICanvas {
+  url: string;
   id: number;
+  isCorrect: boolean;
+}
+interface IProps {
+  column: number;
   mode: number;
   canvasList: any;
 }
 
 const Column: React.FC<IProps> = props => {
+
+  let size: any;
+  if (props.mode === 3) size = '300px';
+  if (props.mode === 6) size = '150px';
+  if (props.mode === 9) size = '100px';
+  const canvasList = props.canvasList.map((item: ICanvas, i: number) => {
+    const columnId = i * props.mode + props.column;
+    item.isCorrect = columnId === item.id;
+
+    return (
+      <div key={i}>
+        <Canvas item={item} index={i} size={size} />
+      </div>
+    );
+  });
+
   return (
     <div style={{ margin: '3px' }}>
-      <Droppable droppableId={`${props.id}`}>
+      <Droppable droppableId={`${props.column}`}>
         {provided => (
           <div ref={provided.innerRef} style={{ paddingBottom: '300px' }}>
-            <CanvasList
-              mode={props.mode}
-              innerRef={provided.innerRef}
-              {...provided.droppableProps}
-              canvasList={props.canvasList}
-            />
+            {canvasList}
             {provided.placeholder}
           </div>
         )}
@@ -29,3 +45,4 @@ const Column: React.FC<IProps> = props => {
 };
 
 export default Column;
+

@@ -1,17 +1,15 @@
 import React from 'react';
+import styles from './button.css';
 
 interface IProps {
   type: 'submit' | 'button';
-  className: string;
 }
 
 const Button: React.FC<IProps> = props => {
   return (
-    <>
-      <button type={props.type} className={props.className}>
-        {props.children}
-      </button>
-    </>
+    <button type={props.type} className={styles.button}>
+      {props.children}
+    </button>
   );
 };
 

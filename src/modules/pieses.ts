@@ -1,30 +1,37 @@
-const PIECE_START = 'PIECE_START';
+const UPDATE_TIME = 'UPDATE_TIME';
 const PIECE_SUCCESS = 'PIECE_SUCCESS';
 const MODE_SUCCESS = 'MODE_SUCCESS';
 
-const PIECE_FAIL = 'PIECE_FAIL';
+const GAME_START = 'GAME_START';
+const GAME_END = 'GAME_END';
 
 interface IInitialState {
   mode: number;
   columns: any;
+  time: number;
+  playing: boolean;
+  startTime: number;
 }
 
 const initialState: IInitialState = {
   columns: [
     {
       id: 0,
-      tasks: [1, 2, 3],
+      tasks: [],
     },
     {
       id: 1,
-      tasks: [4, 5, 6],
+      tasks: [],
     },
     {
       id: 2,
-      tasks: [7, 8, 9],
+      tasks: [],
     },
   ],
   mode: 3,
+  time: 0,
+  startTime: 0,
+  playing: false,
 };
 
 // action
@@ -54,6 +61,36 @@ const modeSuccess = (newMode: number) => {
   };
 };
 
+export const gameStart = (newColumns: any) => {
+  const time = Date.now();
+
+  return (dispatch: any) => {
+    dispatch({
+      type: GAME_START,
+      newColumns: newColumns,
+      playing: true,
+      startTime: time,
+    });
+  };
+};
+
+export const gameEnd = (time: string) => {
+  return {
+    type: GAME_END,
+    playing: false,
+    time: time
+  };
+};
+
+export const updateTime = (time: number) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: UPDATE_TIME,
+      time: time
+    });
+  };
+};
+
 // reducer
 const pieceReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -61,11 +98,30 @@ const pieceReducer = (state = initialState, action: any) => {
       return {
         ...state,
         columns: action.newColumns,
+        playing: true,
       };
     case MODE_SUCCESS:
       return {
         ...state,
         mode: action.newMode,
+      };
+    case GAME_START:
+      return {
+        ...state,
+        columns: action.newColumns,
+        playing: action.playing,
+        startTime: action.startTime,
+      };
+    case GAME_END:
+      return {
+        ...state,
+        mode: action.newMode,
+        time: action.time,
+      };
+    case UPDATE_TIME:
+      return {
+        ...state,
+        time: action.time,
       };
     default:
       return state;

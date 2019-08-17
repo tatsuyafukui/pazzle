@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import Select from '../../../atoms/Form/Select/select';
-import { gameStart, changeMode, updateTime } from '../../../modules/pieses';
-import { useDispatch, useSelector } from 'react-redux';
+import { gameStart, changeColumns, changeMode, gameEnd, updateTime } from '../../../modules/pieses';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import styles from './startForm.css';
 import selectColor from '../../../atoms/Form/Select/select.css';
 
@@ -14,6 +14,8 @@ const modeSelector = (state: any) => state.pieceReducer.mode;
 const imageSelector = (state: any) => state.collectionReducer.activeImage;
 const userSelector = (state: any) => state.authReducer.user;
 
+const startTimeSelector = (state: any) => state.pieceReducer.startTime;
+const playingTimeSelector = (state: any) => state.pieceReducer.playing;
 
 interface IProps {
   imageId: string
@@ -24,6 +26,8 @@ const StartForm: React.FC<IProps> = (props) => {
   const image = useSelector(imageSelector);
   const mode = useSelector(modeSelector);
   const user = useSelector(userSelector);
+  const startTime = useSelector(startTimeSelector);
+  const playing = useSelector(playingTimeSelector);
 
   useEffect(() => {
     dispatch(activeImage(user.uid, props.imageId));
@@ -42,9 +46,19 @@ const StartForm: React.FC<IProps> = (props) => {
       const canvasList = createCanvasList(img, mode);
       const afterShuffleCanvasList = shuffleArray(canvasList);
       const StartColumns = createStartColumns(mode, afterShuffleCanvasList);
-      dispatch(gameStart(StartColumns));
+      // setInterval(() => {
+      //   dispatch(updateTime(Date.now() - startTime))
+      // }, 10);
+      const startTime = Date.now();
+      dispatch(gameStart(StartColumns, setInterval(() => {
+        dispatch(updateTime(Date.now() - startTime))
+      }, 10)));
     });
     img.src = image.path;
+  };
+
+  const gameEndHandler = (event:any) => {
+    dispatch(gameEnd());
   };
 
   let color = '';
@@ -74,6 +88,11 @@ const StartForm: React.FC<IProps> = (props) => {
       </div>
       <div className={styles.menuItem}>
         <Button type={'submit'}>ゲームスタート</Button>
+      </div>
+      <div className={styles.menuItem}>
+        <Button
+          color={'red'}
+          type={'button'} onClick={gameEndHandler}>ゲームエンド</Button>
       </div>
     </form>
   );

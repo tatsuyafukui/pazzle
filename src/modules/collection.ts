@@ -13,7 +13,7 @@ interface IImages {
 }
 
 interface IinitialState {
-  images: [IImages] | [];
+  images: IImages[] | [];
   loading: boolean;
   error: null | string;
   activeImage: any;
@@ -54,6 +54,56 @@ export const collectionCheck = (uid: string) => {
       });
   };
 };
+
+
+
+
+
+
+
+
+
+
+export const tmp = (uid: string) => {
+  return (dispatch: any) => {
+    dispatch(collectionStart());
+    db.collection('users')
+      .doc(uid)
+      .collection('images')
+      .get()
+      .then(snapshot => {
+        let arr: any = [];
+        if (snapshot.empty) {
+          dispatch(collectionSuccess([]));
+          return;
+        }
+        snapshot.forEach(item => {
+          const image = {
+            id: item.id,
+            ...item.data(),
+          };
+          arr.push(image);
+        });
+        dispatch(collectionSuccess(arr));
+      })
+      .catch(e => {
+        dispatch(collectionFail(e));
+      });
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const activeImage = (uid: string, imageId: string) => {
   return (dispatch: any) => {

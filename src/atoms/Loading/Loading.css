@@ -1,0 +1,117 @@
+.loader-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10000000000;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+}
+
+.leaf-special-loader {
+    width: 82px;
+    height: 82px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    width: 82px;
+    height: 82px;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid red!important;
+    background-color: transparent!important;
+    border-radius: 50%;
+    margin-right: 15px;
+    z-index: 2;
+}
+
+.triangle {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    bottom: 18px;
+    top: auto;
+    left: 55px;
+    background-size: cover;
+    background-position: center;
+    border: 0!important;
+    background-color: transparent!important;
+    animation-name: blade;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-image: url('../../public/images/triangle.svg');
+}
+
+.rectangle {
+    width: 15px;
+    height: 42px;
+    bottom: 14px;
+    left: 23px;
+    position: absolute;
+    border-radius: 1px;
+    background-color: #EDD8C5;
+    animation-name: hair;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes hair {
+    0% {
+        height: 0;
+        bottom: 14px;
+    }
+    20% {
+        height: 0;
+    }
+    30% {
+        height: 42px;
+    }
+    60% {
+        bottom: 14px;
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(800deg);
+        bottom: 100px;
+    }
+}
+@keyframes blade {
+    0% {
+        left: 92px;
+    }
+    10% {
+        left: 92px;
+    }
+    32% {
+        left: 120px;
+    }
+    45% {
+        left: 40px;
+    }
+    55% {
+        left: 40px;
+    }
+    70% {
+        left: 52px;
+    }
+    100% {
+        left: -80px;
+    }
+}

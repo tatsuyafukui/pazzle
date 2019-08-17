@@ -11,6 +11,7 @@ interface IInitialState {
   time: number;
   playing: boolean;
   startTime: number;
+  interval: any;
 }
 
 const initialState: IInitialState = {
@@ -32,6 +33,7 @@ const initialState: IInitialState = {
   time: 0,
   startTime: 0,
   playing: false,
+  interval:null,
 };
 
 // action
@@ -61,24 +63,24 @@ const modeSuccess = (newMode: number) => {
   };
 };
 
-export const gameStart = (newColumns: any) => {
-  const time = Date.now();
-
+export const gameStart = (newColumns: any, time: any) => {
   return (dispatch: any) => {
     dispatch({
       type: GAME_START,
       newColumns: newColumns,
       playing: true,
-      startTime: time,
+      interval: time,
     });
   };
 };
 
-export const gameEnd = (time: string) => {
-  return {
-    type: GAME_END,
-    playing: false,
-    time: time
+export const gameEnd = () => {
+
+  return (dispatch: any) => {
+    dispatch({
+      type: GAME_END,
+      playing: false,
+    });
   };
 };
 
@@ -98,7 +100,6 @@ const pieceReducer = (state = initialState, action: any) => {
       return {
         ...state,
         columns: action.newColumns,
-        playing: true,
       };
     case MODE_SUCCESS:
       return {
@@ -110,13 +111,12 @@ const pieceReducer = (state = initialState, action: any) => {
         ...state,
         columns: action.newColumns,
         playing: action.playing,
-        startTime: action.startTime,
+        interval: action.interval,
       };
     case GAME_END:
       return {
         ...state,
-        mode: action.newMode,
-        time: action.time,
+        playing: action.playing,
       };
     case UPDATE_TIME:
       return {

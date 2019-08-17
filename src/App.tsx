@@ -7,6 +7,8 @@ import { authCheck } from './modules/auth';
 import Spinner from './atoms/Spinner/Spinner';
 import { Route } from 'react-router-dom';
 import Playing from './pages/playing';
+import UploadForm from './pages/uploadForm';
+import Loading from './atoms/Loading/Loading';
 
 const loadingSelector = (state: any) => state.authReducer.loading;
 const userSelector = (state: any) => state.authReducer.user;
@@ -21,7 +23,7 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <Spinner />;
+    return <Loading />;
   }
 
   if (!user) {
@@ -35,6 +37,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.App}>
       <Route exact path={'/'} component={Top} />
+      <Route exact path={'/upload'} component={UploadForm} />
       <Route exact path={'/play/:id'} component={Playing} />
     </div>
   );

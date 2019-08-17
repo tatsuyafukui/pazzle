@@ -4,6 +4,7 @@ import { collectionCheck } from '../../../modules/collection';
 import Spinner from '../../../atoms/Spinner/Spinner';
 import styles from './imageList.css';
 import { Link } from 'react-router-dom';
+import Image from '../../../atoms/Image/image';
 
 const userSelector = (state: any) => state.authReducer.user;
 const imagesSelector = (state: any) => state.collectionReducer.images;
@@ -31,7 +32,7 @@ const ImageList: React.FC = () => {
       >
         <div className={styles.imageCollection}>
           <Link to={`/play/${image.id}`}>
-            <img src={image.path} alt={image.name} />
+            <Image src={image.path} alt={image.name} />
           </Link>
         </div>
       </div>
@@ -74,7 +75,6 @@ const ImageList: React.FC = () => {
       );
     }
   }
-  console.log(images);
   return (
     <div className={styles.imageList}>
       <div className={styles.typeTab}>
@@ -83,7 +83,9 @@ const ImageList: React.FC = () => {
           <li>playing</li>
         </ul>
       </div>
-      <div className={styles.collectionContainer}>{finalElements}</div>
+      <div className={styles.collectionContainer}>
+        {finalElements}
+      </div>
     </div>
   );
 };

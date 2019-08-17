@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import * as styles from './uploadForm.css';
-import Button from '../../../atoms/Button/button';
-import inputStyles from '../../../atoms/Form/Input/input.css';
-import { storage, db } from '../../../config/firebase';
+import * as styles from '../molecules/forms/uploadForm/uploadForm.css';
+import Button from '../atoms/Button/button';
+import inputStyles from '../atoms/Form/Input/input.css';
+import { storage, db } from '../config/firebase';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCollection } from '../../../modules/collection';
+import { addCollection } from '../modules/collection';
 const userSelector = (state: any) => state.authReducer.user;
 const collectionSelector = (state: any) => state.collectionReducer.images;
 

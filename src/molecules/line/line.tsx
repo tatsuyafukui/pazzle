@@ -15,7 +15,7 @@ interface IProps {
   canvasList: any;
 }
 
-const Column: React.FC<IProps> = props => {
+const Line: React.FC<IProps> = props => {
 
   const dispatch = useDispatch();
 
@@ -49,5 +49,5 @@ const Column: React.FC<IProps> = props => {
   );
 };
 
-export default Column;
+export default Line;
 

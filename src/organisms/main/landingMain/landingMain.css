@@ -2,6 +2,7 @@
     width: 100%;
 }
 
+
 .section {
     position: relative;
     margin-bottom: 21vh;
@@ -12,6 +13,9 @@
     max-width: 90%;
     margin: 0 auto;
     position: relative;
+    /*background-image: url("../../../public/images/viewing.jpg");*/
+    background-size: cover;
+
 }
 
 .innerContents {
@@ -20,12 +24,15 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-size: 48px;
+    background-size: cover;
     background-repeat: repeat;
     background-color: #96d4c3;
+    /*background-image: url("../../../public/images/bpuzzle.png");*/
+
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
+
 }
 
 .middleContents {
@@ -33,7 +40,10 @@
     max-width: 73%;
     text-align: center;
     z-index: 70;
+    /*background-color: #233E53;*/
+    /*padding: 40px 20px;*/
 }
+
 
 
 .middleContents h1{
@@ -291,6 +301,8 @@
     position: relative;
     transition: all .4s ease;
     cursor: pointer;
+    color: #333;
+
 }
 
 .landingLogin button div {

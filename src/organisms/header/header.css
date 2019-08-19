@@ -48,6 +48,7 @@
     border: none;
     padding: 5px 0;
     color: #96d4c3;
+    transition: all .4s;
 }
 
 .headerRight {
@@ -92,4 +93,8 @@
     width: 100%;
     background-color: rgba(85, 172, 238, 0);
     color: rgb(221, 75, 57);
+}
+
+.collection:hover {
+    color: #F85B32;
 }

@@ -1,0 +1,52 @@
+.footer {
+    width: 100%;
+    position: relative;
+}
+
+.wrap {
+
+}
+
+.footerContainer {
+    padding: 50px 0 75px;
+    width: 100%;
+    position: relative;
+    background-size: 48px;
+    background-repeat: repeat;
+    background-color: #96d4c3;
+    background-image: url("../../public/images/texture_Teal.png");
+}
+
+.footerInner {
+    width: 1180px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.snsListLine {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.snsListLine a {
+    line-height: 1;
+    margin: 0 25px;
+    color: #333;
+    text-decoration: none;
+    font-size: 35px;
+    transition: all .5s;
+}
+
+.snsListLine a:hover {
+    color: #f85832;
+}
+
+.profile {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-top: 15px;
+}

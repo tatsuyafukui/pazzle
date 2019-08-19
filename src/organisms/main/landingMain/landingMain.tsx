@@ -18,6 +18,7 @@ import picture from '../../../public/images/picture.jpg'
 import sara from '../../../public/images/sara.jpeg'
 import cat from '../../../public/images/cat.jpg'
 import fuji from '../../../public/images/fuji.jpg'
+import obsidian from '../../../public/images/puzzle.png'
 
 import { clickLogin } from '../../../modules/auth';
 import { useDispatch, useStore } from 'react-redux';
@@ -31,9 +32,9 @@ const LandingMain: React.FC = props => {
 
   useEffect(() => {
 
-    window.addEventListener('scroll',a)
+    window.addEventListener('scroll',onScrollHandler);
     return () => {
-      window.removeEventListener('scroll', a);
+      window.removeEventListener('scroll', onScrollHandler);
     }
   },[])
 
@@ -81,19 +82,19 @@ const LandingMain: React.FC = props => {
                 <img src={piece3} alt={'test'}/>
               </div>
             </div>
-          </div>
-          <div className={styles.floatContents}>
-            <div className={styles.timePeace}>
-              <img src={timeImage} alt={'test'}/>
-            </div>
-            <div className={styles.rankingPeace}>
-              <img src={rankingImage} alt={'test'}/>
-            </div>
-            <div className={styles.modePeace}>
-              <img src={modeImage} alt={'test'}/>
-            </div>
-            <div className={styles.sharePeace}>
-              <img src={shareImage} alt={'test'} />
+            <div className={styles.floatContents}>
+              <div className={styles.timePeace}>
+                <img src={timeImage} alt={'test'}/>
+              </div>
+              <div className={styles.rankingPeace}>
+                <img src={rankingImage} alt={'test'}/>
+              </div>
+              <div className={styles.modePeace}>
+                <img src={modeImage} alt={'test'}/>
+              </div>
+              <div className={styles.sharePeace}>
+                <img src={shareImage} alt={'test'} />
+              </div>
             </div>
           </div>
         </div>
@@ -142,6 +143,49 @@ const LandingMain: React.FC = props => {
           </div>
         </div>
       </section>
+      <section className={styles.sectionOrange}>
+        <div className={styles.sectionOrangeContainer}>
+          <div className={styles.sectionOrangeBackground}>
+            <div className={styles.sectionOrangeMessageBlock}>
+              <div>
+                <p>没頭する時間。<br/>作り上げる達成感。</p>
+              </div>
+              <div className={styles.sectionOrangeMessageBlockButton}>
+                <button>
+                  Learn how
+                  <div/>
+                </button>
+              </div>
+            </div>
+            <div className={styles.sectionOrangeAnimationBlock}>
+              <div className={styles.near}/>
+              <div className={styles.middle}/>
+              <div className={styles.far}/>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className={styles.underSection}>
+        <div className={styles.underSectionContainer}>
+          <div className={styles.underSectionInner}>
+            <div className={styles.halfLeft}>
+              <img src={obsidian}/>
+            </div>
+            <div className={styles.halfRight}>
+              <div className={styles.halfRightText}>
+                <h2>一緒に遊ぼう</h2>
+              </div>
+              <div className={styles.halfRightTextButton}>
+                <button>
+                  Get Started
+                  <div/>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.underSectionEndBlock}/>
+      </section>
     </main>
   );
 };
@@ -177,7 +221,7 @@ const grayscale = async (image: any) => {
   img.src = image
 };
 
-const a = (event: any) => {
+const onScrollHandler = (event: any) => {
   const lastScrollY = window.scrollY;//316
   if(lastScrollY < 300) {
     return;

@@ -31,6 +31,25 @@ declare const styles: {
   readonly "open": string;
   readonly "picturesSectionUnderBody": string;
   readonly "picturesSectionUnderBodyContainer": string;
+  readonly "sectionOrange": string;
+  readonly "sectionOrangeContainer": string;
+  readonly "sectionOrangeBackground": string;
+  readonly "sectionOrangeMessageBlock": string;
+  readonly "sectionOrangeMessageBlockButton": string;
+  readonly "sectionOrangeAnimationBlock": string;
+  readonly "near": string;
+  readonly "moveIt": string;
+  readonly "middle": string;
+  readonly "far": string;
+  readonly "underSection": string;
+  readonly "underSectionContainer": string;
+  readonly "underSectionInner": string;
+  readonly "underSectionEndBlock": string;
+  readonly "halfLeft": string;
+  readonly "halfRight": string;
+  readonly "halfRightText": string;
+  readonly "halfRightTextButton": string;
+  readonly "iconRoll": string;
 };
 export = styles;
 

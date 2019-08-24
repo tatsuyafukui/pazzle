@@ -1,18 +1,10 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React from 'react';
 import styles from './footer.css';
-import charactor from '../../public/images/charactor.jpg';
 
-import { useDispatch, useStore } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
-interface IProps {
-  title: string;
-}
-
-const Footer: React.FC = props => {
-  const dispatch = useDispatch();
-
+const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>

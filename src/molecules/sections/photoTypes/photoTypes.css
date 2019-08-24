@@ -1,0 +1,105 @@
+
+.picturesSection {
+    padding: 50px 0;
+    width: 100%;
+    position: relative;
+}
+
+.picturesSectionContainer {
+    width: 1188px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.picturesSectionContainer h2 {
+    font-size: 32px;
+    line-height: 1.69;
+    letter-spacing: 1.2px;
+    color: #EDD8C5;
+    margin-bottom: 50px;
+}
+
+.picturesSectionIcons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.picturesSectionIconsItem {
+    width: 18%;
+    margin-right: 2%;
+    text-align: center;
+}
+
+.picturesSectionIconsItem h2 {
+    padding-top: 8px;
+}
+
+.square {
+    border-radius: 50% 50% 50% 50%;
+    overflow: hidden;
+    padding-top: 100%;
+    position: relative;
+}
+
+.square img{
+    top: 0;
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center center / cover;
+    position: absolute;
+    z-index: 10;
+
+}
+
+.circleBackground {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition-delay: .5s;
+    transition-duration: .2s;
+    position: absolute;
+    border-radius: 50%;
+    background-size: 48px;
+    background-repeat: repeat;
+    background-color: #EDD8C5;
+
+}
+.circleBackgroundBlue {
+    background-color: #96b4ca;
+}
+
+.circleBackgroundPeople {
+    background-color: #EDD8C5;
+}
+
+.circleBackgroundOrange {
+    background-color: #F85B32;
+}
+
+.square img:hover{
+    opacity: 1;
+}
+
+.picturesSectionUnderBody {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.picturesSectionUnderBodyContainer {
+    width: 800px;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.picturesSectionUnderBodyContainer p {
+    color: #EDD8C5;
+    line-height: 2.3;
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    text-align: center;
+}

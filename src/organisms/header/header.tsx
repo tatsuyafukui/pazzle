@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clickLogin, clickLogout } from '../../modules/auth';
 import Logo from '../../atoms/Logo/logo';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 const userSelector = (state: any) => state.authReducer.user;
 
 const Header: React.FC = (props: any) => {
@@ -16,12 +18,12 @@ const Header: React.FC = (props: any) => {
         <div className={styles.inner}>
           <Logo />
           <div className={styles.headerRight}>
-            <Link to={'/'} className={styles.collection}>
-              About
-            </Link>
-            <Link to={'/'} className={styles.collection}>
-              Help
-            </Link>
+            {/*<Link to={'/'} className={styles.collection}>*/}
+            {/*  About*/}
+            {/*</Link>*/}
+            {/*<Link to={'/'} className={styles.collection}>*/}
+            {/*  Help*/}
+            {/*</Link>*/}
             {user ? (
               <>
                 <button className={styles.logout} onClick={() => dispatch(clickLogout())}>
@@ -33,7 +35,7 @@ const Header: React.FC = (props: any) => {
               </>
             ) : (
               <button className={styles.twitter} onClick={() => dispatch(clickLogin())}>
-                Login
+                <FontAwesomeIcon style={{marginRight: '5px'}} icon={faTwitter}/>Login
               </button>
             )}
           </div>

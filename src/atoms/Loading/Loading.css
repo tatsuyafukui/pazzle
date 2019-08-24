@@ -4,16 +4,16 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 10000000000;
+    z-index: 100;
     height: 100%;
     width: 100%;
     background-color: #333;
 }
 
 .leaf-special-loader {
-    width: 82px;
-    height: 82px;
-    position: relative;
+    width: 100px;
+    height: 100px;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -23,53 +23,212 @@
     -o-transform: translate(-50%,-50%);
     border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.circle {
-    position: absolute;
-    width: 82px;
-    height: 82px;
-    bottom: 0;
-    top: auto;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    border: 3px solid red!important;
-    background-color: transparent!important;
-    border-radius: 50%;
-    margin-right: 15px;
-    z-index: 2;
-}
+/*.circle {*/
+/*    width: 115px;*/
+/*    height: 115px;*/
+/*    bottom: 0;*/
+/*    top: auto;*/
+/*    left: 0;*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    border: 1px solid red!important;*/
+/*    background-color: transparent!important;*/
+/*    border-radius: 50%;*/
+/*    z-index: 2;*/
+/*}*/
 
-.triangle {
-    position: absolute;
-    width: 25px;
-    height: 12px;
-    bottom: 18px;
-    top: auto;
-    left: 55px;
+/*.triangle {*/
+/*    position: absolute;*/
+/*    width: 25px;*/
+/*    height: 12px;*/
+/*    bottom: 18px;*/
+/*    top: auto;*/
+/*    left: 55px;*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    border: 0!important;*/
+/*    background-color: transparent!important;*/
+/*    animation-name: blade;*/
+/*    animation-duration: 2s;*/
+/*    animation-iteration-count: infinite;*/
+/*    background-image: url('../../public/images/triangle.svg');*/
+/*}*/
+
+/*.triangle {*/
+/*    position: absolute;*/
+/*    width: 25px;*/
+/*    height: 12px;*/
+/*    bottom: 18px;*/
+/*    top: auto;*/
+/*    left: 55px;*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    border: 0!important;*/
+/*    background-color: transparent!important;*/
+/*    animation-name: blade;*/
+/*    animation-duration: 2s;*/
+/*    animation-iteration-count: infinite;*/
+/*    background-image: url('../../public/images/piece1.svg');*/
+/*}*/
+
+/*.rectangle {*/
+/*    width: 15px;*/
+/*    height: 42px;*/
+/*    bottom: 14px;*/
+/*    left: 23px;*/
+/*    position: absolute;*/
+/*    border-radius: 1px;*/
+/*    background-color: #EDD8C5;*/
+/*    animation-name: hair;*/
+/*    animation-duration: 2s;*/
+/*    animation-iteration-count: infinite;*/
+
+/*}*/
+
+.piece1 {
+    width: 30px;
+    height: 30px;
     background-size: cover;
-    background-position: center;
-    border: 0!important;
-    background-color: transparent!important;
-    animation-name: blade;
+    left: 35px;
+    bottom: 65px;
+    position: absolute;
+    animation-name: piece1;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    background-image: url('../../public/images/triangle.svg');
+    background-image: url('../../public/images/piece1.svg');
 }
 
-.rectangle {
-    width: 15px;
-    height: 42px;
-    bottom: 14px;
-    left: 23px;
+.piece2 {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    left: 65px;
+    bottom: 35px;
     position: absolute;
-    border-radius: 1px;
-    background-color: #EDD8C5;
-    animation-name: hair;
+    animation-name: piece2;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+    background-image: url('../../public/images/piece2.svg');
+}
 
+.piece3 {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    left: 35px;
+    bottom: 5px;
+    position: absolute;
+    animation-name: piece3;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-image: url('../../public/images/piece3.svg');
+}
+
+.piece4 {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    left: 5px;
+    bottom: 35px;
+    position: absolute;
+    animation-name: piece4;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-image: url('../../public/images/piece4.svg');
+}
+
+@keyframes piece1 {
+    0% {
+        left: 35px;
+        bottom: 65px;
+    }
+    25% {
+        left: 65px;
+        bottom: 35px;
+    }
+    50% {
+        left: 35px;
+        bottom: 5px;
+    }
+    75% {
+        left: 5px;
+        bottom: 35px;
+    }
+    100% {
+        left: 35px;
+        bottom: 65px;
+    }
+}
+@keyframes piece2 {
+    0% {
+        left: 65px;
+        bottom: 35px;
+    }
+    25% {
+        left: 35px;
+        bottom: 5px;
+    }
+    50% {
+        left: 5px;
+        bottom: 35px;
+    }
+    75% {
+        left: 35px;
+        bottom: 65px;
+    }
+    100% {
+        left: 65px;
+        bottom: 35px;
+    }
+}
+@keyframes piece3 {
+    0% {
+        left: 35px;
+        bottom: 5px;
+    }
+    25% {
+        left: 5px;
+        bottom: 35px;
+    }
+    50% {
+        left: 35px;
+        bottom: 65px;
+    }
+    75% {
+        left: 65px;
+        bottom: 35px;
+    }
+    100% {
+        left: 35px;
+        bottom: 5px;
+    }
+}
+@keyframes piece4 {
+    0% {
+        left: 5px;
+        bottom: 35px;
+    }
+    25% {
+        left: 35px;
+        bottom: 65px;
+    }
+    50% {
+        left: 65px;
+        bottom: 35px;
+    }
+    75% {
+        left: 35px;
+        bottom: 5px;
+    }
+    100% {
+        left: 5px;
+        bottom: 35px;
+    }
 }
 
 @keyframes hair {

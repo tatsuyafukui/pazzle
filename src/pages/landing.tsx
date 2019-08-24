@@ -1,15 +1,24 @@
 import React from 'react';
 import Header from '../organisms/header/header';
-import Main from '../organisms/main/main';
-import Loading from '../atoms/Loading/Loading';
-import LandingMain from '../organisms/main/landingMain/landingMain';
 import Footer from '../organisms/footer/footer';
+import Main from '../organisms/main/main';
+import TopSection from '../molecules/sections/top/top';
+import PhotoTypesSection from '../molecules/sections/photoTypes/photoTypesSection';
+import AnimationSection from '../molecules/sections/animation/animationSection';
+import PuzzleSection from '../molecules/sections/puzzle/puzzleSection';
+import UnderSection from '../molecules/sections/under/underSection';
 
 const Landing: React.FC = () => {
   return (
     <div>
       <Header />
-      <LandingMain />
+      <Main>
+        <TopSection/>
+        <PhotoTypesSection/>
+        <AnimationSection/>
+        <PuzzleSection/>
+        <UnderSection/>
+      </Main>
       <Footer />
     </div>
   );

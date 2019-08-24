@@ -20,7 +20,6 @@ declare const styles: {
   readonly "messageSectionHalfLeftInner": string;
   readonly "messageSectionHalfRight": string;
   readonly "messageSectionHalfRightText": string;
-  readonly "messageSectionHalfRightButton": string;
   readonly "flame": string;
   readonly "flameActive": string;
   readonly "hidden": string;

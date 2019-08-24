@@ -3,6 +3,8 @@ import * as styles from './under.css';
 import { clickLogin } from '../../../modules/auth';
 import { useDispatch } from 'react-redux';
 import obsidian from '../../../public/images/puzzle.png';
+import GetStartedButton from '../../../atoms/Button/getStartedButton';
+import getStartedStyle from '../../../atoms/Button/getStartedButton/index.css';
 
 const UnderSection: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,12 +19,10 @@ const UnderSection: React.FC = () => {
             <div className={styles.halfRightText}>
               <h2>さあ、一緒に作ろう!</h2>
             </div>
-            <div className={styles.halfRightTextButton}>
-              <button  onClick={() => dispatch(clickLogin())}>
-                Get Started
-                <div />
-              </button>
-            </div>
+            <GetStartedButton
+              onClick={() => {dispatch(clickLogin())}}
+              className={getStartedStyle.halfRightTextButton}
+            />
           </div>
         </div>
       </div>

@@ -6,7 +6,6 @@ declare const styles: {
   readonly "halfLeft": string;
   readonly "halfRight": string;
   readonly "halfRightText": string;
-  readonly "halfRightTextButton": string;
   readonly "iconRoll": string;
 };
 export = styles;

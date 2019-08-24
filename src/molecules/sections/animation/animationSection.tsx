@@ -2,6 +2,8 @@ import React from 'react';
 import * as styles from './animation.css';
 import { clickLogin } from '../../../modules/auth';
 import { useDispatch } from 'react-redux';
+import getStartedStyle from '../../../atoms/Button/getStartedButton/index.css';
+import GetStartedButton from '../../../atoms/Button/getStartedButton';
 
 const AnimationSection: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,12 +19,10 @@ const AnimationSection: React.FC = () => {
                 作り上げる達成感。
               </p>
             </div>
-            <div className={styles.sectionOrangeMessageBlockButton}>
-              <button onClick={() => dispatch(clickLogin())}>
-                Get Started
-                <div />
-              </button>
-            </div>
+            <GetStartedButton
+              onClick={() => {dispatch(clickLogin())}}
+              className={getStartedStyle.sectionOrangeMessageBlockButton}
+            />
           </div>
           <div className={styles.sectionOrangeAnimationBlock}>
             <div className={styles.near} />

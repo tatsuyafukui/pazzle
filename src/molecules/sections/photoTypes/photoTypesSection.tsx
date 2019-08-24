@@ -14,41 +14,28 @@ const PhotoTypesSection: React.FC = () => {
       ScrollReveal().destroy()
     };
   }, []);
+
+  const images = [
+    {background: styles.circleBackgroundBlue, image:  viewing},
+    {background: styles.circleBackgroundPeople, image:  cat},
+    {background: styles.circleBackgroundOrange, image:  sara},
+    {background: styles.circleBackgroundBlue, image:  design},
+    {background: styles.circleBackgroundPeople, image:  fuji},
+  ].map((item, i) => (
+    <div key={i} className={styles.picturesSectionIconsItem}>
+      <div className={styles.square}>
+        <img src={item.image} id={'test'} />
+        <div className={`${styles.circleBackground} ${item.background}`} />
+      </div>
+    </div>
+  ));
+
   return (
     <section className={styles.picturesSection}>
       <div className={styles.picturesSectionContainer}>
         <h2>Photo types ...</h2>
         <div className={styles.picturesSectionIcons}>
-          <div className={styles.picturesSectionIconsItem}>
-            <div className={styles.square}>
-              <img src={viewing} id={'test'} />
-              <div className={`${styles.circleBackground} ${styles.circleBackgroundBlue}`} />
-            </div>
-          </div>
-          <div className={styles.picturesSectionIconsItem}>
-            <div className={styles.square}>
-              <img src={cat} id={'test'} />
-              <div className={`${styles.circleBackground} ${styles.circleBackgroundPeople}`} />
-            </div>
-          </div>
-          <div className={styles.picturesSectionIconsItem}>
-            <div className={styles.square}>
-              <img src={sara} id={'test'} />
-              <div className={`${styles.circleBackground} ${styles.circleBackgroundOrange}`} />
-            </div>
-          </div>
-          <div className={styles.picturesSectionIconsItem}>
-            <div className={styles.square}>
-              <img src={design} id={'test'} />
-              <div className={`${styles.circleBackground} ${styles.circleBackgroundBlue}`} />
-            </div>
-          </div>
-          <div className={styles.picturesSectionIconsItem}>
-            <div className={styles.square}>
-              <img src={fuji} id={'test'} />
-              <div className={`${styles.circleBackground} ${styles.circleBackgroundPeople}`} />
-            </div>
-          </div>
+          {images}
         </div>
       </div>
       <div className={styles.picturesSectionUnderBody}>

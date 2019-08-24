@@ -11,9 +11,40 @@ import rankingImage from '../../../public/images/rankingImage.png';
 import modeImage from '../../../public/images/modeImage.png';
 import shareImage from '../../../public/images/shareImage.png';
 import { useDispatch } from 'react-redux';
+import GetStartedButton from '../../../atoms/Button/getStartedButton';
+import getStartedStyle from '../../../atoms/Button/getStartedButton/index.css';
 
 const TopSection: React.FC = () => {
   const dispatch = useDispatch();
+
+  const floatContents = [
+    {style: styles.timePeace, image: timeImage},
+    {style: styles.rankingPeace, image: rankingImage},
+    {style: styles.modePeace, image: modeImage},
+    {style: styles.sharePeace, image: shareImage},
+  ].map((item, i) => (
+    <div key={i} className={item.style}>
+      <img src={item.image} alt={item.image} />
+    </div>
+  ));
+
+  const pieces = [
+    {style: styles.piece1, image: piece1, text: "最速クリアタイムを目指そう！", styleImage: styles.time},
+    {style: styles.piece2, image: piece2, text: "目指せランキング１位！", styleImage: styles.ranking},
+    {style: styles.piece3, image: piece3, text: "難易度は３つから選べます！", styleImage: styles.mode},
+    {style: styles.piece4, image: piece4, text: "完成したパズルとクリアタイムをSNSでシェアしよう！", styleImage: styles.share},
+  ].map((item, i) => (
+    <>
+      <div className={`${item.styleImage} ${styles.future}`}>
+        <span>{item.text}</span>
+        <img src={speakRectangle} alt={speakRectangle} />
+      </div>
+      <div key={i} className={item.style}>
+        <img src={item.image} alt={'test'} />
+      </div>
+    </>
+  ));
+
   return (
     <section className={styles.section}>
       <div>
@@ -21,59 +52,15 @@ const TopSection: React.FC = () => {
           <div className={styles.innerContents}>
             <div className={styles.middleContents}>
               <h1>Welcome to Puzzle Game.</h1>
-              <div className={styles.landingLogin}>
-                <button onClick={() => dispatch(clickLogin())}>
-                  <div />
-                  Get Started
-                </button>
-              </div>
+              <GetStartedButton
+                onClick={() => {dispatch(clickLogin())}}
+                className={getStartedStyle.landingLogin}
+              />
             </div>
-            <div className={`${styles.time} ${styles.future}`}>
-              <span>最速クリアタイムを目指そう！</span>
-              <img src={speakRectangle} alt={speakRectangle} />
-            </div>
-            <div className={styles.piece1}>
-              <img src={piece1} alt={'test'} />
-            </div>
-            <div className={`${styles.ranking} ${styles.future}`}>
-              <span>目指せランキング１位！</span>
-              <img src={speakRectangle} alt={speakRectangle} />
-            </div>
-            <div className={styles.piece2}>
-              <img src={piece2} alt={'test'} />
-            </div>
-            <div className={`${styles.mode} ${styles.future}`}>
-              <span>難易度は３つから選べます！</span>
-              <img src={speakRectangle} alt={speakRectangle} />
-            </div>
-            <div className={styles.piece3}>
-              <img src={piece4} alt={'test'} />
-            </div>
-            <div className={`${styles.share} ${styles.future}`}>
-                <span>
-                  完成したパズルとクリアタイムを
-                  <br />
-                  SNSでシェアしよう！
-                </span>
-              <img src={speakRectangle} alt={speakRectangle} />
-            </div>
-            <div className={styles.piece4}>
-              <img src={piece3} alt={piece3} />
-            </div>
+            {pieces}
           </div>
           <div className={styles.floatContents}>
-            <div className={styles.timePeace}>
-              <img src={timeImage} alt={timeImage} />
-            </div>
-            <div className={styles.rankingPeace}>
-              <img src={rankingImage} alt={rankingImage} />
-            </div>
-            <div className={styles.modePeace}>
-              <img src={modeImage} alt={modeImage} />
-            </div>
-            <div className={styles.sharePeace}>
-              <img src={shareImage} alt={shareImage} />
-            </div>
+            {floatContents}
           </div>
         </div>
       </div>

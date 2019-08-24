@@ -3,7 +3,6 @@ declare const styles: {
   readonly "sectionOrangeContainer": string;
   readonly "sectionOrangeBackground": string;
   readonly "sectionOrangeMessageBlock": string;
-  readonly "sectionOrangeMessageBlockButton": string;
   readonly "sectionOrangeAnimationBlock": string;
   readonly "near": string;
   readonly "moveIt": string;

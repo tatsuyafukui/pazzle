@@ -3,6 +3,8 @@ import * as styles from './puzzle.css';
 import ScrollReveal from '../../../config/scrollReveal';
 import { clickLogin } from '../../../modules/auth';
 import { useDispatch } from 'react-redux';
+import getStartedStyle from '../../../atoms/Button/getStartedButton/index.css';
+import GetStartedButton from '../../../atoms/Button/getStartedButton';
 
 const PuzzleSection: React.FC = () => {
   const dispatch = useDispatch();
@@ -54,12 +56,10 @@ const PuzzleSection: React.FC = () => {
                 <p>パズルを作るのに難しい知識は必要ないです。ただピースをはめることに没頭する。それだけです！</p>
                 <p>気がつけば日が暮れているような。気がつけば夜が明けているような。あの感覚を少しでも思い出せる、素敵な時間になりますように。</p>
               </div>
-              <div className={styles.messageSectionHalfRightButton}>
-                <button onClick={() => dispatch(clickLogin())}>
-                  Get Started
-                  <div />
-                </button>
-              </div>
+              <GetStartedButton
+                onClick={() => {dispatch(clickLogin())}}
+                className={getStartedStyle.messageSectionHalfRightButton}
+              />
             </div>
           </div>
         </div>

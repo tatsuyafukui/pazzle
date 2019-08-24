@@ -27,59 +27,6 @@
 
 }
 
-.sectionOrangeMessageBlockButton {
-    position: absolute;
-    bottom: 50px;
-    height: 64px;
-}
-
-.sectionOrangeMessageBlockButton div {
-    fill: #333;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    position: absolute;
-    width: 18px;
-    height: 17px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: all .4s ease;
-    background-position: top right;
-    background-image: url("../../../public/images/blackTriangle.png");
-}
-
-.sectionOrangeMessageBlockButton button {
-    position: relative;
-    margin: 0 auto;
-    height: 100%;
-    display: inline-block;
-    border-width: 0 0 2px 2px;
-    border-style: solid;
-    border-color: #333;
-    padding: 15px 40px 12px 12px;
-    font-size: 20px;
-    letter-spacing: .75px;
-    border-radius: 0 0 0 3px;
-    background-color: transparent!important;
-    transition: all .4s ease;
-    cursor: pointer;
-    color: #333;
-    text-align: left;
-}
-
-
-.sectionOrangeMessageBlockButton button:hover div {
-    fill: #333;
-    top: -3px;
-    right: -3px;
-    background-image: url("../../../public/images/whiteTriangle.png");
-}
-
-.sectionOrangeMessageBlockButton button:hover {
-    color: #EDD8C5;
-    border-color: #EDD8C5;
-
-}
 
 .sectionOrangeAnimationBlock {
     width: 40%;

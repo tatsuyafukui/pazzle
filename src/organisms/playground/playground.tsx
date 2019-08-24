@@ -44,6 +44,11 @@ const Playground: React.FC = () => {
 
 export default Playground;
 
+/**
+ * ピースの位置がすべて正しいかの判定
+ * @param arr
+ * @param mode
+ */
 const checkClear = (arr: any, mode: number): boolean[] => {
   let finalDone: any = [];
   arr.forEach((column: any) => {

@@ -16,7 +16,6 @@ interface IProps {
 }
 
 const Line: React.FC<IProps> = props => {
-
   const dispatch = useDispatch();
 
   let size: any;
@@ -50,4 +49,3 @@ const Line: React.FC<IProps> = props => {
 };
 
 export default Line;
-

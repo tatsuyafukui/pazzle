@@ -1,7 +1,6 @@
 import { DraggableLocation } from 'react-beautiful-dnd';
 import { ICanvas, IColumn } from '../types';
 
-
 export const shuffleArray = (arr: ICanvas[]): ICanvas[] => {
   const newArray = [...arr];
   for (let i = newArray.length - 1; i > 0; i--) {

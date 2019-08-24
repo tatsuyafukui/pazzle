@@ -55,15 +55,6 @@ export const collectionCheck = (uid: string) => {
   };
 };
 
-
-
-
-
-
-
-
-
-
 export const tmp = (uid: string) => {
   return (dispatch: any) => {
     dispatch(collectionStart());
@@ -91,19 +82,6 @@ export const tmp = (uid: string) => {
       });
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const activeImage = (uid: string, imageId: string) => {
   return (dispatch: any) => {

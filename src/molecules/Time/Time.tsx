@@ -3,33 +3,26 @@ import * as styles from './Time.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTime } from '../../modules/pieses';
 
-interface IProps {
-}
+interface IProps {}
 
 const timeSelector = (state: any) => state.pieceReducer.time;
 const startTimeSelector = (state: any) => state.pieceReducer.interval;
 
 const playingSelector = (state: any) => state.pieceReducer.playing;
 
-const Time: React.FC<IProps> = (props) => {
-
+const Time: React.FC<IProps> = props => {
   const time = useSelector(timeSelector);
   const interval = useSelector(startTimeSelector);
   const playing = useSelector(playingSelector);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    if(!playing) {
-      clearInterval(interval)
+    if (!playing) {
+      clearInterval(interval);
     }
   }, [playing]);
 
-  return (
-    <div className={styles.time}>
-      {time !==0? getDisplayTime(time):'--:--:--'}
-    </div>
-  );
+  return <div className={styles.time}>{time !== 0 ? getDisplayTime(time) : '--:--:--'}</div>;
 };
 
 export default Time;
@@ -39,9 +32,9 @@ const getDisplayTime = (time: number): string => {
   const m = Math.floor(time / 60000).toString();
 
   //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
-  const s = Math.floor(time % 60000 / 1000).toString();
+  const s = Math.floor((time % 60000) / 1000).toString();
 
-  const ms = Math.floor(time % 1000 / 10).toString();
+  const ms = Math.floor((time % 1000) / 10).toString();
 
   //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
   //javascriptでは文字列数列を連結すると文字列になる

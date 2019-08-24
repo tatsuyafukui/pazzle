@@ -4,9 +4,7 @@ import Main from '../organisms/main/main';
 import UploadForm from '../molecules/forms/uploadForm/uploadForm';
 import ImageList from '../molecules/lists/imageList/imageList';
 
-
-
-const Top: React.FC = (props) => {
+const Top: React.FC = props => {
   return (
     <div>
       <Header />

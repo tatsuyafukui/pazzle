@@ -1,11 +1,10 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styles from './footer.css';
-import charactor from '../../public/images/charactor.jpg'
-
+import charactor from '../../public/images/charactor.jpg';
 
 import { useDispatch, useStore } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 interface IProps {
   title: string;
@@ -19,8 +18,12 @@ const Footer: React.FC = props => {
       <div className={styles.footerContainer}>
         <div className={styles.footerInner}>
           <div className={styles.snsListLine}>
-            <a href={'https://twitter.com/ingtaTsuya_0801'} target={'_blank'}><FontAwesomeIcon icon={faTwitter} /></a>
-            <a href={'https://www.facebook.com/tatsuya.fukui.980'} target={'_blank'}><FontAwesomeIcon icon={faFacebookF} /></a>
+            <a href={'https://twitter.com/ingtaTsuya_0801'} target={'_blank'}>
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a href={'https://www.facebook.com/tatsuya.fukui.980'} target={'_blank'}>
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
           </div>
           <div className={styles.profile}>
             <p>by Tatsuya Fukui</p>

@@ -7,14 +7,9 @@ interface IProps {
 }
 
 const Image: React.FC<IProps> = props => {
-
   return (
     <>
-      <img
-        src={props.src}
-        className={styles.image}
-        alt={props.alt}
-      />
+      <img src={props.src} className={styles.image} alt={props.alt} />
     </>
   );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import * as styles from './Loading.css';
 
 const Loading: React.FC = () => {
-
   return (
     <div className={styles['loader-holder']}>
       <div className={styles['leaf-special-loader']}>

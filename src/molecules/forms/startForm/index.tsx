@@ -18,10 +18,10 @@ const startTimeSelector = (state: any) => state.pieceReducer.startTime;
 const playingTimeSelector = (state: any) => state.pieceReducer.playing;
 
 interface IProps {
-  imageId: string
+  imageId: string;
 }
 
-const StartForm: React.FC<IProps> = (props) => {
+const StartForm: React.FC<IProps> = props => {
   const dispatch = useDispatch();
   const image = useSelector(imageSelector);
   const mode = useSelector(modeSelector);
@@ -50,21 +50,26 @@ const StartForm: React.FC<IProps> = (props) => {
       //   dispatch(updateTime(Date.now() - startTime))
       // }, 10);
       const startTime = Date.now();
-      dispatch(gameStart(StartColumns, setInterval(() => {
-        dispatch(updateTime(Date.now() - startTime))
-      }, 10)));
+      dispatch(
+        gameStart(
+          StartColumns,
+          setInterval(() => {
+            dispatch(updateTime(Date.now() - startTime));
+          }, 10)
+        )
+      );
     });
     img.src = image.path;
   };
 
-  const gameEndHandler = (event:any) => {
+  const gameEndHandler = (event: any) => {
     dispatch(gameEnd());
   };
 
   let color = '';
-  if(mode === 3) color = selectColor.easy;
-  if(mode === 6) color = selectColor.normal;
-  if(mode === 9) color = selectColor.hard;
+  if (mode === 3) color = selectColor.easy;
+  if (mode === 6) color = selectColor.normal;
+  if (mode === 9) color = selectColor.hard;
 
   if (image === null || image === undefined) {
     return <Spinner />;
@@ -78,11 +83,7 @@ const StartForm: React.FC<IProps> = (props) => {
       <div className={styles.menuItem}>
         <Select
           onChange={changeHandler}
-          options={[
-            {value: 3, content: 'EASY'},
-            {value: 6, content: 'NORMAL'},
-            {value: 9, content: 'HARD'},
-          ]}
+          options={[{ value: 3, content: 'EASY' }, { value: 6, content: 'NORMAL' }, { value: 9, content: 'HARD' }]}
           color={color}
         />
       </div>
@@ -90,9 +91,9 @@ const StartForm: React.FC<IProps> = (props) => {
         <Button type={'submit'}>ゲームスタート</Button>
       </div>
       <div className={styles.menuItem}>
-        <Button
-          color={'red'}
-          type={'button'} onClick={gameEndHandler}>ゲームエンド</Button>
+        <Button color={'red'} type={'button'} onClick={gameEndHandler}>
+          ゲームエンド
+        </Button>
       </div>
     </form>
   );

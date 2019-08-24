@@ -16,8 +16,8 @@ const Playground: React.FC = () => {
 
   useEffect(() => {
     let finalDone: boolean[] = checkClear(columns, mode);
-    if(finalDone.indexOf(false) == -1){
-      dispatch(gameEnd())
+    if (finalDone.indexOf(false) == -1) {
+      dispatch(gameEnd());
     }
   }, [columns]);
 
@@ -35,12 +35,9 @@ const Playground: React.FC = () => {
     return <Column key={column.id} column={column.id} mode={mode} canvasList={column.tasks} />;
   });
 
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {columnsEl}
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{columnsEl}</div>
     </DragDropContext>
   );
 };
@@ -50,13 +47,13 @@ export default Playground;
 const checkClear = (arr: any, mode: number): boolean[] => {
   let finalDone: any = [];
   arr.forEach((column: any) => {
-    const isDone = column.tasks.map((item: any, i: number)  => {
+    const isDone = column.tasks.map((item: any, i: number) => {
       const columnId = i * mode + column.id;
-      console.log(columnId === item.id)
+      console.log(columnId === item.id);
 
       return columnId === item.id;
     });
-    finalDone.push(isDone.indexOf(false) === -1)
+    finalDone.push(isDone.indexOf(false) === -1);
   });
   return finalDone;
 };

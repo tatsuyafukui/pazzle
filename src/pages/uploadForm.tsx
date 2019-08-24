@@ -8,7 +8,7 @@ import { addCollection } from '../modules/collection';
 const userSelector = (state: any) => state.authReducer.user;
 const collectionSelector = (state: any) => state.collectionReducer.images;
 
-const UploadForm: React.FC<any> = (props) => {
+const UploadForm: React.FC<any> = props => {
   const [file, setFile] = useState();
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
@@ -61,8 +61,7 @@ const UploadForm: React.FC<any> = (props) => {
       () => {},
       (e: any) => {},
       () => {
-        task.snapshot.ref.getDownloadURL().then((downloadURL: string
-        ) => {
+        task.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
           const newImage = {
             name: file.name,
             path: downloadURL,
@@ -104,9 +103,7 @@ const UploadForm: React.FC<any> = (props) => {
           accept="image/png,image/jpg,image/bmp"
         />
       </label>
-      <Button type={'submit'}>
-        アップロード
-      </Button>
+      <Button type={'submit'}>アップロード</Button>
     </form>
   );
 };

@@ -12,18 +12,15 @@ interface MatchParams {
 interface Props extends RouteComponentProps<MatchParams> {}
 
 const Playing: React.FC<Props> = props => {
-
   return (
     <div>
       <Header />
       <Main>
         <h1>GAME</h1>
         <Time />
-        <Playground/>
+        <Playground />
         <div>
-          <StartForm
-            imageId={props.match.params.id}
-          />
+          <StartForm imageId={props.match.params.id} />
         </div>
       </Main>
     </div>

@@ -83,9 +83,7 @@ const ImageList: React.FC = () => {
           <li>playing</li>
         </ul>
       </div>
-      <div className={styles.collectionContainer}>
-        {finalElements}
-      </div>
+      <div className={styles.collectionContainer}>{finalElements}</div>
     </div>
   );
 };

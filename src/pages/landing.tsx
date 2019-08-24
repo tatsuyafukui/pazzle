@@ -9,8 +9,8 @@ const Landing: React.FC = () => {
   return (
     <div>
       <Header />
-      <LandingMain/>
-      <Footer/>
+      <LandingMain />
+      <Footer />
     </div>
   );
 };

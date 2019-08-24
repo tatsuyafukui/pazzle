@@ -5,22 +5,20 @@ import { IOption } from '../../../types';
 interface IProps {
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   options: IOption[];
-  color: string
+  color: string;
 }
 
-const Select: React.FC<IProps> = (props) => {
-
+const Select: React.FC<IProps> = props => {
   const options = props.options.map((option, index) => {
     return (
-      <option key={index} value={option.value}>{option.content}</option>
-    )
+      <option key={index} value={option.value}>
+        {option.content}
+      </option>
+    );
   });
 
   return (
-    <select
-      onChange={props.onChange}
-      className={`${styles.select} ${props.color}`}
-    >
+    <select onChange={props.onChange} className={`${styles.select} ${props.color}`}>
       {options}
     </select>
   );

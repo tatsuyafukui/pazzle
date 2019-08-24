@@ -10,11 +10,10 @@ interface ICanvas {
 interface IProps {
   index: number;
   size: string;
-  item: ICanvas
+  item: ICanvas;
 }
 
 const Canvas: React.FC<IProps> = props => {
-
   const { id, url, isCorrect } = props.item;
 
   const style = {
@@ -28,15 +27,12 @@ const Canvas: React.FC<IProps> = props => {
   return (
     <Draggable draggableId={`${id}`} index={props.index} key={id}>
       {(provided, snapshot) => (
-        <div
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-        >
+        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
           <div>
-            <img src={url}
-                 style={{...style, border:isCorrect? '3px solid lightgreen': 'none'}}
-                 className={snapshot.isDragging ? styles.border : ''}
+            <img
+              src={url}
+              style={{ ...style, border: isCorrect ? '3px solid lightgreen' : 'none' }}
+              className={snapshot.isDragging ? styles.border : ''}
             />
           </div>
         </div>

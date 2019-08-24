@@ -33,7 +33,7 @@ const initialState: IInitialState = {
   time: 0,
   startTime: 0,
   playing: false,
-  interval:null,
+  interval: null,
 };
 
 // action
@@ -75,7 +75,6 @@ export const gameStart = (newColumns: any, time: any) => {
 };
 
 export const gameEnd = () => {
-
   return (dispatch: any) => {
     dispatch({
       type: GAME_END,
@@ -88,7 +87,7 @@ export const updateTime = (time: number) => {
   return (dispatch: any) => {
     dispatch({
       type: UPDATE_TIME,
-      time: time
+      time: time,
     });
   };
 };

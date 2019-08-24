@@ -34,15 +34,15 @@ const TopSection: React.FC = () => {
     {style: styles.piece3, image: piece3, text: "難易度は３つから選べます！", styleImage: styles.mode},
     {style: styles.piece4, image: piece4, text: "完成したパズルとクリアタイムをSNSでシェアしよう！", styleImage: styles.share},
   ].map((item, i) => (
-    <>
+    <div key={i}>
       <div className={`${item.styleImage} ${styles.future}`}>
         <span>{item.text}</span>
         <img src={speakRectangle} alt={speakRectangle} />
       </div>
-      <div key={i} className={item.style}>
+      <div className={item.style}>
         <img src={item.image} alt={'test'} />
       </div>
-    </>
+    </div>
   ));
 
   return (

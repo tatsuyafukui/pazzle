@@ -1,6 +1,7 @@
 .underSection {
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .underSectionContainer {
@@ -78,5 +79,3 @@
     letter-spacing: 1.4px;
     margin-bottom: 50px;
 }
-
-

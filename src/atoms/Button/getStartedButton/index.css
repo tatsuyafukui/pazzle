@@ -221,3 +221,7 @@ landingLogin {
     top: 0;
     background-image: url("../../../public/images/texture_Teal.png");
 }
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}

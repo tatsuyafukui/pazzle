@@ -75,7 +75,7 @@ const setReveal = () => {
   const windowHeight = window.innerHeight;
   const puzzleSection = document.getElementById('puzzleSection');
   if (!puzzleSection) return;
-  const diff = Math.floor(puzzleSection.clientHeight * 0.05) + 10;
+  const diff = Math.floor(puzzleSection.clientHeight * 0.045);
   const center = Math.floor(windowHeight / 2);
 
   ScrollReveal({

@@ -4,7 +4,7 @@ import Main from '../organisms/main/main';
 import { RouteComponentProps } from 'react-router-dom';
 import StartForm from '../molecules/forms/startForm';
 import Playground from '../organisms/playground/playground';
-import Time from '../molecules/Time/Time';
+import Time from '../atoms/Time/Time';
 
 interface MatchParams {
   id: string;

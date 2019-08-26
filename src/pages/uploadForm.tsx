@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as styles from '../molecules/forms/uploadForm/uploadForm.css';
-import Button from '../atoms/Button/button';
+import Index from '../atoms/Button/button';
 import inputStyles from '../atoms/Form/Input/input.css';
 import { storage, db } from '../config/firebase';
 import { useSelector, useDispatch } from 'react-redux';
@@ -103,7 +103,7 @@ const UploadForm: React.FC<any> = props => {
           accept="image/png,image/jpg,image/bmp"
         />
       </label>
-      <Button type={'submit'}>アップロード</Button>
+      <Index type={'submit'}>アップロード</Index>
     </form>
   );
 };

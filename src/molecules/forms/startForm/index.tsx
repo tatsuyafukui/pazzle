@@ -6,7 +6,7 @@ import styles from './startForm.css';
 import selectColor from '../../../atoms/Form/Select/select.css';
 
 import { createCanvasList, createStartColumns, shuffleArray } from '../../../lib/canvas';
-import Button from '../../../atoms/Button/button';
+import Index from '../../../atoms/Button/button';
 import Spinner from '../../../atoms/Spinner/Spinner';
 import { activeImage } from '../../../modules/collection';
 
@@ -88,12 +88,12 @@ const StartForm: React.FC<IProps> = props => {
         />
       </div>
       <div className={styles.menuItem}>
-        <Button type={'submit'}>ゲームスタート</Button>
+        <Index type={'submit'}>ゲームスタート</Index>
       </div>
       <div className={styles.menuItem}>
-        <Button color={'red'} type={'button'} onClick={gameEndHandler}>
+        <Index color={'red'} type={'button'} onClick={gameEndHandler}>
           ゲームエンド
-        </Button>
+        </Index>
       </div>
     </form>
   );

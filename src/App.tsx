@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import Top from './pages/top';
-import Landing from './pages/landing';
+import LandingPage from './pages/LandingPage';
 import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
@@ -29,7 +29,7 @@ const App: React.FC = () => {
   if (!user) {
     return (
       <div className={styles.App}>
-        <Route exact path={'/'} component={Landing} />
+        <Route exact path={'/'} component={LandingPage} />
       </div>
     );
   }

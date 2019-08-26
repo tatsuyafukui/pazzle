@@ -8,7 +8,7 @@ import AnimationSection from '../molecules/sections/animation/animationSection';
 import PuzzleSection from '../molecules/sections/puzzle/puzzleSection';
 import UnderSection from '../molecules/sections/under/underSection';
 
-const Landing: React.FC = () => {
+const LandingPage: React.FC = () => {
   return (
     <div>
       <Header />
@@ -24,4 +24,4 @@ const Landing: React.FC = () => {
   );
 };
 
-export default Landing;
+export default LandingPage;

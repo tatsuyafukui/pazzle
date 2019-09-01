@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import Top from './pages/top';
+import DashboardPage from './pages/DashboardPage';
 import LandingPage from './pages/LandingPage';
 import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +36,7 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.App}>
-      <Route exact path={'/'} component={Top} />
+      <Route exact path={'/'} component={DashboardPage} />
       <Route exact path={'/upload'} component={UploadForm} />
       <Route exact path={'/play/:id'} component={Playing} />
     </div>

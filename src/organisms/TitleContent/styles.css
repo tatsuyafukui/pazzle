@@ -1,0 +1,20 @@
+.root {
+    width: 331px;
+    max-width: 73%;
+    text-align: center;
+    z-index: 70;
+}
+
+
+
+.root h1{
+    font-size: 44px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.23;
+    letter-spacing: 1.7px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+}

@@ -2,20 +2,11 @@ import React from 'react';
 import styles from './styles.css';
 
 interface IProps extends React.HTMLAttributes<HTMLElement>{
-  level: number;
-  visualLevel: number;
-  className: string;
+  level?: number;
+  visualLevel?: number;
 }
 
-const Heading:  React.FC<any> = (props) => {
-
-  // const level = Math.max(0, Math.min(6, props.level));
-  // const visualLevel: number  = (typeof props.visualLevel !== 'undefined')  ? props.visualLevel : level;
-  // const Tag = `h${level}`;
-  // if(Tag !== 'h1' &&Tag !== 'h2' &&Tag !== 'h3' &&
-  //   Tag !== 'h4' &&Tag !== 'h5' &&Tag !== 'h6') return <></>;
-  // const hLevel = checkVisualLevel(`h${visualLevel}`);
-  // const tagStyle = `${styles.h} ${hLevel}`;
+const Heading:  React.FC<IProps> = (props) => {
 
   return (
     <HeadingContainer
@@ -28,34 +19,26 @@ const Heading:  React.FC<any> = (props) => {
 Heading.defaultProps = {
   level:2,
   className: '',
-  visualLevel: undefined,
+  visualLevel: 2,
 };
 export default Heading;
 
 
 export const HeadingPresenter = ({Tag, visualLevel,className, ...props} :any) => (
-  <Tag className={[styles.h, checkVisualLevel(`h${visualLevel}`), className].join(' ')}>
+  <Tag {...props} className={[styles.h, checkVisualLevel(`h${visualLevel}`), className].join(' ')}>
     { props.children }
   </Tag>
 );
 
-export const HeadingContainer = (props :any) => {
+export const HeadingContainer = ({presenter, ...props}: any) => {
   const level = Math.max(0, Math.min(6, props.level));
   const visualLevel: number  = (typeof props.visualLevel !== 'undefined')  ? props.visualLevel : level;
 
   const Tag = `h${level}`;
-  if(Tag !== 'h1' &&Tag !== 'h2' &&Tag !== 'h3' &&
-    Tag !== 'h4' &&Tag !== 'h5' &&Tag !== 'h6') return <></>;
+
   const className = props.className;
-  return props.presenter({Tag, visualLevel, className, ...props});
+  return presenter({Tag, visualLevel, className, ...props});
 };
-
-
-
-
-
-
-
 
 const checkVisualLevel = (visualLevel: string): string => {
   if(visualLevel === 'h1') return styles.h1;

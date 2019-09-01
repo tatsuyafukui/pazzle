@@ -4,7 +4,7 @@ import { collectionCheck } from '../../../modules/collection';
 import Spinner from '../../../atoms/Spinner/Spinner';
 import styles from './imageList.css';
 import { Link } from 'react-router-dom';
-import Image from '../../../atoms/Image/image';
+import Img from '../../../atoms/Img';
 
 const userSelector = (state: any) => state.authReducer.user;
 const imagesSelector = (state: any) => state.collectionReducer.images;
@@ -32,7 +32,7 @@ const ImageList: React.FC = () => {
       >
         <div className={styles.imageCollection}>
           <Link to={`/play/${image.id}`}>
-            <Image src={image.path} alt={image.name} />
+            <Img src={image.path} alt={image.name} />
           </Link>
         </div>
       </div>

@@ -1,0 +1,50 @@
+.button {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out 0s;
+    -webkit-tap-highlight-color: transparent;
+    border-width: 0;
+    border-style: none;
+    border-color: buttonface;
+}
+
+.default {
+    background-color: rgba(48, 200, 214, 0.8);
+}
+.default:hover {
+    background-color: rgba(48, 200, 214, 1);
+}
+
+.red {
+    background-color: rgba(255, 90, 95, 0.8);
+
+}
+.red:hover {
+    background-color: rgba(255, 90, 95, 1);
+}
+.blue {
+    background-color: rgba(0, 132, 137, 0.8);
+
+}
+.blue:hover {
+    background-color: rgba(0, 132, 137, 1);
+}
+
+.yellow {
+    background-color: rgba(255, 180, 0, 0.8);
+
+}
+
+.yellow:hover {
+    background-color: rgba(255, 180, 0, 1);
+}
+
+.facebook {
+    background-color: rgba(88, 118, 163, 0.8);
+}
+
+.facebook:hover {
+    background-color: rgba(88, 118, 163, 1);
+}

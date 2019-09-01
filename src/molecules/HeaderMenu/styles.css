@@ -1,0 +1,49 @@
+.root {
+    display: table-cell;
+    vertical-align: middle;
+    height: inherit;
+    padding: 0;
+    /*width: 100%;*/
+}
+
+.ul {
+    display: flex;
+    padding-inline-start: 40px;
+    justify-content: flex-end;
+}
+
+.li {
+    list-style: none;
+    display: block;
+    padding: 0;
+    text-align: -webkit-match-parent;
+}
+
+.button {
+    height: 80px !important;
+    -webkit-appearance: none !important;
+    color: inherit !important;
+    display: inline-block !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+    text-decoration: none !important;
+    margin: 0px !important;
+    padding: 0px 8px !important;
+    transition: color 0.25s ease 0s !important;
+}
+
+.button:focus {
+    outline: none;
+}
+
+
+
+
+.collection:hover {
+    color: #F85B32;
+}

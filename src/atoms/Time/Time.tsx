@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import * as styles from './Time.css';
+import * as styles from './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateTime } from '../../modules/pieses';
 
 interface IProps {}
 

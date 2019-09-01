@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../organisms/header/header';
+import Header from '../organisms/Header';
 import Main from '../organisms/main/main';
 import { RouteComponentProps } from 'react-router-dom';
 import StartForm from '../molecules/forms/startForm';

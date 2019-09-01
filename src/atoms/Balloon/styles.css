@@ -9,15 +9,16 @@
 }
 
 .balloon::after {
-    border-color: #1a1a1a transparent transparent transparent;
+    border-color: rgba(26,26,26,0);
     border-style: solid;
     border-width: 3px 3px 0 3px;
-    bottom: 0;
+    background-color: inherit;
+    bottom: -2.5px;
     content: '';
     display: block;
-    height: 0;
-    left: 50%;
+    height: 5px;
+    left: calc(50% - 3px );
     position: absolute;
-    transform: translate(-50% 100%);
-    width: 0;
+    transform: rotate(45deg);
+    width: 5px;
 }

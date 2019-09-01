@@ -13,7 +13,6 @@ const config = {
   appId: process.env.REACT_APP_APP_ID,
 };
 firebase.initializeApp(config);
-firebase.auth().languageCode = 'pt';
 
 export const providerTwitter = new firebase.auth.TwitterAuthProvider();
 export const storage = firebase.storage();

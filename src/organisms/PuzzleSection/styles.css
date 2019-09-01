@@ -1,0 +1,177 @@
+.messageSection {
+    padding: 100px 0;
+    width: 100%;
+    position: relative;
+}
+
+.trigger {
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.trigger1 {
+    top: 4.5%;
+}
+.trigger2 {
+    top: 9%;
+}
+.trigger3 {
+    top: 13.5%;
+}
+.trigger4 {
+    top: 18%;
+}
+.trigger5 {
+    top: 22.5%;
+}
+.trigger6 {
+    top: 27%;
+}
+.trigger7 {
+    top: 31.5%;
+}
+.trigger8 {
+    top: 36%;
+}
+.trigger9 {
+    top: 40.5%;
+}
+.trigger10 {
+    top: 44.5%;
+}
+.trigger11 {
+    top: 49%;
+}
+.trigger12 {
+    top: 53.5%;
+}
+
+
+
+
+.messageSectionContainer {
+    width: 1188px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.heading {
+    width: 500px;
+    margin: 0 auto;
+    max-width: 100%;
+    font-size: 36px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: 1.4px;
+    text-align: center;
+    color: #96d4c3;
+}
+
+.messageSectionBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 120%;
+    left: -13%;
+    position: relative;
+}
+
+.messageSectionHalfLeft {
+    margin-right: 3%;
+    width: 45%;
+    margin-left: 7%;
+    padding-top: 30px;
+}
+
+.messageSectionHalfLeftInner {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+}
+
+.messageSectionHalfRight {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.56;
+    letter-spacing: 0.7px;
+    color: #edd8c5;
+    padding-right: 7%;
+    width: 45%;
+}
+
+.messageSectionHalfRightText p {
+    margin: 0 0 28px;
+}
+
+
+
+.flame {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: no-repeat center center / contain;
+    opacity: 0;
+}
+.flameActive {
+    opacity: 1!important;
+}
+
+
+.flame.flameActive.hidden {
+    opacity: 0!important;
+}
+
+#flame1 {
+    background-image: url("../../public/images/dones/done1.png");
+}
+#flame2 {
+    background-image: url("../../public/images/dones/done2.png");
+
+}
+#flame3 {
+    background-image: url("../../public/images/dones/done3.png");
+
+}
+#flame4 {
+    background-image: url("../../public/images/dones/done4.png");
+
+}
+#flame5 {
+    background-image: url("../../public/images/dones/done5.png");
+
+}
+#flame6 {
+    background-image: url("../../public/images/dones/done6.png");
+
+}
+#flame7 {
+    background-image: url("../../public/images/dones/done7.png");
+
+
+}
+#flame8 {
+    background-image: url("../../public/images/dones/done8.png");
+
+}
+#flame9 {
+    background-image: url("../../public/images/dones/done9.png");
+
+}
+#flame10 {
+    background-image: url("../../public/images/dones/done10.png");
+
+}
+#flame11 {
+    background-image: url("../../public/images/dones/done11.png");
+
+}
+#flame12 {
+    background-image: url("../../public/images/dones/done12.png");
+
+}

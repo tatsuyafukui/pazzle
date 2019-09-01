@@ -13,3 +13,25 @@ export interface IOption {
   value: string | number;
   content: string | number | null;
 }
+
+export enum ESize {
+  s = 's',
+  m = 'm',
+  l = 'l',
+}
+
+export enum ERole {
+  default = 'default',
+  info = 'info',
+  warning = 'warning',
+  white = 'white',
+  cream = 'cream',
+}
+
+export enum ETag {
+  a = 'a',
+}
+
+export interface IContainerProps extends React.AllHTMLAttributes<HTMLElement>{
+  presenter: any;
+}

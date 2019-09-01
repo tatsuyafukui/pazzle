@@ -1,4 +1,4 @@
-import firebase, { providerTwitter } from '../config/firebase';
+import firebase, { db, providerTwitter } from '../config/firebase';
 
 const AUTH_START = 'START_AUTH';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -24,10 +24,22 @@ export const clickLogin = () => {
       .auth()
       .signInWithPopup(providerTwitter)
       .then(result => {
+        console.log(result)
+
+        signup(result)
         dispatch(authSuccess(result.user));
-        // dispatch(authSuccess(result.additionalUserInfo));
       });
   };
+};
+
+const signup = (result:any) => {//profile description
+  const userInfo = result.additionalUserInfo;
+  const isNewUser = userInfo.isNewUser;
+  // if(!isNewUser) return;
+
+
+
+
 };
 
 export const clickLogout = () => {
@@ -48,7 +60,7 @@ export const authCheck = () => {
   return (dispatch: any) => {
     dispatch(authStart());
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
+      console.log(firebase.auth().currentUser);
 
       dispatch(authSuccess(user));
     });

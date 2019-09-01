@@ -1,3 +1,36 @@
-.txt {
+.default {
+    color: #484848;
+}
 
+.white {
+    color: #fff;
+}
+
+.special {
+    color: #914669;
+}
+
+
+.info {
+    color: #8c8c8c;
+}
+
+.warning {
+    color: #f0163a;
+}
+
+.cream {
+    color: #EDD8C5;
+}
+
+.s {
+    font-size: 0.8rem;
+}
+
+.m {
+    font-size: 1rem;
+}
+
+.l {
+    font-size: 1.2rem;
 }

@@ -6,7 +6,7 @@ interface IProps {
   menuList: React.AllHTMLAttributes<HTMLElement>[];
 }
 
-const HeaderMenu: React.FC<IProps> = (props: any) => {
+const HeaderMenu: React.FC<IProps> = (props) => {
   const menuList = props.menuList.map((item: React.AllHTMLAttributes<HTMLElement>, i: number) => {
 
     return (

@@ -1,0 +1,70 @@
+.root {
+    width: 100%;
+    margin-top: 100px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 33%);
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.gridItemContainer {
+    display: inherit;
+    margin: 15px;
+    background-color: #fff;
+    position: relative;
+}
+
+.gridItem {
+    width: 100%;
+    height: auto;
+    border: 1px solid #F39D2E;
+    align-items: center;
+}
+
+.gridItemHover {
+    background-color: rgba(51,51,51,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .3s;
+}
+
+.gridItemHover:hover {
+    background-color: rgba(51,51,51,0.7);
+}
+
+.startBtn {
+    background-color: transparent;
+    width: 80%;
+    height: 70px;
+    color: #fff;
+    opacity: 0;
+    border-radius: 8px;
+    line-height: 70px;
+    text-align: center;
+
+}
+
+.startBtn p{
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 70px;
+    display: block;
+    font-size: 28px;
+}
+
+.gridItemHover:hover .startBtn {
+    opacity: 1;
+}

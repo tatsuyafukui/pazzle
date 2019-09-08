@@ -5,6 +5,9 @@ declare const styles: {
   readonly "collection": string;
   readonly "twitter": string;
   readonly "logout": string;
+  readonly "balloonContainer": string;
+  readonly "balloon": string;
+  readonly "balloonUl": string;
 };
 export = styles;
 

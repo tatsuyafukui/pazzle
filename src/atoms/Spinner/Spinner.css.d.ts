@@ -1,6 +1,6 @@
 declare const styles: {
-  readonly "Loader": string;
-  readonly "load2": string;
+  readonly "loadContainer": string;
+  readonly "ldsSpinner": string;
 };
 export = styles;
 

@@ -9,11 +9,13 @@ import authReducer from './modules/auth';
 import collectionReducer from './modules/collection';
 import thunk from 'redux-thunk';
 import pieceReducer from './modules/pieses';
+import uiReducer from './modules/ui';
 
 const reducer = combineReducers({
   authReducer,
   collectionReducer,
   pieceReducer,
+  uiReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk));

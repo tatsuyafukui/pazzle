@@ -8,10 +8,6 @@ const Loading: React.FC = () => {
   //       {/*<div className={styles.circle} />*/}
   //       {/*<div className={styles.triangle} />*/}
   //       {/*<div className={styles.rectangle} />*/}
-  //       <div className={styles.piece1} />
-  //       <div className={styles.piece2} />
-  //       <div className={styles.piece3} />
-  //       <div className={styles.piece4} />
   //     </div>
   //   </div>
   // );

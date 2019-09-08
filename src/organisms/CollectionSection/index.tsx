@@ -38,7 +38,7 @@ const CollectionSection: React.FC = () => {
   return (
     <Section>
       <div className={styles.picturesSectionContainer}>
-        <Heading className={styles.heading}>Photo types ...</Heading>
+        <Heading className={styles.heading}>パズルの種類がたくさん！</Heading>
         <div className={styles.picturesSectionIcons}>
           {images}
         </div>

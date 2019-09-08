@@ -17,6 +17,7 @@
     display: block;
     padding: 0;
     text-align: -webkit-match-parent;
+    position: relative;
 }
 
 .button {

@@ -55,3 +55,42 @@
     width: 100%;
     background-color: rgb(221, 75, 57);
 }
+
+
+
+.balloonContainer {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    border: 1px solid rgba(27,31,35,.15);
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(27,31,35,.15);}
+
+.balloon {
+    background-color: #fff;
+    color: #333;
+}
+.balloon::after {
+    background-color: inherit;
+    top: -5px;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 80%;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 10px;
+
+}
+
+.balloonUl {
+    width: 180px;
+    background-color: #fff;
+    color: #333;
+}
+
+.balloonUl li {
+    padding: 8px 10px;
+    text-align: left;
+}

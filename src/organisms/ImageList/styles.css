@@ -1,6 +1,6 @@
 .root {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .grid {
@@ -21,7 +21,6 @@
 .gridItem {
     width: 100%;
     height: auto;
-    border: 1px solid #F39D2E;
     align-items: center;
 }
 
@@ -51,7 +50,6 @@
     border-radius: 8px;
     line-height: 70px;
     text-align: center;
-
 }
 
 .startBtn p{

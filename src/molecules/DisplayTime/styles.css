@@ -1,0 +1,30 @@
+.root {
+    width: 90%;
+    padding: 8px 14px;
+    background-color: forestgreen;
+    margin: 0 auto;
+}
+
+.timeHeader {
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.timeBody {
+
+}
+
+.timeBest {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    align-items: center;
+}
+
+.timePlay {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    align-items: center;
+
+}

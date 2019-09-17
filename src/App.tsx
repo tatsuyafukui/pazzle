@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
 import Spinner from './atoms/Spinner/Spinner';
 import { Route } from 'react-router-dom';
-import Playing from './pages/playing';
+import PlayingPage from './pages/PlayingPage';
 import UploadPage from './pages/UploadPage';
 import Loading from './atoms/Loading/Loading';
 
@@ -40,7 +40,7 @@ const App: React.FC = () => {
     <div className={styles.App}>
       <Route exact path={'/'} component={DashboardPage} />
       <Route exact path={'/upload'} component={UploadPage} />
-      <Route exact path={'/play/:id'} component={Playing} />
+      <Route exact path={'/play/:id'} component={PlayingPage} />
       <Route exact path={'/users/profile'} component={ProfilePage} />
 
     </div>

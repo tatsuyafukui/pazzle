@@ -2,8 +2,8 @@ import React from 'react';
 import * as styles from './styles.css';
 import { clickLogin } from '../../modules/auth';
 import { useDispatch } from 'react-redux';
-import GetStartedButton from '../../molecules/getStartedButton';
-import getStartedStyle from '../../molecules/getStartedButton/styles.css';
+import GetStartedButton from '../../molecules/GetStartedButton';
+import getStartedStyle from '../../molecules/GetStartedButton/styles.css';
 import Heading from '../../atoms/Heading';
 
 const TitleContent: React.FC = () => {

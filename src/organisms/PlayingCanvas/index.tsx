@@ -8,7 +8,7 @@ import Column from '../../molecules/columns/column';
 const columnsSelector = (state: any) => state.pieceReducer.columns;
 const modeSelector = (state: any) => state.pieceReducer.mode;
 
-const Playground: React.FC = () => {
+const PlayingCanvas: React.FC = () => {
   const columns = useSelector(columnsSelector);
   const mode = useSelector(modeSelector);
 
@@ -42,7 +42,7 @@ const Playground: React.FC = () => {
   );
 };
 
-export default Playground;
+export default PlayingCanvas;
 
 /**
  * ピースの位置がすべて正しいかの判定

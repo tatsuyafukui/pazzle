@@ -1,0 +1,76 @@
+.root {
+    width: 90%;
+    padding: 8px 0;
+    margin: 0 auto;
+    background-color: transparent;
+    margin-top: 5px;
+}
+
+.form {
+    width: 100%;
+    display: block;
+}
+
+.selectMode {
+
+}
+
+.submit {
+    width: 100%;
+    height: 70px;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.startBtn {
+    background-color: #F39D2E;
+    color: white;
+    font-size: 28px;
+}
+
+.endBtn {
+
+}
+
+.startForm {
+    display: flex;
+    justify-content: center;
+}
+
+.menuItem {
+    margin: 5px;
+}
+
+.mode {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    flex-basis: auto;
+    text-align: center;
+    width: 100%;
+    padding: 4px 8px;
+    color: rgba(0, 132, 137, 1);
+    border: 1px solid rgba(0, 132, 137, 1);
+}
+
+.radio {
+    display: none;
+}
+
+.active {
+    color: #333;
+    background-color: rgba(0, 132, 137, 1);
+}
+
+
+.easy {
+}
+
+.normal {
+}
+
+.hard {
+}

@@ -1,7 +1,4 @@
 import React from 'react';
-import styles from './styles.css';
-import { clickLogin } from '../../modules/auth';
-
 
 const GetStartedButton: React.FC<React.AllHTMLAttributes<HTMLElement>> = props => {
   return (

@@ -4,7 +4,6 @@ declare const styles: {
   readonly "inner": string;
   readonly "collection": string;
   readonly "twitter": string;
-  readonly "logout": string;
   readonly "balloonContainer": string;
   readonly "balloon": string;
   readonly "balloonUl": string;

@@ -27,14 +27,12 @@ const initialState: IinitialState = {
 };
 
 // action
-export const collectionCheck = (uid: string) => {
+export const collectionCheck = () => {
   return (dispatch: any) => {
     dispatch(collectionStart());
-    db.collection('users')
-      .doc(uid)
-      .collection('images')
-      .get()
-      .then(snapshot => {
+    db.collection('images')
+      .orderBy('created_at', 'asc')
+      .onSnapshot(snapshot => {
         let arr: any = [];
         if (snapshot.empty) {
           dispatch(collectionSuccess([]));
@@ -48,40 +46,10 @@ export const collectionCheck = (uid: string) => {
           arr.push(image);
         });
         dispatch(collectionSuccess(arr));
-      })
-      .catch(e => {
-        dispatch(collectionFail(e));
       });
   };
 };
 
-export const tmp = (uid: string) => {
-  return (dispatch: any) => {
-    dispatch(collectionStart());
-    db.collection('users')
-      .doc(uid)
-      .collection('images')
-      .get()
-      .then(snapshot => {
-        let arr: any = [];
-        if (snapshot.empty) {
-          dispatch(collectionSuccess([]));
-          return;
-        }
-        snapshot.forEach(item => {
-          const image = {
-            id: item.id,
-            ...item.data(),
-          };
-          arr.push(image);
-        });
-        dispatch(collectionSuccess(arr));
-      })
-      .catch(e => {
-        dispatch(collectionFail(e));
-      });
-  };
-};
 
 export const activeImage = (uid: string, imageId: string) => {
   return (dispatch: any) => {
@@ -116,7 +84,7 @@ const collectionStart = () => {
   };
 };
 
-const collectionSuccess = (collectionData: [IImages] | []) => {
+const collectionSuccess = (collectionData: any[]) => {
   return {
     type: COLLECTION_SUCCESS,
     collectionData: collectionData,

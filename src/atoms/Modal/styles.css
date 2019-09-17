@@ -1,0 +1,61 @@
+.rootShow {
+    background-color: rgba(51,51,51, 0.8);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rootHidden {
+    display: none;
+    animation: hidden infinite .5s;
+    animation-iteration-count: 1;
+}
+
+.show {
+    animation: show infinite .5s;
+    animation-iteration-count: 1;
+}
+
+.hidden {
+    animation: hidden infinite .5s;
+    animation-iteration-count: 1;
+}
+
+.inner {
+    background-color: #fff;
+    max-width: 90%;
+    z-index: 100;
+    min-width: 300px;
+    width: 600px;
+    padding: 40px 30px;
+    position: relative;
+
+}
+
+.modalBackground {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 99;
+    cursor: default;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props => {
+const Test: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props => {
   return (
     <button {...props} className={[styles.button, props.className].join(' ')}>
       {props.children}
@@ -11,4 +11,4 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props =>
 
 
 
-export default Button;
+export default Test;

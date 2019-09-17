@@ -7,19 +7,27 @@ import HeaderMenu from '../../molecules/HeaderMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import Txt, { WhiteTxt } from '../../atoms/Txt';
+import Txt, { InfoTxt, WhiteTxt } from '../../atoms/Txt';
 import Img from '../../atoms/Img';
 import Balloon from '../../atoms/Balloon';
 import ModalBackground from '../../atoms/ModalBackground';
-import { toggleModal } from '../../modules/ui';
+import { toggleModal, toggleUploadModal } from '../../modules/ui';
 import Anchor from '../../atoms/Anchor';
+import UploadForm from '../UploadForm';
+import Flash from '../../atoms/Flash';
 const userSelector = (state: any) => state.authReducer.user;
-const uiSelector = (state: any) => state.uiReducer.hasModal;
+const hasModalSelector = (state: any) => state.uiReducer.hasModal;
+const hasUploadModalSelector = (state: any) => state.uiReducer.hasUploadModal;
+const hasFlashSelector = (state: any) => state.uiReducer.hasFlash;
+const flashMessageSelector = (state: any) => state.uiReducer.flashMessage;
 
 const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-  const hasModal = useSelector(uiSelector);
+  const hasModal = useSelector(hasModalSelector);
+  const hasUploadModal = useSelector(hasUploadModalSelector);
+  const hasFlash = useSelector(hasFlashSelector);
+  const flashMessage = useSelector(flashMessageSelector);
 
   const menuList= [
     user ?
@@ -59,9 +67,10 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
                         <li
                           onClick={() => {
                             dispatch(toggleModal(hasModal));
+                            dispatch(toggleUploadModal(hasUploadModal))
                           }}
                         >
-                          <Anchor to={'/upload'}><Txt>アップロード</Txt></Anchor>
+                          <Txt>新しいパズルを作成</Txt>
                         </li>
                         <li
                           onClick={() => {
@@ -105,6 +114,8 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
           />
         </div>
       </div>
+      <UploadForm hasUploadModal={hasUploadModal} />
+      {hasFlash? <Flash count={5000}><WhiteTxt>{flashMessage}</WhiteTxt></Flash>: null}
     </header>
   );
 };

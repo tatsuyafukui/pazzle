@@ -1,0 +1,21 @@
+.root {
+    width: 90%;
+    padding: 8px 14px;
+    margin: 0 auto;
+    background-color: white;
+    margin-top: 5px;
+
+}
+
+.previewHeader {
+    text-align: center;
+}
+
+.previewBody {
+
+}
+
+.previewBody img {
+    width: 100%;
+    height: auto;
+}

@@ -3,7 +3,7 @@ import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
 import Main from '../organisms/main/main';
 import Section from '../molecules/Section';
-import UploadForm from '../molecules/forms/uploadForm/uploadForm';
+import UploadForm from '../organisms/UploadForm';
 
 const UploadTemplate: React.FC = (props) => {
   return (
@@ -12,10 +12,10 @@ const UploadTemplate: React.FC = (props) => {
         <Main>
           <Section>
             <div>
-              <UploadForm {...props} />
+              {/*<UploadForm />*/}
             </div>
           </Section>
-        </Main>>
+        </Main>
       <Footer />
     </div>
   );

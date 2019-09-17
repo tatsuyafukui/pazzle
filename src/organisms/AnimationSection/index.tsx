@@ -2,8 +2,8 @@ import React from 'react';
 import * as styles from './styles.css';
 import { clickLogin } from '../../modules/auth';
 import { useDispatch } from 'react-redux';
-import getStartedStyle from '../../molecules/getStartedButton/styles.css';
-import GetStartedButton from '../../molecules/getStartedButton';
+import getStartedStyle from '../../molecules/GetStartedButton/styles.css';
+import GetStartedButton from '../../molecules/GetStartedButton';
 import Heading from '../../atoms/Heading';
 import Section from '../../molecules/Section';
 

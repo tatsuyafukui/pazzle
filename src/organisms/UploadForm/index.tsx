@@ -28,6 +28,19 @@ const UploadForm: React.FC<IProps> = props => {
   const user = useSelector(userSelector);
 
 
+  useEffect(() => {
+    const canvas: any = document.getElementById( 'cvs' )
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const resetImage = new Image()
+    resetImage.addEventListener('load', () => {
+      context.drawImage(resetImage,
+        0,0, 300, 300, 0,0, 300, 300);
+    });
+
+    resetImage.src = preview;
+  }, [])
+
 
   const changeFileHandler = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.files === null) return;
@@ -91,7 +104,7 @@ const UploadForm: React.FC<IProps> = props => {
 
           // canvas ホイールで拡大縮小
           let scl = newScale + _ev.wheelDelta * 0.05;
-          if ( scl < 40  ) scl = 40;
+          if ( scl < 10  ) scl = 10;
           if ( scl > 400 ) scl = 400;
           console.log(scl)
 
@@ -155,7 +168,16 @@ const UploadForm: React.FC<IProps> = props => {
               dispatch(showFlash('パズルを作成しました！'));
               const canvas: any = document.getElementById( 'cvs' )
               const context = canvas.getContext('2d');
-              context.clearRect(0, 0, canvas.width, canvas.height);            })
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              const resetImage = new Image()
+              resetImage.addEventListener('load', () => {
+                context.drawImage(resetImage,
+                  0,0, 300, 300, 0,0, 300, 300);
+                setFileName('');
+              });
+
+              resetImage.src = preview;
+            })
             .catch(e => {
               console.error('Error writing document: ', e);
             });
@@ -186,7 +208,13 @@ const UploadForm: React.FC<IProps> = props => {
             accept="image/png,image/jpg,image/bmp"
           />
         </label>
-        <Button type={'submit'} className={styles.submitButton}>アップロード</Button>
+        <Button
+          type={'submit'}
+          className={fileName?styles.submitButton: styles.disableButton}
+          disabled={!fileName}
+        >
+          アップロード
+        </Button>
       </form>
     </Modal>
   );

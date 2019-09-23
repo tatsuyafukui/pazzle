@@ -8,18 +8,16 @@ import AnimationSection from '../organisms/AnimationSection';
 import PuzzleSection from '../organisms/PuzzleSection';
 import UnderSection from '../organisms/UnderSection';
 
-
-
 const LandingTemplate: React.FC = () => {
   return (
     <div>
       <Header />
       <Main>
-        <TopSection/>
-        <CollectionSection/>
-        <AnimationSection/>
-        <PuzzleSection/>
-        <UnderSection/>
+        <TopSection />
+        <CollectionSection />
+        <AnimationSection />
+        <PuzzleSection />
+        <UnderSection />
       </Main>
       <Footer />
     </div>

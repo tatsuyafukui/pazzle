@@ -11,21 +11,20 @@ import Img from '../../atoms/Img';
 import { CreamTxt } from '../../atoms/Txt';
 import Section from '../../molecules/Section';
 
-
 const CollectionSection: React.FC = () => {
   useEffect(() => {
-    photoTypes()
+    photoTypes();
     return () => {
       // ScrollReveal().destroy()
     };
   }, []);
 
   const images = [
-    {background: styles.circleBackgroundBlue, image:  viewing},
-    {background: styles.circleBackgroundPeople, image:  cat},
-    {background: styles.circleBackgroundOrange, image:  sara},
-    {background: styles.circleBackgroundBlue, image:  design},
-    {background: styles.circleBackgroundPeople, image:  fuji},
+    { background: styles.circleBackgroundBlue, image: viewing },
+    { background: styles.circleBackgroundPeople, image: cat },
+    { background: styles.circleBackgroundOrange, image: sara },
+    { background: styles.circleBackgroundBlue, image: design },
+    { background: styles.circleBackgroundPeople, image: fuji },
   ].map((item, i) => (
     <div key={i} className={styles.picturesSectionIconsItem}>
       <div className={styles.square}>
@@ -39,9 +38,7 @@ const CollectionSection: React.FC = () => {
     <Section>
       <div className={styles.picturesSectionContainer}>
         <Heading className={styles.heading}>パズルの種類がたくさん！</Heading>
-        <div className={styles.picturesSectionIcons}>
-          {images}
-        </div>
+        <div className={styles.picturesSectionIcons}>{images}</div>
       </div>
       <div className={styles.picturesSectionUnderBody}>
         <div className={styles.picturesSectionUnderBodyContainer}>

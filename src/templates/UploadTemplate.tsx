@@ -5,17 +5,15 @@ import Main from '../organisms/main/main';
 import Section from '../molecules/Section';
 import UploadForm from '../organisms/UploadForm';
 
-const UploadTemplate: React.FC = (props) => {
+const UploadTemplate: React.FC = props => {
   return (
-      <div>
-        <Header />
-        <Main>
-          <Section>
-            <div>
-              {/*<UploadForm />*/}
-            </div>
-          </Section>
-        </Main>
+    <div>
+      <Header />
+      <Main>
+        <Section>
+          <div>{/*<UploadForm />*/}</div>
+        </Section>
+      </Main>
       <Footer />
     </div>
   );

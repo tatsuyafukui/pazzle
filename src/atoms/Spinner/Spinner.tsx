@@ -5,18 +5,18 @@ const Spinner: React.FC = () => {
   return (
     <div className={styles.loadContainer}>
       <div className={styles.ldsSpinner}>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
       </div>
     </div>
   );

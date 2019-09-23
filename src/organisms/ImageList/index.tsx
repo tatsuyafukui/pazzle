@@ -25,25 +25,21 @@ const ImageList: React.FC = () => {
   }
 
   const list = images.map((item: any, index: any) => (
-      <Anchor to={`/play/${item.id}`} key={index} className={styles.gridItemContainer}>
-        <Img className={styles.gridItem} src={item.path} alt={item.name} />
-        <div className={styles.gridItemHover}>
-          <div className={styles.startBtn}>
-            <Txt fontSize={ESize.l}>スタート</Txt>
-          </div>
+    <Anchor to={`/play/${item.id}`} key={index} className={styles.gridItemContainer}>
+      <Img className={styles.gridItem} src={item.path} alt={item.name} />
+      <div className={styles.gridItemHover}>
+        <div className={styles.startBtn}>
+          <Txt fontSize={ESize.l}>スタート</Txt>
         </div>
-      </Anchor>
-    )
-  );
-  console.log(images[0])
+      </div>
+    </Anchor>
+  ));
+  console.log(images[0]);
   return (
     <div className={styles.root}>
-      <div className={styles.grid}>
-        {list}
-      </div>
+      <div className={styles.grid}>{list}</div>
     </div>
   );
 };
 
 export default ImageList;
-

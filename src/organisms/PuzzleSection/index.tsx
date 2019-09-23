@@ -56,11 +56,17 @@ const PuzzleSection: React.FC = () => {
             <div className={styles.messageSectionHalfRight}>
               <div className={styles.messageSectionHalfRightText}>
                 {/*<CreamTxt>夢中で作った砂のダム。積み木で作ったお城。大したものじゃなかったけど、いつだって作ることは楽しい！</CreamTxt>*/}
-                <CreamTxt fontSize={ESize.l} >パズルを作るのに難しい知識は必要なし。ただピースをはめることに没頭しよう！</CreamTxt>
-                <CreamTxt fontSize={ESize.l}>気がつけば日が暮れているような、気がつけば夜が明けているような、素敵な時間になりますように！</CreamTxt>
+                <CreamTxt fontSize={ESize.l}>
+                  パズルを作るのに難しい知識は必要なし。ただピースをはめることに没頭しよう！
+                </CreamTxt>
+                <CreamTxt fontSize={ESize.l}>
+                  気がつけば日が暮れているような、気がつけば夜が明けているような、素敵な時間になりますように！
+                </CreamTxt>
               </div>
               <GetStartedButton
-                onClick={() => {dispatch(clickLogin())}}
+                onClick={() => {
+                  dispatch(clickLogin());
+                }}
                 className={getStartedStyle.messageSectionHalfRightButton}
               />
             </div>
@@ -89,14 +95,16 @@ const setReveal = () => {
     viewOffset: { bottom: 0 },
     afterReveal: () => {
       const flame1: any = document.getElementById(styles.flame1);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame1);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
 
   ScrollReveal().reveal(`#trigger2`, {
@@ -106,9 +114,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame2);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
 
   ScrollReveal().reveal(`#trigger3`, {
@@ -118,9 +127,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame3);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger4`, {
     afterReveal: () => {
@@ -129,9 +139,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame4);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger5`, {
     afterReveal: () => {
@@ -140,9 +151,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame5);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger6`, {
     afterReveal: () => {
@@ -151,9 +163,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame6);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger7`, {
     afterReveal: () => {
@@ -162,9 +175,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame7);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger8`, {
     afterReveal: () => {
@@ -173,9 +187,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame8);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger9`, {
     afterReveal: () => {
@@ -184,9 +199,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame9);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger10`, {
     afterReveal: () => {
@@ -195,9 +211,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame10);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger11`, {
     afterReveal: () => {
@@ -206,9 +223,10 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame11);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
-      }    },
+      }
+    },
   });
   ScrollReveal().reveal(`#trigger12`, {
     viewOffset: { top: -500 },
@@ -218,10 +236,9 @@ const setReveal = () => {
     },
     afterReset: () => {
       const flame1: any = document.getElementById(styles.flame12);
-      if(flame1){
+      if (flame1) {
         flame1.classList.remove(styles.flameActive);
       }
-
     },
   });
 };

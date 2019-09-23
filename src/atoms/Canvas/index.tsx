@@ -1,6 +1,6 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import styles from './canvas.css';
+import styles from './styles.css';
 
 interface ICanvas {
   url: string;
@@ -17,26 +17,25 @@ const Canvas: React.FC<IProps> = props => {
   const { id, url, isCorrect } = props.item;
 
   const style = {
-    width: props.size,
-    height: props.size,
-    maxWidth: props.size,
-    maxHeight: props.size,
     margin: '1px',
   };
 
   return (
-    <Draggable draggableId={`${id}`} index={props.index} key={id}>
-      {(provided, snapshot) => (
-        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-          <div>
+    <Draggable key={`${id}`} draggableId={`${id}`} index={props.index}>
+      {(provided, snapshot) => {
+        return (
+          <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
             <img
               src={url}
-              style={{ ...style, border: isCorrect ? '3px solid lightgreen' : 'none' }}
+              style={{
+                ...style,
+                border: isCorrect ? '1px solid lightgreen' : 'none',
+              }}
               className={snapshot.isDragging ? styles.border : ''}
             />
           </div>
-        </div>
-      )}
+        );
+      }}
     </Draggable>
   );
 };

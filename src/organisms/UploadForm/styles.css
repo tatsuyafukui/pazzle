@@ -16,6 +16,11 @@
   -webkit-tap-highlight-color: transparent;
   margin: 0 auto;
   margin-top: 15px;
+
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 8px 4px;
+  margin-bottom: 8px;
 }
 
 .label input {
@@ -43,6 +48,7 @@
   width: 100%;
   font-size: 1.2rem;
   padding: 8px 4px;
+  margin-bottom: 8px;
 }
 
 .disableButton {
@@ -61,6 +67,7 @@
   width: 100%;
   font-size: 1.2rem;
   padding: 8px 4px;
+  margin-bottom: 8px;
 }
 
 
@@ -71,13 +78,23 @@
 
 }
 
-.closeBtn {
+.closeBtn{
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
   position: absolute;
+  width: 20px;
+  height: 20px;
   top: 0;
   left: 0;
   color: rgba(51,51,51, 0.4);
   background-color: transparent;
+  stroke-width: 200;
+  font-size: 20px;
+  transition: all 0.3s;
+
+}
+
+.closeBtn:hover {
+  background-color: rgba(51,51,51, 0.5);
 }

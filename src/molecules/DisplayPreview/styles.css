@@ -1,9 +1,11 @@
 .root {
-    width: 90%;
-    padding: 8px 14px;
+    width: 300px;
     margin: 0 auto;
-    background-color: white;
+    background-color: transparent;
     margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -12,10 +14,10 @@
 }
 
 .previewBody {
-
+    height: inherit;
 }
 
-.previewBody img {
+.root img {
     width: 100%;
     height: auto;
 }

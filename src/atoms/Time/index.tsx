@@ -9,30 +9,26 @@ interface IProps extends React.AllHTMLAttributes<HTMLTimeElement> {
 
 export const TimePresenter: React.FC<IProps> = props => <time {...props} />;
 
-export const TimeContainer: React.FC<IProps&{presenter: (props: any) => any}> = (props) => {
-
-  if(props.children === null || props.children === undefined) return;
+export const TimeContainer: React.FC<IProps & { presenter: (props: any) => any }> = props => {
+  if (props.children === null || props.children === undefined) return;
   const value = parseInt(props.children.toString(), 10);
 
   let children;
-  if(!isValid(value)) {
-    children = "有効な値ではありません";
+  if (!isValid(value)) {
+    children = '有効な値ではありません';
   } else {
     children = formatDatetime(value);
   }
 
-  if(!props.dateTime) {
+  if (!props.dateTime) {
     props.dateTime = formatDatetime(value);
   }
 
-  return props.presenter({ children, ...props})
+  return props.presenter({ children, ...props });
 };
 
-const Time: React.FC<IProps> = (props) => (
-  <TimeContainer
-    presenter={presenterProps => <TimePresenter {...presenterProps}/>}
-    {...props}
-  />
+const Time: React.FC<IProps> = props => (
+  <TimeContainer presenter={presenterProps => <TimePresenter {...presenterProps} />} {...props} />
 );
 
 export default Time;

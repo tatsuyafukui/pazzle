@@ -6,30 +6,26 @@ interface IProps {
   menuList: React.AllHTMLAttributes<HTMLElement>[];
 }
 
-const HeaderMenu: React.FC<IProps> = (props) => {
+const HeaderMenu: React.FC<IProps> = props => {
   const menuList = props.menuList.map((item: React.AllHTMLAttributes<HTMLElement>, i: number) => {
-
     return (
       <li className={styles.li} key={i}>
         <Button className={styles.button} onClick={item.onClick}>
-            {item.children}
+          {item.children}
         </Button>
       </li>
-    )
+    );
   });
 
   return (
     <div className={styles.root}>
       <div>
-        <div style={{display: 'inherit'}}>
+        <div style={{ display: 'inherit' }}>
           <nav>
-            <ul className={styles.ul}>
-              {menuList}
-            </ul>
+            <ul className={styles.ul}>{menuList}</ul>
           </nav>
         </div>
       </div>
-
     </div>
   );
 };

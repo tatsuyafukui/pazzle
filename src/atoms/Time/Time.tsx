@@ -6,7 +6,6 @@ interface IProps {}
 
 const timeSelector = (state: any) => state.pieceReducer.time;
 const startTimeSelector = (state: any) => state.pieceReducer.interval;
-
 const playingSelector = (state: any) => state.pieceReducer.playing;
 
 const Time: React.FC<IProps> = props => {

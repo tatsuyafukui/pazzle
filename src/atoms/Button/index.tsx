@@ -9,6 +9,4 @@ const Test: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props => {
   );
 };
 
-
-
 export default Test;

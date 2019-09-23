@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './styles.css'
+import styles from './styles.css';
 
-const Balloon: React.FC<React.AllHTMLAttributes<HTMLSpanElement>> = (props) => (
+const Balloon: React.FC<React.AllHTMLAttributes<HTMLSpanElement>> = props => (
   <span className={[styles.balloon, props.className].join(' ')} {...props}>
     {props.children}
   </span>

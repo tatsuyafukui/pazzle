@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly select: string;
+  readonly root: string;
   readonly easy: string;
   readonly normal: string;
   readonly hard: string;

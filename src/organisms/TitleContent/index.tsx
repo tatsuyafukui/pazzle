@@ -13,8 +13,10 @@ const TitleContent: React.FC = () => {
     <div className={styles.root}>
       <Heading level={1}>SLIDE PUZZLE</Heading>
       <GetStartedButton
-        style={{marginTop: '10px'}}
-        onClick={() => {dispatch(clickLogin())}}
+        style={{ marginTop: '10px' }}
+        onClick={() => {
+          dispatch(clickLogin());
+        }}
         className={getStartedStyle.landingLogin}
       />
     </div>

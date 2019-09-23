@@ -1,8 +1,9 @@
 .root {
-    width: 90%;
+    width: 100%;
     padding: 8px 14px;
     background-color: forestgreen;
     margin: 0 auto;
+    max-width: 300px;
 }
 
 .timeHeader {

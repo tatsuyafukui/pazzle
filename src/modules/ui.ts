@@ -23,18 +23,18 @@ export const toggleModal = (modalState: boolean) => {
   return (dispatch: any) => {
     dispatch({
       type: CHANGE_MODAL,
-      hasModal: !modalState
-    })
-  }
+      hasModal: !modalState,
+    });
+  };
 };
 
 export const toggleUploadModal = (hasUploadModal: boolean) => {
   return (dispatch: any) => {
     dispatch({
       type: CHANGE_UPLOAD_MODAL,
-      hasUploadModal: !hasUploadModal
-    })
-  }
+      hasUploadModal: !hasUploadModal,
+    });
+  };
 };
 
 export const showFlash = (message: string) => {
@@ -43,8 +43,8 @@ export const showFlash = (message: string) => {
       type: SHOW_FLASH,
       hasFlash: true,
       flashMessage: message,
-    })
-  }
+    });
+  };
 };
 
 export const hiddenFlash = () => {
@@ -53,8 +53,8 @@ export const hiddenFlash = () => {
       type: HIDDEN_FLASH,
       hasFlash: false,
       flashMessage: '',
-    })
-  }
+    });
+  };
 };
 
 // reducer

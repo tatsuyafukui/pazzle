@@ -21,7 +21,9 @@ const UnderSection: React.FC = () => {
               <Heading>さあ、一緒に作ろう!</Heading>
             </div>
             <GetStartedButton
-              onClick={() => {dispatch(clickLogin())}}
+              onClick={() => {
+                dispatch(clickLogin());
+              }}
               className={getStartedStyle.halfRightTextButton}
             />
           </div>

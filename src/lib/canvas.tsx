@@ -1,5 +1,5 @@
 import { DraggableLocation } from 'react-beautiful-dnd';
-import { ICanvas, IColumn } from '../types';
+import { EMode, ICanvas, IColumn } from '../types';
 
 export const shuffleArray = (arr: ICanvas[]): ICanvas[] => {
   const newArray = [...arr];
@@ -13,10 +13,11 @@ export const shuffleArray = (arr: ICanvas[]): ICanvas[] => {
 };
 
 export const getSize = (mode: number): number => {
+  const CANVAS_SIZE = 600;
   let size = 0;
-  if (mode === 3) size = 300;
-  if (mode === 6) size = 150;
-  if (mode === 9) size = 100;
+  if (mode === EMode.easy) size = CANVAS_SIZE / EMode.easy;
+  if (mode === EMode.normal) size = CANVAS_SIZE / EMode.normal;
+  if (mode === EMode.hard) size = CANVAS_SIZE / EMode.hard;
   return size;
 };
 
@@ -86,7 +87,6 @@ export const getNewColumns = (
   const startTasks = Array.from(startCanvasList);
 
   startTasks.splice(source.index, 1);
-  // parseInt(source.droppableId)0,1,2...+3
   if (source.droppableId === destination.droppableId) {
     startTasks.splice(destination.index, 0, startCanvasList[source.index]); //移動
   } else {
@@ -103,6 +103,5 @@ export const getNewColumns = (
     ...columns[parseInt(source.droppableId)],
     tasks: startTasks,
   };
-
   return changeColumn;
 };

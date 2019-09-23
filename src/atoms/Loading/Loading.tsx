@@ -12,12 +12,12 @@ const Loading: React.FC = () => {
   //   </div>
   // );
   return (
-      <div className={styles['leaf-special-loader']}>
-        <div className={styles.piece1} />
-        <div className={styles.piece2} />
-        <div className={styles.piece3} />
-        <div className={styles.piece4} />
-      </div>
+    <div className={styles['leaf-special-loader']}>
+      <div className={styles.piece1} />
+      <div className={styles.piece2} />
+      <div className={styles.piece3} />
+      <div className={styles.piece4} />
+    </div>
   );
 };
 

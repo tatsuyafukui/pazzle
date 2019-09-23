@@ -24,22 +24,19 @@ export const clickLogin = () => {
       .auth()
       .signInWithPopup(providerTwitter)
       .then(result => {
-        console.log(result)
+        console.log(result);
 
-        signup(result)
+        signup(result);
         dispatch(authSuccess(result.user));
       });
   };
 };
 
-const signup = (result:any) => {//profile description
+const signup = (result: any) => {
+  //profile description
   const userInfo = result.additionalUserInfo;
   const isNewUser = userInfo.isNewUser;
   // if(!isNewUser) return;
-
-
-
-
 };
 
 export const clickLogout = () => {

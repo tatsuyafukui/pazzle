@@ -40,9 +40,8 @@ const App: React.FC = () => {
     <div className={styles.App}>
       <Route exact path={'/'} component={DashboardPage} />
       <Route exact path={'/upload'} component={UploadPage} />
-      <Route exact path={'/play/:id'} component={PlayingPage} />
+      <Route exact path={'/play/:id'} render={props => <PlayingPage {...props} />} />
       <Route exact path={'/users/profile'} component={ProfilePage} />
-
     </div>
   );
 };

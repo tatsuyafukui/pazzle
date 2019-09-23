@@ -5,7 +5,6 @@ import ImageList from '../organisms/ImageList';
 import Section from '../molecules/Section';
 
 const DashboardTemplate: React.FC = props => {
-
   return (
     <div>
       <Header />

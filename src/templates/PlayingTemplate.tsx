@@ -14,7 +14,7 @@ const PlayingTemplate: React.FC<Props> = props => {
     <div>
       <Header />
       <Main>
-        <Playground {...props}/>
+        <Playground {...props} />
       </Main>
     </div>
   );

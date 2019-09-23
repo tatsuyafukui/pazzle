@@ -5,14 +5,7 @@ interface IProps {
 }
 
 const UserBalloon = (props: any) => {
-
-  return (
-    <div>
-
-    </div>
-  )
-
-
+  return <div></div>;
 };
 
-export default UserBalloon
+export default UserBalloon;

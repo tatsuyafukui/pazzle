@@ -1,0 +1,11 @@
+.root {
+}
+.easy div{
+    height: 200px;
+}
+.normal div{
+    height: 100px;
+}
+.hard div{
+    height: 60px;
+}

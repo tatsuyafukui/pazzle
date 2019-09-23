@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { hiddenFlash } from '../../modules/ui';
 
 interface IProps extends React.AllHTMLAttributes<HTMLElement> {
-  count: number
+  count: number;
 }
 
 const Flash: React.FC<IProps> = props => {
@@ -13,14 +13,10 @@ const Flash: React.FC<IProps> = props => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(hiddenFlash());
-    }, props.count)
+    }, props.count);
   }, []);
 
-  return (
-    <div className={styles.root}>
-     {props.children}
-    </div>
-  );
+  return <div className={styles.root}>{props.children}</div>;
 };
 
 export default Flash;

@@ -1,4 +1,5 @@
 import { db } from '../config/firebase';
+import { EMode } from '../types';
 
 const COLLECTION_START = 'COLLECTION_START';
 const COLLECTION_SUCCESS = 'COLLECTION_SUCCESS';
@@ -50,20 +51,13 @@ export const collectionCheck = () => {
   };
 };
 
-
-export const activeImage = (uid: string, imageId: string) => {
+export const activeImage = (imageId: string) => {
   return (dispatch: any) => {
     dispatch(collectionStart());
-    db.collection('users')
-      .doc(uid)
-      .collection('images')
+    db.collection('images')
       .doc(imageId)
-      .get()
-      .then(documentSnapshot => {
+      .onSnapshot(documentSnapshot => {
         dispatch(activeImageSuccess(documentSnapshot.data()));
-      })
-      .catch(e => {
-        dispatch(collectionFail(e));
       });
   };
 };
@@ -81,6 +75,7 @@ export const addCollection = (images: [IImages], image: IImages) => {
 const collectionStart = () => {
   return {
     type: COLLECTION_START,
+    loading: true,
   };
 };
 
@@ -95,6 +90,7 @@ const activeImageSuccess = (imageData: any) => {
   return {
     type: ACTIVE_IMAGE_SUCCESS,
     imageData: imageData,
+    loading: false,
   };
 };
 

@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { getNewColumns } from '../../lib/canvas';
-import { changeColumns, gameEnd } from '../../modules/pieses';
+import { changeColumns } from '../../modules/pieses';
 import { useDispatch, useSelector } from 'react-redux';
-import Column from '../../molecules/columns/column';
+import Column from '../../molecules/Columns';
+import { RouteComponentProps } from 'react-router';
 
 const columnsSelector = (state: any) => state.pieceReducer.columns;
 const modeSelector = (state: any) => state.pieceReducer.mode;
 
-const PlayingCanvas: React.FC = () => {
+interface MatchParams {
+  id: string;
+}
+interface IProps extends RouteComponentProps<MatchParams> {}
+
+const PlayingCanvas: React.FC<IProps> = props => {
   const columns = useSelector(columnsSelector);
   const mode = useSelector(modeSelector);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let finalDone: boolean[] = checkClear(columns, mode);
-    if (finalDone.indexOf(false) == -1) {
-      dispatch(gameEnd());
-    }
-  }, [columns]);
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
@@ -27,7 +26,6 @@ const PlayingCanvas: React.FC = () => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     const newColumns = getNewColumns(columns, source, destination);
-
     dispatch(changeColumns(newColumns));
   };
 
@@ -43,22 +41,3 @@ const PlayingCanvas: React.FC = () => {
 };
 
 export default PlayingCanvas;
-
-/**
- * ピースの位置がすべて正しいかの判定
- * @param arr
- * @param mode
- */
-const checkClear = (arr: any, mode: number): boolean[] => {
-  let finalDone: any = [];
-  arr.forEach((column: any) => {
-    const isDone = column.tasks.map((item: any, i: number) => {
-      const columnId = i * mode + column.id;
-      console.log(columnId === item.id);
-
-      return columnId === item.id;
-    });
-    finalDone.push(isDone.indexOf(false) === -1);
-  });
-  return finalDone;
-};

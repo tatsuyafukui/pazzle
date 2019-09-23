@@ -6,24 +6,20 @@ interface IProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string;
 }
 
-const Anchor: React.FC<IProps> = (props) => (
-  <AnchorContainer
-    {...props}
-    presenter={(presenterProps: any) =>  <AnchorPresenter {...presenterProps} />}
-  />
+const Anchor: React.FC<IProps> = props => (
+  <AnchorContainer {...props} presenter={(presenterProps: any) => <AnchorPresenter {...presenterProps} />} />
 );
 
 export default Anchor;
 
-export const AnchorPresenter: React.FC<IProps> = (props) => {
+export const AnchorPresenter: React.FC<IProps> = props => {
   return (
     <Link {...props} className={[styles.Anchor, props.className].join(' ')}>
       {props.children}
     </Link>
-  )
+  );
 };
 
-export const AnchorContainer = ({presenter,  ...props}: any) => {
-
-  return presenter({...props})
+export const AnchorContainer = ({ presenter, ...props }: any) => {
+  return presenter({ ...props });
 };

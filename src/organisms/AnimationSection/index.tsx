@@ -14,14 +14,16 @@ const AnimationSection: React.FC = () => {
       <div className={styles.sectionOrangeBackground}>
         <div className={styles.sectionOrangeMessageBlock}>
           <div>
-            <Heading level={1} className={styles.heading} >
+            <Heading level={1} className={styles.heading}>
               没頭する時間
               <br />
               作り上げる達成感
             </Heading>
           </div>
           <GetStartedButton
-            onClick={() => {dispatch(clickLogin())}}
+            onClick={() => {
+              dispatch(clickLogin());
+            }}
             className={getStartedStyle.sectionOrangeMessageBlockButton}
           />
         </div>

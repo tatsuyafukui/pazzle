@@ -10,10 +10,15 @@ import TitleContent from '../TitleContent';
 
 const TopSection: React.FC = () => {
   const pieces = [
-    {style: styles.piece1, image: piece1, text: "最速クリアタイムを目指そう！", styleImage: styles.time},
-    {style: styles.piece2, image: piece2, text: "目指せランキング１位！", styleImage: styles.ranking},
-    {style: styles.piece3, image: piece3, text: "難易度は３つから選べます！", styleImage: styles.mode},
-    {style: styles.piece4, image: piece4, text: "完成したパズルとクリアタイムをSNSでシェアしよう！", styleImage: styles.share},
+    { style: styles.piece1, image: piece1, text: '最速クリアタイムを目指そう！', styleImage: styles.time },
+    { style: styles.piece2, image: piece2, text: '目指せランキング１位！', styleImage: styles.ranking },
+    { style: styles.piece3, image: piece3, text: '難易度は３つから選べます！', styleImage: styles.mode },
+    {
+      style: styles.piece4,
+      image: piece4,
+      text: '完成したパズルとクリアタイムをSNSでシェアしよう！',
+      styleImage: styles.share,
+    },
   ].map((item, i) => (
     <div key={i}>
       <div className={`${item.styleImage} ${styles.future}`}>
@@ -30,7 +35,7 @@ const TopSection: React.FC = () => {
       <div>
         <div className={styles.inner}>
           <div className={styles.innerContents}>
-            <TitleContent/>
+            <TitleContent />
             {pieces}
           </div>
         </div>

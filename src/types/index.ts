@@ -20,6 +20,12 @@ export enum ESize {
   l = 'l',
 }
 
+export enum EMode {
+  easy = 3,
+  normal = 6,
+  hard = 10,
+}
+
 export enum ERole {
   default = 'default',
   info = 'info',
@@ -32,6 +38,6 @@ export enum ETag {
   a = 'a',
 }
 
-export interface IContainerProps extends React.AllHTMLAttributes<HTMLElement>{
+export interface IContainerProps extends React.AllHTMLAttributes<HTMLElement> {
   presenter: any;
 }

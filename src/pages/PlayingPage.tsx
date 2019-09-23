@@ -10,7 +10,7 @@ interface Props extends RouteComponentProps<MatchParams> {}
 const PlayingPage: React.FC<Props> = props => {
   return (
     <div>
-      <PlayingTemplate{...props}/>
+      <PlayingTemplate {...props} />
     </div>
   );
 };

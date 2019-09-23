@@ -29,37 +29,36 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
   const hasFlash = useSelector(hasFlashSelector);
   const flashMessage = useSelector(flashMessageSelector);
 
-  const menuList= [
-    user ?
-      {
-        children: (
-          <>
-            <div
-              style={{
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Img
+  const menuList = [
+    user
+      ? {
+          children: (
+            <>
+              <div
                 style={{
-                  borderRadius: '50%',
-                  width: 'auto',
-                  height: '50%',
+                  height: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
-                src={user ? user.photoURL.split('_normal').join(''): ''}
-              />
-            <FontAwesomeIcon
-              style={{
-                marginLeft: '5px',
-                color: 'white',
-              }}
-              icon={faCaretDown}
-            />
-            </div>
-            {hasModal?
-              (
+              >
+                <Img
+                  style={{
+                    borderRadius: '50%',
+                    width: 'auto',
+                    height: '50%',
+                  }}
+                  src={user ? user.photoURL.split('_normal').join('') : ''}
+                />
+                <FontAwesomeIcon
+                  style={{
+                    marginLeft: '5px',
+                    color: 'white',
+                  }}
+                  icon={faCaretDown}
+                />
+              </div>
+              {hasModal ? (
                 <>
                   <div className={styles.balloonContainer}>
                     <Balloon className={styles.balloon}>
@@ -67,7 +66,7 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
                         <li
                           onClick={() => {
                             dispatch(toggleModal(hasModal));
-                            dispatch(toggleUploadModal(hasUploadModal))
+                            dispatch(toggleUploadModal(hasUploadModal));
                           }}
                         >
                           <Txt>新しいパズルを作成</Txt>
@@ -77,12 +76,14 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
                             dispatch(toggleModal(hasModal));
                           }}
                         >
-                          <Anchor to={'/users/profile'}><Txt>プロフィール</Txt></Anchor>
+                          <Anchor to={'/users/profile'}>
+                            <Txt>プロフィール</Txt>
+                          </Anchor>
                         </li>
                         <li
                           onClick={() => {
                             dispatch(toggleModal(hasModal));
-                            dispatch(clickLogout())
+                            dispatch(clickLogout());
                           }}
                         >
                           <Txt>ログアウト</Txt>
@@ -92,30 +93,40 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
                   </div>
                   <ModalBackground onClick={() => dispatch(toggleModal(hasModal))} />
                 </>
-              )
-              : null}
-          </>
-        ),
-        onClick: () => {hasModal || dispatch(toggleModal(hasModal))},
-      }:
-      {
-        children: <WhiteTxt className={styles.twitter}><FontAwesomeIcon style={{marginRight: '5px'}} icon={faTwitter}/>ログイン</WhiteTxt>,
-        onClick:() => dispatch(clickLogin()),
-      },
+              ) : null}
+            </>
+          ),
+          onClick: () => {
+            hasModal || dispatch(toggleModal(hasModal));
+          },
+        }
+      : {
+          children: (
+            <WhiteTxt className={styles.twitter}>
+              <FontAwesomeIcon style={{ marginRight: '5px' }} icon={faTwitter} />
+              ログイン
+            </WhiteTxt>
+          ),
+          onClick: () => dispatch(clickLogin()),
+        },
   ];
 
   return (
     <header className={styles.header} {...props}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <Anchor to={'/'} style={{height: 'inherit'}}><Logo style={{padding: '10px 0'}} /></Anchor>
-          <HeaderMenu
-            menuList={menuList}
-          />
+          <Anchor to={'/'} style={{ height: 'inherit' }}>
+            <Logo style={{ padding: '10px 0' }} />
+          </Anchor>
+          <HeaderMenu menuList={menuList} />
         </div>
       </div>
       <UploadForm hasUploadModal={hasUploadModal} />
-      {hasFlash? <Flash count={5000}><WhiteTxt>{flashMessage}</WhiteTxt></Flash>: null}
+      {hasFlash ? (
+        <Flash count={5000}>
+          <WhiteTxt>{flashMessage}</WhiteTxt>
+        </Flash>
+      ) : null}
     </header>
   );
 };

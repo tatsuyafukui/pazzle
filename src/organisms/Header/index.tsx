@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickLogin, clickLogout } from '../../modules/auth';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Logo from '../../atoms/Logo';
 import HeaderMenu from '../../molecules/HeaderMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,7 +22,13 @@ const hasUploadModalSelector = (state: any) => state.uiReducer.hasUploadModal;
 const hasFlashSelector = (state: any) => state.uiReducer.hasFlash;
 const flashMessageSelector = (state: any) => state.uiReducer.flashMessage;
 
-const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
+interface IProps extends React.AllHTMLAttributes<HTMLElement>{
+  history: {
+    push(url: string): void;
+  };
+}
+
+const Header: React.FC<IProps> = (props: any) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const hasModal = useSelector(hasModalSelector);
@@ -71,17 +78,18 @@ const Header: React.FC<React.AllHTMLAttributes<HTMLElement>> = (props: any) => {
                         >
                           <Txt>新しいパズルを作成</Txt>
                         </li>
+                        {/*<li*/}
+                        {/*  onClick={() => {*/}
+                        {/*    dispatch(toggleModal(hasModal));*/}
+                        {/*  }}*/}
+                        {/*>*/}
+                        {/*  <Anchor to={'/users/profile'}>*/}
+                        {/*    <Txt>プロフィール</Txt>*/}
+                        {/*  </Anchor>*/}
+                        {/*</li>*/}
                         <li
                           onClick={() => {
-                            dispatch(toggleModal(hasModal));
-                          }}
-                        >
-                          <Anchor to={'/users/profile'}>
-                            <Txt>プロフィール</Txt>
-                          </Anchor>
-                        </li>
-                        <li
-                          onClick={() => {
+                            props.history.push("/");
                             dispatch(toggleModal(hasModal));
                             dispatch(clickLogout());
                           }}

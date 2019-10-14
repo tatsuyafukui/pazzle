@@ -11,7 +11,7 @@ const ProfilePage: React.FC = props => {
 
   return (
     <div>
-      <Header />
+      {/*<Header />*/}
       <Main>
         <Section>
           <div>

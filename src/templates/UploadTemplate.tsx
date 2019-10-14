@@ -8,7 +8,6 @@ import UploadForm from '../organisms/UploadForm';
 const UploadTemplate: React.FC = props => {
   return (
     <div>
-      <Header />
       <Main>
         <Section>
           <div>{/*<UploadForm />*/}</div>

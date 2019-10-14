@@ -7,14 +7,15 @@ import Playground from '../organisms/Playground';
 interface MatchParams {
   id: string;
 }
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteComponentProps<MatchParams> {
+  user: any;
+}
 
 const PlayingTemplate: React.FC<Props> = props => {
   return (
     <div>
-      <Header />
       <Main>
-        <Playground {...props} />
+        <Playground user={props.user} {...props} />
       </Main>
     </div>
   );

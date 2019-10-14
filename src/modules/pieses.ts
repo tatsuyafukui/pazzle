@@ -2,11 +2,13 @@ import { db } from '../config/firebase';
 import { showFlash, toggleUploadModal } from './ui';
 import preview from '../public/images/preview.png';
 import { EMode } from '../types';
+import { getDisplayTime } from '../molecules/DisplayTime';
 
 const UPDATE_TIME = 'UPDATE_TIME';
 const PIECE_SUCCESS = 'PIECE_SUCCESS';
 const MODE_SUCCESS = 'MODE_SUCCESS';
 const SET_BEST_TIME = 'SET_BEST_TIME';
+const SET_SELF_BEST_TIME = 'SET_SELF_BEST_TIME';
 
 const GAME_START = 'GAME_START';
 const GAME_END = 'GAME_END';
@@ -20,6 +22,7 @@ interface IInitialState {
   startTime: number;
   interval: any;
   bestTime: IBestTime;
+  selfTime: any
 }
 
 export interface IBestTime {
@@ -51,6 +54,7 @@ const initialState: IInitialState = {
     time: '--:--:--',
     mode: 'easyTime',
   },
+  selfTime: null,
 };
 
 // action
@@ -91,27 +95,16 @@ export const gameStart = (newColumns: any, setInterval: any) => {
   };
 };
 
-export const gameEnd = (endTime: string, bestTime: IBestTime, imageId: string) => {
+export const updateSelfRecord = (endTime: string, user: any, imageId: string) => {
+
+  const uid = user.providerData[0].uid;
   return (dispatch: any) => {
-    const isNewRecord = checkNewRecord(endTime, bestTime.time);
 
-    if (!isNewRecord) {
-      dispatch({
-        type: GAME_END,
-        playing: false,
-      });
-      return;
-    }
-
-    const newImage: any = {
-      updated_at: new Date(),
-      [bestTime.mode]: endTime,
-    };
-
-    console.log(newImage);
-    db.collection('images')
+    db.collection('users')
+      .doc(uid)
+      .collection('images')
       .doc(imageId)
-      .update(newImage)
+      .set({easyTime: endTime}, {merge: true})
       .then((addDoc: any) => {
         console.log('new record!!');
         dispatch({
@@ -122,6 +115,76 @@ export const gameEnd = (endTime: string, bestTime: IBestTime, imageId: string) =
       .catch(e => {
         console.error('Error writing document: ', e);
       });
+    dispatch({
+      type: GAME_END,
+    });
+  }
+};
+
+export const getUserSelfRecord = (uid: string, imageId: string) => {
+  return (dispatch: any) => {
+    db.collection('users')
+      .doc(uid)
+      .collection('images')
+      .doc(imageId)
+      .onSnapshot(documentSnapshot => {
+        console.log(documentSnapshot.data())
+
+        const selfTime = documentSnapshot.data() || {};
+
+        dispatch({
+          type: SET_SELF_BEST_TIME,
+          selfTime
+        });
+      });
+  };
+};
+
+
+export const gameEnd = (user: any, time: number, bestTime: IBestTime, selfTime: string, imageId: string) => {
+  return (dispatch: any) => {
+    const endTime = getDisplayTime(time);
+    const uid = user.providerData[0].uid;
+    const isNewRecord = checkNewRecord(endTime, bestTime.time);
+    const isNewSelfRecord = checkNewRecord(endTime, selfTime);
+
+
+    const newImage: any = {
+      updated_at: new Date(),
+      [bestTime.mode]: endTime,
+    };
+
+    if (isNewRecord) {
+      db.collection('images')
+        .doc(imageId)
+        .update(newImage)
+        .then((addDoc: any) => {
+          console.log('new record!!');
+        })
+        .catch(e => {
+          console.error('Error writing document: ', e);
+        });
+    }
+
+    if(isNewSelfRecord) {
+      db.collection('users')
+        .doc(uid)
+        .collection('images')
+        .doc(imageId)
+        .set({[bestTime.mode]: endTime}, {merge: true})
+        .then((addDoc: any) => {
+          console.log('new self record!!');
+        })
+        .catch(e => {
+          console.error('Error writing document: ', e);
+        });
+    }
+
+    dispatch({
+      type: GAME_END,
+      time: time,
+      playing: false,
+    });
   };
 };
 
@@ -191,6 +254,7 @@ const pieceReducer = (state = initialState, action: any) => {
       return {
         ...state,
         playing: action.playing,
+        time: action.time,
       };
     case UPDATE_TIME:
       return {
@@ -208,6 +272,11 @@ const pieceReducer = (state = initialState, action: any) => {
         columns: action.columns,
         time: action.time,
         playing: action.playing,
+      };
+    case SET_SELF_BEST_TIME:
+      return {
+        ...state,
+        selfTime: action.selfTime,
       };
     default:
       return state;

@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import Heading from '../../atoms/Heading';
 import styles from './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { gameEnd, updateTime } from '../../modules/pieses';
+import { gameEnd, updateSelfRecord, updateTime } from '../../modules/pieses';
 import { RouteComponentProps } from 'react-router';
+import { EMode } from '../../types';
 
 const timeSelector = (state: any) => state.pieceReducer.time;
 const startTimeSelector = (state: any) => state.pieceReducer.interval;
@@ -11,6 +12,9 @@ const playingSelector = (state: any) => state.pieceReducer.playing;
 const columnsSelector = (state: any) => state.pieceReducer.columns;
 const modeSelector = (state: any) => state.pieceReducer.mode;
 const bestTimeSelector = (state: any) => state.pieceReducer.bestTime;
+const userSelector = (state: any) => state.authReducer.user;
+const selfBestTimeSelector = (state: any) => state.pieceReducer.selfTime;
+
 interface MatchParams {
   id: string;
 }
@@ -25,29 +29,54 @@ const DisplayTime: React.FC<IProps> = props => {
   const mode = useSelector(modeSelector);
   const bestTime = useSelector(bestTimeSelector);
   const interval = useSelector(startTimeSelector);
+  const user = useSelector(userSelector);
+  const selfTime = useSelector(selfBestTimeSelector);
+
   const dispatch = useDispatch();
+
+
+  let selfBestTime = '--:--:--';
+
+  if(selfTime) {
+    switch (mode) {
+      case EMode.easy:
+        selfBestTime = selfTime.easyTime || '--:--:--' ;
+        break;
+      case EMode.normal:
+        selfBestTime = selfTime.normalTime || '--:--:--' ;
+        break;
+      case EMode.hard:
+        selfBestTime = selfTime.hardTime || '--:--:--' ;
+        break;
+      default:
+        break;
+    }
+  }
 
   useEffect(() => {
     let finalDone: boolean[] = checkClear(columns, mode);
     if (playing && finalDone.indexOf(false) === -1) {
       clearInterval(interval);
-      const stringEndTime = getDisplayTime(time);
-      dispatch(gameEnd(stringEndTime, bestTime, props.match.params.id));
-      dispatch(updateTime(time));
+      dispatch(gameEnd(user, time, bestTime, selfBestTime, props.match.params.id));
     }
   }, [columns]);
 
+
+
   return (
     <div className={styles.root}>
-      <div className={styles.timeHeader}>
-        <Heading visualLevel={3}>TIME</Heading>
-      </div>
       <div className={styles.timeBody}>
         <div className={styles.timeBest}>
           <Heading level={6} visualLevel={5}>
-            最高記録
+            世界記録
           </Heading>
           <Heading>{bestTime.time}</Heading>
+        </div>
+        <div className={styles.timeBest}>
+          <Heading level={6} visualLevel={5}>
+            自己ベスト
+          </Heading>
+          <Heading>{selfBestTime}</Heading>
         </div>
         <div className={styles.timePlay}>
           <Heading level={6} visualLevel={5}>

@@ -12,7 +12,6 @@ const Time: React.FC<IProps> = props => {
   const time = useSelector(timeSelector);
   const interval = useSelector(startTimeSelector);
   const playing = useSelector(playingSelector);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!playing) {

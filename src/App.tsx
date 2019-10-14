@@ -1,16 +1,14 @@
 import React, { useLayoutEffect } from 'react';
 import DashboardPage from './pages/DashboardPage';
-import ProfilePage from './pages/ProfilePage';
-
 import LandingPage from './pages/LandingPage';
 import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
-import Spinner from './atoms/Spinner/Spinner';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PlayingPage from './pages/PlayingPage';
-import UploadPage from './pages/UploadPage';
 import Loading from './atoms/Loading/Loading';
+import NotFoundErrorPage from './pages/NotFoundErrorPage';
+import Header from './organisms/Header';
 
 const loadingSelector = (state: any) => state.authReducer.loading;
 const userSelector = (state: any) => state.authReducer.user;
@@ -24,6 +22,7 @@ const App: React.FC = () => {
     dispatch(authCheck());
   }, [dispatch]);
 
+  console.log(user)
   if (loading) {
     return <Loading />;
   }
@@ -31,6 +30,7 @@ const App: React.FC = () => {
   if (!user) {
     return (
       <div className={styles.App}>
+        <Route path={'/'} render={({history}) => <Header history={history} />} />
         <Route exact path={'/'} component={LandingPage} />
       </div>
     );
@@ -38,10 +38,12 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.App}>
-      <Route exact path={'/'} component={DashboardPage} />
-      <Route exact path={'/upload'} component={UploadPage} />
-      <Route exact path={'/play/:id'} render={props => <PlayingPage {...props} />} />
-      <Route exact path={'/users/profile'} component={ProfilePage} />
+      <Route path={'/'} render={({history}) => <Header history={history} />} />
+      <Switch>
+        <Route exact path={'/'} component={DashboardPage} />
+        <Route exact path={'/play/:id'} render={props => <PlayingPage user={user} {...props} />} />
+        <Route component={NotFoundErrorPage} />
+      </Switch>
     </div>
   );
 };

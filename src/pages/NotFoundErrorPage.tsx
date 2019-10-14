@@ -2,10 +2,9 @@ import React from 'react';
 import Header from '../organisms/Header';
 import Main from '../organisms/main/main';
 
-const NotFound: React.FC = () => {
+const NotFoundErrorPage: React.FC = () => {
   return (
     <div>
-      <Header />
       <Main>
         <h1>404</h1>
         <h1>このページは見つかりませんでした</h1>
@@ -14,4 +13,4 @@ const NotFound: React.FC = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundErrorPage;

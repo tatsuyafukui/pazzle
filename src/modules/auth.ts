@@ -1,4 +1,7 @@
 import firebase, { db, providerTwitter } from '../config/firebase';
+import { user } from 'firebase-functions/lib/providers/auth';
+import { showFlash, toggleUploadModal } from './ui';
+import preview from '../public/images/preview.png';
 
 const AUTH_START = 'START_AUTH';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -24,19 +27,42 @@ export const clickLogin = () => {
       .auth()
       .signInWithPopup(providerTwitter)
       .then(result => {
-        console.log(result);
-
-        signup(result);
+        signUp(result);
         dispatch(authSuccess(result.user));
       });
   };
 };
 
-const signup = (result: any) => {
-  //profile description
+const signUp = (result: any) => {
   const userInfo = result.additionalUserInfo;
-  const isNewUser = userInfo.isNewUser;
-  // if(!isNewUser) return;
+
+  const {isNewUser, username} = userInfo;
+  const {
+    email,
+    profile_image_url_https,
+    name,
+    id_str,
+  } = userInfo.profile;
+
+  if(!isNewUser) return;
+
+  const user = {
+    username,
+    email,
+    profileImageUrl: profile_image_url_https.split('_normal').join(''),
+    name
+  };
+  db.collection('users')
+    .doc(id_str)
+    .set(user)
+    .then((addDoc: any) => {
+      console.log('新規登録完了!');
+    })
+    .catch(e => {
+      console.error('Error writing document: ', e);
+    });
+
+
 };
 
 export const clickLogout = () => {
@@ -57,8 +83,6 @@ export const authCheck = () => {
   return (dispatch: any) => {
     dispatch(authStart());
     firebase.auth().onAuthStateChanged(user => {
-      console.log(firebase.auth().currentUser);
-
       dispatch(authSuccess(user));
     });
   };

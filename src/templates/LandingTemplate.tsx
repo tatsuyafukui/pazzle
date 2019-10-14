@@ -11,7 +11,7 @@ import UnderSection from '../organisms/UnderSection';
 const LandingTemplate: React.FC = () => {
   return (
     <div>
-      <Header />
+      {/*<Header />*/}
       <Main>
         <TopSection />
         <CollectionSection />

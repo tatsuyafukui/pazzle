@@ -7,7 +7,7 @@ import Section from '../molecules/Section';
 const DashboardTemplate: React.FC = props => {
   return (
     <div>
-      <Header />
+      {/*<Header />*/}
       <Main>
         <Section>
           <div>

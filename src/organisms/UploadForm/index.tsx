@@ -188,7 +188,6 @@ const UploadForm: React.FC<IProps> = props => {
                 context.drawImage(resetImage, 0, 0, 600, 600, 0, 0, 600, 600);
                 setFileName('');
               });
-
               resetImage.src = preview;
             })
             .catch(e => {

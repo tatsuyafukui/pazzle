@@ -62,6 +62,8 @@ export const activeImage = (imageId: string) => {
   };
 };
 
+
+
 // action
 export const addCollection = (images: [IImages], image: IImages) => {
   return (dispatch: any) => {

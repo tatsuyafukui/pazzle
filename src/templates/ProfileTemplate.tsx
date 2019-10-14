@@ -11,7 +11,6 @@ import UnderSection from '../organisms/UnderSection';
 const ProfileTemplate: React.FC = () => {
   return (
     <div>
-      <Header />
       <Main>
         <TopSection />
         <CollectionSection />

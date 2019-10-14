@@ -6,7 +6,6 @@ import GameStartForm from '../../molecules/GameStartForm';
 
 import { RouteComponentProps } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { activeImage } from '../../modules/collection';
 import { EMode } from '../../types';
 import Spinner from '../../atoms/Spinner/Spinner';
 import { IBestTime, setBestTime } from '../../modules/pieses';
@@ -16,6 +15,7 @@ interface MatchParams {
 interface IProps extends RouteComponentProps<MatchParams> {}
 
 const imagesSelector = (state: any) => state.collectionReducer.activeImage;
+const loadingSelector = (state: any) => state.collectionReducer.loading;
 const modeSelector = (state: any) => state.pieceReducer.mode;
 const bestTimeSelector = (state: any) => state.pieceReducer.bestTime;
 
@@ -23,6 +23,7 @@ const PlayingSummary: React.FC<IProps> = props => {
   const image = useSelector(imagesSelector);
   const mode = useSelector(modeSelector);
   const bestTime = useSelector(bestTimeSelector);
+  const loading = useSelector(loadingSelector);
 
   const dispatch = useDispatch();
 
@@ -59,7 +60,7 @@ const PlayingSummary: React.FC<IProps> = props => {
     dispatch(setBestTime(time));
   }, [mode, image]);
 
-  if (!image) {
+  if (loading) {
     return <Spinner />;
   }
 

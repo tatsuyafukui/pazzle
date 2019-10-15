@@ -1,5 +1,4 @@
 import { db } from '../config/firebase';
-import { EMode } from '../types';
 
 const COLLECTION_START = 'COLLECTION_START';
 const COLLECTION_SUCCESS = 'COLLECTION_SUCCESS';
@@ -93,13 +92,6 @@ const activeImageSuccess = (imageData: any) => {
     type: ACTIVE_IMAGE_SUCCESS,
     imageData: imageData,
     loading: false,
-  };
-};
-
-const collectionFail = (error: any) => {
-  return {
-    type: COLLECTION_FAIL,
-    error: error,
   };
 };
 

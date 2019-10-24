@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly upload: string;
+  readonly "upload": string;
 };
 export = styles;
+

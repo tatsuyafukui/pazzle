@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
 import Main from '../organisms/main/main';
 import TopSection from '../organisms/TopSection';

@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly Anchor: string;
+  readonly "Anchor": string;
 };
 export = styles;
+

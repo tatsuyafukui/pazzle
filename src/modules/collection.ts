@@ -1,15 +1,19 @@
 import { db } from '../config/firebase';
+import { createCanvasList, createStartColumns } from '../lib/canvas';
+import { columnsSuccess } from './pieses';
 
 const COLLECTION_START = 'COLLECTION_START';
 const COLLECTION_SUCCESS = 'COLLECTION_SUCCESS';
 const COLLECTION_FAIL = 'COLLECTION_FAIL';
 const ACTIVE_IMAGE_SUCCESS = 'ACTIVE_IMAGE_SUCCESS';
+const GET_CATEGORYS = 'GET_CATEGORYS';
 
 interface IImages {
   path: string;
   name: string;
   user_id: string;
   id: string;
+  categorys: string;
 }
 
 interface IinitialState {
@@ -17,6 +21,7 @@ interface IinitialState {
   loading: boolean;
   error: null | string;
   activeImage: any;
+  categorys: any;
 }
 
 const initialState: IinitialState = {
@@ -24,6 +29,7 @@ const initialState: IinitialState = {
   loading: false,
   error: null,
   activeImage: null,
+  categorys: ['all'],
 };
 
 // action
@@ -51,25 +57,37 @@ export const collectionCheck = () => {
 };
 
 export const activeImage = (imageId: string) => {
-  return (dispatch: any) => {
+
+  return (dispatch: any, store: any) => {
     dispatch(collectionStart());
     db.collection('images')
       .doc(imageId)
-      .onSnapshot(documentSnapshot => {
+      .onSnapshot((documentSnapshot: any) => {
         dispatch(activeImageSuccess(documentSnapshot.data()));
+
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.addEventListener('load', () => {
+          const canvasList = createCanvasList(img, store().pieceReducer.mode);
+          const newColumns = createStartColumns(store().pieceReducer.mode, canvasList);
+          dispatch(columnsSuccess(newColumns));
+        });
+        img.src = documentSnapshot.data().path;
       });
   };
 };
 
+export const getCategorys = () => {
 
-
-// action
-export const addCollection = (images: [IImages], image: IImages) => {
   return (dispatch: any) => {
-    dispatch(collectionStart());
-    const newImages: any = [...images];
-    newImages.push(image);
-    dispatch(collectionSuccess(newImages));
+    db.collection('categorys')
+      .onSnapshot((documentSnapshot: any) => {
+        console.log(documentSnapshot.docs[0].id)
+        dispatch({
+          type: GET_CATEGORYS,
+          categorys: documentSnapshot.docs
+        });
+      });
   };
 };
 
@@ -120,6 +138,11 @@ const collectionReducer = (state = initialState, action: any) => {
         ...state,
         loading: false,
         activeImage: action.imageData,
+      };
+    case GET_CATEGORYS:
+      return {
+        ...state,
+        categorys: action.categorys,
       };
     default:
       return state;

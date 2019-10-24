@@ -1,7 +1,4 @@
 import { db } from '../config/firebase';
-import { showFlash, toggleUploadModal } from './ui';
-import preview from '../public/images/preview.png';
-import { EMode } from '../types';
 import { getDisplayTime } from '../molecules/DisplayTime';
 
 const UPDATE_TIME = 'UPDATE_TIME';
@@ -22,7 +19,8 @@ interface IInitialState {
   startTime: number;
   interval: any;
   bestTime: IBestTime;
-  selfTime: any
+  selfTime: any;
+
 }
 
 export interface IBestTime {
@@ -64,24 +62,25 @@ export const changeColumns = (newColumns: any) => {
   };
 };
 
-export const changeMode = (newMode: number) => {
+export const changeMode = (newMode: number, newColumns: any) => {
   return (dispatch: any) => {
-    dispatch(modeSuccess(newMode));
+    dispatch(modeSuccess(newMode, newColumns));
   };
 };
 
-const columnsSuccess = (newColumns: any) => {
+export const columnsSuccess = (newColumns: any) => {
   return {
     type: PIECE_SUCCESS,
     newColumns: newColumns,
   };
 };
 
-const modeSuccess = (newMode: number) => {
+const modeSuccess = (newMode: number, newColumns: any) => {
   return {
     type: MODE_SUCCESS,
     newMode: newMode,
-  };
+    columns: newColumns,
+};
 };
 
 export const gameStart = (newColumns: any, setInterval: any) => {
@@ -95,32 +94,6 @@ export const gameStart = (newColumns: any, setInterval: any) => {
   };
 };
 
-export const updateSelfRecord = (endTime: string, user: any, imageId: string) => {
-
-  const uid = user.providerData[0].uid;
-  return (dispatch: any) => {
-
-    db.collection('users')
-      .doc(uid)
-      .collection('images')
-      .doc(imageId)
-      .set({easyTime: endTime}, {merge: true})
-      .then((addDoc: any) => {
-        console.log('new record!!');
-        dispatch({
-          type: GAME_END,
-          playing: false,
-        });
-      })
-      .catch(e => {
-        console.error('Error writing document: ', e);
-      });
-    dispatch({
-      type: GAME_END,
-    });
-  }
-};
-
 export const getUserSelfRecord = (uid: string, imageId: string) => {
   return (dispatch: any) => {
     db.collection('users')
@@ -128,62 +101,86 @@ export const getUserSelfRecord = (uid: string, imageId: string) => {
       .collection('images')
       .doc(imageId)
       .onSnapshot(documentSnapshot => {
-        console.log(documentSnapshot.data())
-
         const selfTime = documentSnapshot.data() || {};
-
         dispatch({
           type: SET_SELF_BEST_TIME,
-          selfTime
+          selfTime,
         });
       });
   };
 };
 
-
-export const gameEnd = (user: any, time: number, bestTime: IBestTime, selfTime: string, imageId: string) => {
+export const gameEnd = (user: any, time: number, bestTime: IBestTime, imageId: string, isNewRecord: boolean, isNewSelfRecord: boolean) => {
   return (dispatch: any) => {
     const endTime = getDisplayTime(time);
     const uid = user.providerData[0].uid;
-    const isNewRecord = checkNewRecord(endTime, bestTime.time);
-    const isNewSelfRecord = checkNewRecord(endTime, selfTime);
-
-
     const newImage: any = {
       updated_at: new Date(),
       [bestTime.mode]: endTime,
     };
 
     if (isNewRecord) {
-      db.collection('images')
-        .doc(imageId)
-        .update(newImage)
-        .then((addDoc: any) => {
-          console.log('new record!!');
-        })
-        .catch(e => {
-          console.error('Error writing document: ', e);
-        });
+      updateWorldRecord(imageId, newImage);
     }
 
-    if(isNewSelfRecord) {
-      db.collection('users')
-        .doc(uid)
-        .collection('images')
-        .doc(imageId)
-        .set({[bestTime.mode]: endTime}, {merge: true})
-        .then((addDoc: any) => {
-          console.log('new self record!!');
-        })
-        .catch(e => {
-          console.error('Error writing document: ', e);
-        });
+    if (isNewSelfRecord) {
+      updateSelfRecord(uid, imageId, bestTime.mode, endTime);
     }
 
     dispatch({
       type: GAME_END,
       time: time,
       playing: false,
+    });
+  };
+};
+
+const updateWorldRecord = (imageId: string, newObj: any) => {
+  db.collection('images')
+    .doc(imageId)
+    .update(newObj)
+    .then((addDoc: any) => {
+      console.log('new record!!');
+    })
+    .catch(e => {
+      console.error('Error writing document: ', e);
+    });
+};
+
+const updateSelfRecord = (uid: string, imageId: string, mode: string, endTime: string) => {
+  db.collection('users')
+    .doc(uid)
+    .collection('images')
+    .doc(imageId)
+    .set({ [mode]: endTime }, { merge: true })
+    .then((addDoc: any) => {
+      console.log('new self record!!');
+    })
+    .catch(e => {
+      console.error('Error writing document: ', e);
+    });
+};
+
+export const gameCancel = () => {
+  return (dispatch: any) => {
+    dispatch({
+      type: GAME_CANCEL,
+      playing: false,
+      time: 0,
+      columns: [
+        {
+          id: 0,
+          tasks: [],
+        },
+        {
+          id: 1,
+          tasks: [],
+        },
+        {
+          id: 2,
+          tasks: [],
+        },
+      ],
     });
   };
 };
@@ -206,30 +203,6 @@ export const updateTime = (time: number) => {
   };
 };
 
-export const gameCancel = () => {
-  return (dispatch: any) => {
-    dispatch({
-      type: GAME_CANCEL,
-      time: 0,
-      playing: false,
-      columns: [
-        {
-          id: 0,
-          tasks: [],
-        },
-        {
-          id: 1,
-          tasks: [],
-        },
-        {
-          id: 2,
-          tasks: [],
-        },
-      ],
-    });
-  };
-};
-
 // reducer
 const pieceReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -242,6 +215,7 @@ const pieceReducer = (state = initialState, action: any) => {
       return {
         ...state,
         mode: action.newMode,
+        columns: action.columns,
       };
     case GAME_START:
       return {
@@ -269,9 +243,9 @@ const pieceReducer = (state = initialState, action: any) => {
     case GAME_CANCEL:
       return {
         ...state,
-        columns: action.columns,
-        time: action.time,
         playing: action.playing,
+        time: action.time,
+        columns: action.columns,
       };
     case SET_SELF_BEST_TIME:
       return {
@@ -285,7 +259,7 @@ const pieceReducer = (state = initialState, action: any) => {
 
 export default pieceReducer;
 
-const checkNewRecord = (endTime: string, bestTime: string): boolean => {
+export const checkNewRecord = (endTime: string, bestTime: string): boolean => {
   if (bestTime === '--:--:--') {
     return true;
   }

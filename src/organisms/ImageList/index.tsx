@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { collectionCheck } from '../../modules/collection';
+import { collectionCheck, getCategorys } from '../../modules/collection';
 import Spinner from '../../atoms/Spinner/Spinner';
 import styles from './styles.css';
 import Img from '../../atoms/Img';
@@ -18,7 +18,7 @@ const ImageList: React.FC = () => {
 
   useEffect(() => {
     dispatch(collectionCheck());
-  }, [dispatch]);
+  }, []);
 
   if (loading) {
     return <Spinner />;
@@ -34,7 +34,6 @@ const ImageList: React.FC = () => {
       </div>
     </Anchor>
   ));
-  console.log(images[0]);
   return (
     <div className={styles.root}>
       <div className={styles.grid}>{list}</div>

@@ -2,13 +2,12 @@ import React from 'react';
 import styles from './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickLogin, clickLogout } from '../../modules/auth';
-import { Route, Redirect, Switch } from 'react-router-dom';
 import Logo from '../../atoms/Logo';
 import HeaderMenu from '../../molecules/HeaderMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import Txt, { InfoTxt, WhiteTxt } from '../../atoms/Txt';
+import Txt, { WhiteTxt } from '../../atoms/Txt';
 import Img from '../../atoms/Img';
 import Balloon from '../../atoms/Balloon';
 import ModalBackground from '../../atoms/ModalBackground';
@@ -22,7 +21,7 @@ const hasUploadModalSelector = (state: any) => state.uiReducer.hasUploadModal;
 const hasFlashSelector = (state: any) => state.uiReducer.hasFlash;
 const flashMessageSelector = (state: any) => state.uiReducer.flashMessage;
 
-interface IProps extends React.AllHTMLAttributes<HTMLElement>{
+interface IProps extends React.AllHTMLAttributes<HTMLElement> {
   history: {
     push(url: string): void;
   };
@@ -78,18 +77,9 @@ const Header: React.FC<IProps> = (props: any) => {
                         >
                           <Txt>新しいパズルを作成</Txt>
                         </li>
-                        {/*<li*/}
-                        {/*  onClick={() => {*/}
-                        {/*    dispatch(toggleModal(hasModal));*/}
-                        {/*  }}*/}
-                        {/*>*/}
-                        {/*  <Anchor to={'/users/profile'}>*/}
-                        {/*    <Txt>プロフィール</Txt>*/}
-                        {/*  </Anchor>*/}
-                        {/*</li>*/}
                         <li
                           onClick={() => {
-                            props.history.push("/");
+                            props.history.push('/');
                             dispatch(toggleModal(hasModal));
                             dispatch(clickLogout());
                           }}
@@ -131,7 +121,7 @@ const Header: React.FC<IProps> = (props: any) => {
       </div>
       <UploadForm hasUploadModal={hasUploadModal} />
       {hasFlash ? (
-        <Flash count={5000}>
+        <Flash count={4000}>
           <WhiteTxt>{flashMessage}</WhiteTxt>
         </Flash>
       ) : null}

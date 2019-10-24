@@ -14,7 +14,7 @@ const Flash: React.FC<IProps> = props => {
     setTimeout(() => {
       dispatch(hiddenFlash());
     }, props.count);
-  }, []);
+  }, [dispatch, props.count]);
 
   return <div className={styles.root}>{props.children}</div>;
 };

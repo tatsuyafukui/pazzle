@@ -18,6 +18,10 @@
     ],
     "rewrites": [
       {
+        "source": "/play/*",
+        "function": "play"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

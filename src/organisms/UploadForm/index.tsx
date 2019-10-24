@@ -1,16 +1,15 @@
-import React, { createElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as styles from './styles.css';
 import Button from '../../atoms/Button';
-import Img from '../../atoms/Img';
-
 import { storage, db } from '../../config/firebase';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCollection, collectionCheck } from '../../modules/collection';
-import { showFlash, toggleModal, toggleUploadModal } from '../../modules/ui';
+import { showFlash, toggleUploadModal } from '../../modules/ui';
 import preview from '../../public/images/preview.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import Modal from '../../atoms/Modal';
+import axios from '../../config/axios';
+
 const userSelector = (state: any) => state.authReducer.user;
 
 interface IProps extends React.AllHTMLAttributes<HTMLElement> {
@@ -165,34 +164,68 @@ const UploadForm: React.FC<IProps> = props => {
       (e: any) => {},
       () => {
         task.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
-          const newImage = {
-            name: fileName,
-            path: downloadURL,
-            user_id: user.uid,
-            created_at: new Date(),
-            easyTime: '--:--:--',
-            normalTime: '--:--:--',
-            hardTime: '--:--:--',
-          };
-          db.collection('images')
-            .add(newImage)
-            .then((addDoc: any) => {
-              console.log('Document successfully written!');
-              dispatch(toggleUploadModal(props.hasUploadModal));
-              dispatch(showFlash('パズルを作成しました！'));
-              const canvas: any = document.getElementById('cvs');
-              const context = canvas.getContext('2d');
-              context.clearRect(0, 0, canvas.width, canvas.height);
-              const resetImage = new Image();
-              resetImage.addEventListener('load', () => {
-                context.drawImage(resetImage, 0, 0, 600, 600, 0, 0, 600, 600);
-                setFileName('');
+
+          axios.post('/categoryJudgment', {
+            imagePath: downloadURL,
+          }).then((response: any) => {
+            console.log(response);
+
+            const newImage = {
+              name: fileName,
+              path: downloadURL,
+              user_id: user.uid,
+              created_at: new Date(),
+              easyTime: '--:--:--',
+              normalTime: '--:--:--',
+              hardTime: '--:--:--',
+              category: response.data[0].description
+            };
+            db.collection('images')
+              .add(newImage)
+              .then((addDoc: any) => {
+                console.log('Document successfully written!');
+                dispatch(toggleUploadModal(props.hasUploadModal));
+                dispatch(showFlash('パズルを作成しました！'));
+                const canvas: any = document.getElementById('cvs');
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                const resetImage = new Image();
+                resetImage.addEventListener('load', () => {
+                  context.drawImage(resetImage, 0, 0, 600, 600, 0, 0, 600, 600);
+                  setFileName('');
+                });
+                resetImage.src = preview;
+              })
+              .catch(e => {
+                console.error('Error writing document: ', e);
               });
-              resetImage.src = preview;
-            })
-            .catch(e => {
-              console.error('Error writing document: ', e);
-            });
+
+            // category追加
+            const categoryRef = db.collection('categorys')
+              .doc(response.data[0].description);
+
+            categoryRef.get()
+              .then((doc) => {
+
+                if(doc.exists) {
+                  console.error('already exists Category');
+                  return;
+                }
+                categoryRef
+                  .set({name: response.data[0].description}, {merge: true})
+                  .then((addDoc: any) => {
+                    console.log('new Category!');
+                  })
+                  .catch(e => {
+                    console.error('Error writing document: ', e);
+                  });
+              })
+
+
+          });
+
+
+
         });
       }
     );

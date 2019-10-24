@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly clickable: string;
+  readonly "clickable": string;
 };
 export = styles;
+

@@ -4,7 +4,7 @@ import LandingPage from './pages/LandingPage';
 import * as styles from './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheck } from './modules/auth';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import PlayingPage from './pages/PlayingPage';
 import Loading from './atoms/Loading/Loading';
 import NotFoundErrorPage from './pages/NotFoundErrorPage';
@@ -22,7 +22,6 @@ const App: React.FC = () => {
     dispatch(authCheck());
   }, [dispatch]);
 
-  console.log(user)
   if (loading) {
     return <Loading />;
   }
@@ -30,7 +29,7 @@ const App: React.FC = () => {
   if (!user) {
     return (
       <div className={styles.App}>
-        <Route path={'/'} render={({history}) => <Header history={history} />} />
+        <Route path={'/'} render={({ history }) => <Header history={history} />} />
         <Route exact path={'/'} component={LandingPage} />
       </div>
     );
@@ -38,10 +37,11 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.App}>
-      <Route path={'/'} render={({history}) => <Header history={history} />} />
+      <Route path={'/'} render={({ history }) => <Header history={history} />} />
       <Switch>
         <Route exact path={'/'} component={DashboardPage} />
         <Route exact path={'/play/:id'} render={props => <PlayingPage user={user} {...props} />} />
+        <Route exact path={'/redirect_to_play/:id'} render={({ match }) => <Redirect to={`/play/${match.params.id}`} />} />
         <Route component={NotFoundErrorPage} />
       </Switch>
     </div>

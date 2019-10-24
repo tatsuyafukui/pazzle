@@ -8,7 +8,7 @@ import { RouteComponentProps } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { EMode } from '../../types';
 import Spinner from '../../atoms/Spinner/Spinner';
-import { IBestTime, setBestTime } from '../../modules/pieses';
+import { IBestTime, setBestTime, updateTime } from '../../modules/pieses';
 interface MatchParams {
   id: string;
 }
@@ -58,7 +58,10 @@ const PlayingSummary: React.FC<IProps> = props => {
         break;
     }
     dispatch(setBestTime(time));
-  }, [mode, image]);
+    return () => {
+      dispatch(updateTime(0));
+    };
+  }, [mode, image, dispatch]);
 
   if (loading) {
     return <Spinner />;
@@ -69,7 +72,7 @@ const PlayingSummary: React.FC<IProps> = props => {
       <div>
         <DisplayTime bestTime={bestTime.time} {...props} />
         <DisplayPreview src={image ? image.path : dummy} />
-        <GameStartForm mode={mode} imageId={''} />
+        <GameStartForm mode={mode} />
       </div>
     </div>
   );

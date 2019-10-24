@@ -21,7 +21,8 @@ const PlayingCanvas: React.FC<IProps> = props => {
   const dispatch = useDispatch();
 
   const onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
+    // draggableId
     if (!destination) return;
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 

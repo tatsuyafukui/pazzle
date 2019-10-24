@@ -1,7 +1,4 @@
 import firebase, { db, providerTwitter } from '../config/firebase';
-import { user } from 'firebase-functions/lib/providers/auth';
-import { showFlash, toggleUploadModal } from './ui';
-import preview from '../public/images/preview.png';
 
 const AUTH_START = 'START_AUTH';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -29,6 +26,9 @@ export const clickLogin = () => {
       .then(result => {
         signUp(result);
         dispatch(authSuccess(result.user));
+      })
+      .catch((error) => {
+        dispatch(authFail(error));
       });
   };
 };
@@ -36,21 +36,16 @@ export const clickLogin = () => {
 const signUp = (result: any) => {
   const userInfo = result.additionalUserInfo;
 
-  const {isNewUser, username} = userInfo;
-  const {
-    email,
-    profile_image_url_https,
-    name,
-    id_str,
-  } = userInfo.profile;
+  const { isNewUser, username } = userInfo;
+  const { email, profile_image_url_https, name, id_str } = userInfo.profile;
 
-  if(!isNewUser) return;
+  if (!isNewUser) return;
 
   const user = {
     username,
     email,
     profileImageUrl: profile_image_url_https.split('_normal').join(''),
-    name
+    name,
   };
   db.collection('users')
     .doc(id_str)
@@ -61,8 +56,6 @@ const signUp = (result: any) => {
     .catch(e => {
       console.error('Error writing document: ', e);
     });
-
-
 };
 
 export const clickLogout = () => {

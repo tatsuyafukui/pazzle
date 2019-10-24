@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import Heading from '../../atoms/Heading';
 import styles from './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { gameEnd, updateSelfRecord, updateTime } from '../../modules/pieses';
+import { checkNewRecord, gameEnd } from '../../modules/pieses';
 import { RouteComponentProps } from 'react-router';
 import { EMode } from '../../types';
+import { openClearModal } from '../../modules/ui';
 
 const timeSelector = (state: any) => state.pieceReducer.time;
 const startTimeSelector = (state: any) => state.pieceReducer.interval;
@@ -34,19 +35,18 @@ const DisplayTime: React.FC<IProps> = props => {
 
   const dispatch = useDispatch();
 
-
   let selfBestTime = '--:--:--';
 
-  if(selfTime) {
+  if (selfTime) {
     switch (mode) {
       case EMode.easy:
-        selfBestTime = selfTime.easyTime || '--:--:--' ;
+        selfBestTime = selfTime.easyTime || '--:--:--';
         break;
       case EMode.normal:
-        selfBestTime = selfTime.normalTime || '--:--:--' ;
+        selfBestTime = selfTime.normalTime || '--:--:--';
         break;
       case EMode.hard:
-        selfBestTime = selfTime.hardTime || '--:--:--' ;
+        selfBestTime = selfTime.hardTime || '--:--:--';
         break;
       default:
         break;
@@ -57,11 +57,26 @@ const DisplayTime: React.FC<IProps> = props => {
     let finalDone: boolean[] = checkClear(columns, mode);
     if (playing && finalDone.indexOf(false) === -1) {
       clearInterval(interval);
-      dispatch(gameEnd(user, time, bestTime, selfBestTime, props.match.params.id));
+      const endTime = getDisplayTime(time);
+      const isNewRecord = checkNewRecord(endTime, bestTime.time);
+      const isNewSelfRecord = checkNewRecord(endTime, selfBestTime);
+      dispatch(gameEnd(
+        user, time, bestTime, props.match.params.id, isNewRecord, isNewSelfRecord
+      ));
+
+      if(isNewRecord || isNewSelfRecord) {
+        const newRecordInfo = {
+          isNewRecord,
+          isNewSelfRecord,
+          endTime,
+          bestTime,
+          selfBestTime,
+        };
+
+        dispatch(openClearModal(newRecordInfo));
+      }
     }
-  }, [columns]);
-
-
+  }, [columns,bestTime,interval,user,selfBestTime, playing, props.match.params.id, time, dispatch, mode]);
 
   return (
     <div className={styles.root}>
@@ -74,7 +89,7 @@ const DisplayTime: React.FC<IProps> = props => {
         </div>
         <div className={styles.timeBest}>
           <Heading level={6} visualLevel={5}>
-            自己ベスト
+            自己記録
           </Heading>
           <Heading>{selfBestTime}</Heading>
         </div>

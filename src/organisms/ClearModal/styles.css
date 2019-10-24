@@ -1,0 +1,130 @@
+.root {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.inner {
+    background-color: #333;
+    height: 500px;
+    max-height: 80%;
+    width: 800px;
+    max-width: 90%;
+    position: relative;
+    color: #F7DF41!important;
+    background-size: contain;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #F7DF41;
+}
+
+.contentHeading {
+    text-align: center;
+    color: #F7DF41!important;
+    position: relative;
+}
+
+.recordContainer {
+    margin-top: 16px;
+    text-shadow: none;
+}
+
+.recordContainer p {
+    margin-top: 8px;
+}
+
+.shareMessage {
+    margin-top: 24px;
+    color: #fff;
+}
+
+.shareContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+    margin-top: 8px;
+}
+
+.shareButton {
+    color: #fff!important;
+    border-radius: 50%!important;
+    max-height: 48px!important;
+    max-width: 48px!important;
+    min-height: 48px!important;
+    min-width: 48px!important;
+    padding: 0!important;
+    font-size: 1.6rem!important;
+    text-align: center;
+    margin: 0 10px!important;
+}
+
+.shareButton svg {
+    margin: 0!important;
+}
+
+.twitter {
+    background-color: rgba(85, 172, 238, 1) !important;
+}
+
+.facebook {
+    background-color: #4267b2!important;
+}
+
+.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)!important;
+    -webkit-background-clip: text;
+    /* Also define standard property for compatibility */
+    -webkit-text-fill-color: transparent;
+}
+
+.buttonContainer {
+    display: flex;
+    position: absolute;
+    height: 20%;
+    max-height: 20%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.continueGame {
+    color: #fff!important;
+    background-color: rgba(0, 132, 137, 1)!important;
+    border: 1px solid rgba(0, 132, 137, 1)!important;
+    border-radius: 4px;
+    max-height: 100%;
+    height: 48px;
+    margin: 0 8px!important;
+    font-size: 1rem!important;
+}
+
+.otherGame {
+    background-color: #8c8c8c!important;
+    border: 1px solid #8c8c8c!important;
+    color: #fff!important;
+    border-radius: 4px;
+    max-height: 100%;
+    height: 48px;
+    margin: 0 8px!important;
+    font-size: 1rem!important;
+}
+

@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../organisms/Header';
 import Main from '../organisms/main/main';
 import { RouteComponentProps } from 'react-router-dom';
 import Playground from '../organisms/Playground';

@@ -26,6 +26,7 @@ const Canvas: React.FC<IProps> = props => {
         return (
           <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
             <img
+              alt={'puzzle'}
               src={url}
               style={{
                 ...style,

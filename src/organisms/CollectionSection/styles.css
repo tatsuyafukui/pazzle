@@ -98,3 +98,32 @@
     letter-spacing: 1.4px;
     text-align: center;
 }
+
+@media (max-width: 570px) {
+    .picturesSectionContainer h2 {
+        font-size: 28px;
+    }
+    .picturesSectionIcons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .picturesSectionIconsItem {
+        width: 50%;
+        margin-bottom: 15px;
+    }
+
+    .picturesSectionUnderBodyContainer {
+        max-width: 100%;
+    }
+    .picturesSectionUnderBodyContainer p {
+        font-size: 18px;
+        padding-bottom: 40px;
+    }
+
+    .br::before {
+        content: "\A" ;
+        white-space: pre ;
+    }
+
+}

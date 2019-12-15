@@ -43,9 +43,9 @@ const CollectionSection: React.FC = () => {
       <div className={styles.picturesSectionUnderBody}>
         <div className={styles.picturesSectionUnderBodyContainer}>
           <CreamTxt id={'test'}>
-            景色、動物、模様、絵画、パズルに使う題材は自由自在。
+            景色、動物、模様、絵画、<span className={styles.br} />パズルに使う題材は自由自在。
             <br />
-            好きな画像をアップしてゲームを楽しもう！
+            好きな画像をアップして<span className={styles.br} />ゲームを楽しもう！
           </CreamTxt>
         </div>
       </div>

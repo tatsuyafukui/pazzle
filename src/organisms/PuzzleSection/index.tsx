@@ -15,7 +15,7 @@ const PuzzleSection: React.FC = () => {
   useEffect(() => {
     setReveal();
     return () => {
-      // ScrollReveal().destroy();
+      ScrollReveal().destroy();
     };
   }, []);
   return (
@@ -67,7 +67,7 @@ const PuzzleSection: React.FC = () => {
                 onClick={() => {
                   dispatch(clickLogin());
                 }}
-                className={getStartedStyle.messageSectionHalfRightButton}
+                className={`${getStartedStyle.messageSectionHalfRightButton} ${styles.hidden}`}
               />
             </div>
           </div>

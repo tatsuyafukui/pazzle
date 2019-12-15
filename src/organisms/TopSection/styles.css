@@ -317,3 +317,32 @@
     right: -3px;
     background-image: url("../../public/images/blackTriangle.png");
 }
+
+@media (max-width: 570px) {
+
+
+    .future {
+        display: none;
+    }
+
+    .piece1 {
+        max-width: 30%;
+        top: 15%;
+        left: 10%;
+    }
+
+    .piece2 {
+        left: 15%;
+        bottom: 10px;
+    }
+
+    .piece3 {
+        top: 70%;
+        right: 10%;
+    }
+
+    .piece4 {
+        top: 10%;
+        left: 80%;
+    }
+}

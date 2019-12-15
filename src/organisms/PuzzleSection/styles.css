@@ -175,3 +175,30 @@
     background-image: url("../../public/images/dones/done12.png");
 
 }
+
+
+@media (max-width: 570px) {
+    .messageSection {
+        padding: 0;
+        padding-top: 100px;
+    }
+
+    .messageSectionBlock {
+        flex-direction: column;
+    }
+    .messageSectionHalfLeft {
+        margin: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .messageSectionHalfRight {
+        padding: 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .hidden {
+        display: none;
+    }
+}

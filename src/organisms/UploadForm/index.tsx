@@ -156,19 +156,15 @@ const UploadForm: React.FC<IProps> = props => {
     }
     const blob = new Blob([barr], { type: 'image/png' });
     const uuid = require('uuid/v1')();
-    const task = storage.ref(`puzzle/${user.uid}/${uuid}/${fileName}`).put(blob);
-
+    const storagePath = `puzzle/${user.uid}/${uuid}/${fileName}`;
+    const task = storage.ref(storagePath).put(blob);
     task.on(
       'state_changed',
       () => {},
       (e: any) => {},
       () => {
-        task.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
-
-          axios.post('/categoryJudgment', {
-            imagePath: downloadURL,
-          }).then((response: any) => {
-            console.log(response);
+        task.snapshot.ref.getDownloadURL()
+          .then((downloadURL: string) => {
 
             const newImage = {
               name: fileName,
@@ -178,7 +174,6 @@ const UploadForm: React.FC<IProps> = props => {
               easyTime: '--:--:--',
               normalTime: '--:--:--',
               hardTime: '--:--:--',
-              category: response.data[0].description
             };
             db.collection('images')
               .add(newImage)
@@ -200,32 +195,40 @@ const UploadForm: React.FC<IProps> = props => {
                 console.error('Error writing document: ', e);
               });
 
+            // axios.post('/categoryJudgment', {
+            //   imagePath: `gs://${process.env.REACT_APP_STORAGE_BUCKET}/${storagePath}`,
+            // }).then((response: any) => {
+            //   console.log(response);
+            //
+            //   const category = response.data[0].labelAnnotations[0].description;
+            //
+            //   const descriptions = response.data[0].labelAnnotations.map((item: any) => {
+            //     return item.description;
+            //   });
+
+
+
+
             // category追加
-            const categoryRef = db.collection('categorys')
-              .doc(response.data[0].description);
-
-            categoryRef.get()
-              .then((doc) => {
-
-                if(doc.exists) {
-                  console.error('already exists Category');
-                  return;
-                }
-                categoryRef
-                  .set({name: response.data[0].description}, {merge: true})
-                  .then((addDoc: any) => {
-                    console.log('new Category!');
-                  })
-                  .catch(e => {
-                    console.error('Error writing document: ', e);
-                  });
-              })
-
-
-          });
-
-
-
+            // const categoryRef = db.collection('categorys').doc(response.data[0].labelAnnotations[0].description);
+            //
+            // categoryRef.get()
+            //   .then((doc) => {
+            //
+            //     if(doc.exists) {
+            //       console.error('already exists Category');
+            //       return;
+            //     }
+            //     categoryRef
+            //       .set({name: category}, {merge: true})
+            //       .then((addDoc: any) => {
+            //         console.log('new Category!');
+            //       })
+            //       .catch(e => {
+            //         console.error('Error writing document: ', e);
+            //       });
+            //   })
+          // });
         });
       }
     );

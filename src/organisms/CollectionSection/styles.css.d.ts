@@ -10,6 +10,7 @@ declare const styles: {
   readonly "picturesSectionUnderBody": string;
   readonly "picturesSectionUnderBodyContainer": string;
   readonly "heading": string;
+  readonly "br": string;
 };
 export = styles;
 

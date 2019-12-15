@@ -2,7 +2,6 @@ declare const styles: {
   readonly "root": string;
   readonly "inner": string;
   readonly "content": string;
-  readonly "recordLabel": string;
   readonly "contentHeading": string;
   readonly "recordContainer": string;
   readonly "shareMessage": string;

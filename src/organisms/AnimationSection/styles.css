@@ -24,9 +24,7 @@
 
 .sectionOrangeMessageBlock {
     width: 52%;
-
 }
-
 
 .sectionOrangeAnimationBlock {
     width: 40%;
@@ -36,6 +34,7 @@
     height: 100%;
     overflow: hidden;
 }
+
 .near {
     animation: moveIt 2s linear infinite;
     z-index: 3;
@@ -97,4 +96,41 @@
 .heading {
     font-size: 2.5rem;
     font-weight: normal;
+}
+
+@media (max-width: 570px) {
+    .sectionOrangeContainer {
+        max-width: 100%;
+    }
+
+    .sectionOrangeBackground {
+        padding: 220px 35px;
+        font-size: 36px;
+        font-weight: normal;
+        letter-spacing: 1.4px;
+        color: #333;
+        background-size: 48px;
+        background-repeat: repeat;
+        background-color: #f85832;
+        position: relative;
+        background-image: url("../../public/images/texture-orange.png");
+    }
+
+
+
+    .sectionOrangeMessageBlock {
+        width: 100%;
+    }
+
+
+    .sectionOrangeAnimationBlock {
+        width: 100%;
+    }
+
+    .button {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        z-index: 10;
+    }
 }

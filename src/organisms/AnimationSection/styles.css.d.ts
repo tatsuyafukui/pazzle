@@ -9,6 +9,7 @@ declare const styles: {
   readonly "middle": string;
   readonly "far": string;
   readonly "heading": string;
+  readonly "button": string;
 };
 export = styles;
 

@@ -24,7 +24,7 @@ const UnderSection: React.FC = () => {
               onClick={() => {
                 dispatch(clickLogin());
               }}
-              className={getStartedStyle.halfRightTextButton}
+              className={`${getStartedStyle.halfRightTextButton} ${styles.button}`}
             />
           </div>
         </div>

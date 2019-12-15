@@ -24,7 +24,7 @@ const AnimationSection: React.FC = () => {
             onClick={() => {
               dispatch(clickLogin());
             }}
-            className={getStartedStyle.sectionOrangeMessageBlockButton}
+            className={`${getStartedStyle.sectionOrangeMessageBlockButton} ${styles.button}`}
           />
         </div>
         <div className={styles.sectionOrangeAnimationBlock}>

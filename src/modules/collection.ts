@@ -13,7 +13,7 @@ interface IImages {
   name: string;
   user_id: string;
   id: string;
-  categorys: string;
+  // categorys: string;
 }
 
 interface IinitialState {
@@ -21,7 +21,7 @@ interface IinitialState {
   loading: boolean;
   error: null | string;
   activeImage: any;
-  categorys: any;
+  // categorys: any;
 }
 
 const initialState: IinitialState = {
@@ -29,7 +29,7 @@ const initialState: IinitialState = {
   loading: false,
   error: null,
   activeImage: null,
-  categorys: ['all'],
+  // categorys: ['all'],
 };
 
 // action
@@ -53,6 +53,27 @@ export const collectionCheck = () => {
         });
         dispatch(collectionSuccess(arr));
       });
+
+
+    // db.collection('images')
+    //   .orderBy('created_at', 'asc')
+    //   .where("category", "array-contains", "Magenta")
+    //   .onSnapshot(snapshot => {
+    //     let arr: any = [];
+    //     if (snapshot.empty) {
+    //       dispatch(collectionSuccess([]));
+    //       return;
+    //     }
+    //     snapshot.forEach(item => {
+    //       const image = {
+    //         id: item.id,
+    //         ...item.data(),
+    //       };
+    //       arr.push(image);
+    //     });
+    //     dispatch(collectionSuccess(arr));
+    //   });
+
   };
 };
 

@@ -80,3 +80,42 @@
     margin-bottom: 50px;
     font-weight: normal;
 }
+
+
+@media (max-width: 570px) {
+
+    .underSectionInner {
+        flex-direction: column;
+    }
+
+    .halfLeft {
+        width: 100%;
+        position: relative;
+        margin-right: 0;
+        z-index: 10;
+    }
+
+    .halfRight {
+        width: 100%;
+    }
+
+    .halfRightText h2 {
+        font-size: 28px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .button button {
+        text-align: center;
+    }
+
+    .underSectionEndBlock {
+        height: 0;
+    }
+}

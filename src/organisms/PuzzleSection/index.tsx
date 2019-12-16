@@ -8,6 +8,18 @@ import GetStartedButton from '../../molecules/GetStartedButton';
 import { CreamTxt } from '../../atoms/Txt';
 import Heading from '../../atoms/Heading';
 import { ESize } from '../../types';
+import done1 from '../../public/images/dones/done1.png';
+import done2 from '../../public/images/dones/done2.png';
+import done3 from '../../public/images/dones/done3.png';
+import done4 from '../../public/images/dones/done4.png';
+import done5 from '../../public/images/dones/done5.png';
+import done6 from '../../public/images/dones/done6.png';
+import done7 from '../../public/images/dones/done7.png';
+import done8 from '../../public/images/dones/done8.png';
+import done9 from '../../public/images/dones/done9.png';
+import done10 from '../../public/images/dones/done10.png';
+import done11 from '../../public/images/dones/done11.png';
+import done12 from '../../public/images/dones/done12.png';
 
 const PuzzleSection: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,18 +51,18 @@ const PuzzleSection: React.FC = () => {
           <div className={styles.messageSectionBlock}>
             <div className={styles.messageSectionHalfLeft}>
               <div className={styles.messageSectionHalfLeftInner}>
-                <div id={styles.flame1} className={styles.flame} />
-                <div id={styles.flame2} className={styles.flame} />
-                <div id={styles.flame3} className={styles.flame} />
-                <div id={styles.flame4} className={styles.flame} />
-                <div id={styles.flame5} className={styles.flame} />
-                <div id={styles.flame6} className={styles.flame} />
-                <div id={styles.flame7} className={styles.flame} />
-                <div id={styles.flame8} className={styles.flame} />
-                <div id={styles.flame9} className={styles.flame} />
-                <div id={styles.flame10} className={styles.flame} />
-                <div id={styles.flame11} className={styles.flame} />
-                <div id={styles.flame12} className={styles.flame} />
+                <div id={styles.flame1} className={styles.flame} style={{backgroundImage: `url(${done1})`}}/>
+                <div id={styles.flame2} style={{backgroundImage: `url(${done2})` }} className={styles.flame}/>
+                <div id={styles.flame3} className={styles.flame} style={{backgroundImage: `url(${done3})`}} />
+                <div id={styles.flame4} className={styles.flame} style={{backgroundImage: `url(${done4})`}}/>
+                <div id={styles.flame5} className={styles.flame} style={{backgroundImage: `url(${done5})`}}/>
+                <div id={styles.flame6} className={styles.flame} style={{backgroundImage: `url(${done6})`}}/>
+                <div id={styles.flame7} className={styles.flame} style={{backgroundImage: `url(${done7})`}}/>
+                <div id={styles.flame8} className={styles.flame} style={{backgroundImage: `url(${done8})`}}/>
+                <div id={styles.flame9} className={styles.flame} style={{backgroundImage: `url(${done9})`}}/>
+                <div id={styles.flame10} className={styles.flame} style={{backgroundImage: `url(${done10})`}}/>
+                <div id={styles.flame11} className={styles.flame} style={{backgroundImage: `url(${done11})`}}/>
+                <div id={styles.flame12} className={styles.flame} style={{backgroundImage: `url(${done12})`}}/>
               </div>
             </div>
             <div className={styles.messageSectionHalfRight}>

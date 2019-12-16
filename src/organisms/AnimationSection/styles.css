@@ -48,7 +48,6 @@
     bottom: 0;
     background-repeat: repeat-y;
     background-position: center center;
-    background-image: url("../../public/images/near.png");
 }
 
 .middle {
@@ -64,7 +63,6 @@
     bottom: 0;
     background-repeat: repeat-y;
     background-position: center center;
-    background-image: url("../../public/images/middle.png");
 }
 
 .far {
@@ -81,7 +79,6 @@
     bottom: 0;
     background-repeat: repeat-y;
     background-position: center center;
-    background-image: url("../../public/images/far.png");
 }
 
 @keyframes moveIt {
@@ -102,21 +99,6 @@
     .sectionOrangeContainer {
         max-width: 100%;
     }
-
-    .sectionOrangeBackground {
-        padding: 220px 35px;
-        font-size: 36px;
-        font-weight: normal;
-        letter-spacing: 1.4px;
-        color: #333;
-        background-size: 48px;
-        background-repeat: repeat;
-        background-color: #f85832;
-        position: relative;
-        background-image: url("../../public/images/texture-orange.png");
-    }
-
-
 
     .sectionOrangeMessageBlock {
         width: 100%;

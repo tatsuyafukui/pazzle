@@ -8,7 +8,6 @@ import preview from '../../public/images/preview.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import Modal from '../../atoms/Modal';
-import axios from '../../config/axios';
 
 const userSelector = (state: any) => state.authReducer.user;
 
@@ -25,14 +24,15 @@ const UploadForm: React.FC<IProps> = props => {
 
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-
+  const displaySize = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0 ? 300 : 600;
+  const blobSize = 600;
   useEffect(() => {
     const canvas: any = document.getElementById('cvs');
     const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, blobSize, blobSize);
     const resetImage = new Image();
     resetImage.addEventListener('load', () => {
-      context.drawImage(resetImage, 0, 0, 600, 600, 0, 0, 600, 600);
+      context.drawImage(resetImage, 0, 0, resetImage.width, resetImage.height, 0, 0, blobSize, blobSize);
     });
 
     resetImage.src = preview;
@@ -46,10 +46,10 @@ const UploadForm: React.FC<IProps> = props => {
     reader.addEventListener('load', (event: any) => {
       image.addEventListener('load', () => {
         const cvs: any = document.getElementById('cvs');
-        const cw = 600;
-        const ch = 600;
-        const oh = 600;
-        const ow = 600;
+        const cw = blobSize;
+        const ch = blobSize;
+        const oh = blobSize;
+        const ow = blobSize;
         let newScale = 1.0;
         ix = image.width / 2;
         iy = image.height / 2;
@@ -186,7 +186,7 @@ const UploadForm: React.FC<IProps> = props => {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 const resetImage = new Image();
                 resetImage.addEventListener('load', () => {
-                  context.drawImage(resetImage, 0, 0, 600, 600, 0, 0, 600, 600);
+                  context.drawImage(resetImage, 0, 0, blobSize, blobSize, 0, 0, blobSize, blobSize);
                   setFileName('');
                 });
                 resetImage.src = preview;
@@ -249,14 +249,21 @@ const UploadForm: React.FC<IProps> = props => {
         <FontAwesomeIcon icon={faTimesCircle} className={styles.closeBtn} />
       </div>
       <form className={styles.root} onSubmit={submitHandler}>
-        <canvas id="cvs" width="600" height="600" />
-        <label className={styles.label}>
-          写真を選ぶ
-          <input type={'file'} name={'image'} onChange={changeFileHandler} accept="image/png,image/jpg,image/bmp" />
-        </label>
-        <Button type={'submit'} className={fileName ? styles.submitButton : styles.disableButton} disabled={!fileName}>
-          アップロード
-        </Button>
+        <canvas
+          id="cvs"
+          width={`${blobSize}`}
+          height={`${blobSize}`}
+          style={{width: `${displaySize}px`,height: `${displaySize}px`}}
+        />
+        <div className={styles.buttonContainer}>
+          <label className={styles.label}>
+            写真を選ぶ
+            <input type={'file'} name={'image'} onChange={changeFileHandler} accept="image/png,image/jpg,image/bmp" />
+          </label>
+          <Button type={'submit'} className={fileName ? styles.submitButton : styles.disableButton} disabled={!fileName}>
+            アップロード
+          </Button>
+        </div>
       </form>
     </Modal>
   );

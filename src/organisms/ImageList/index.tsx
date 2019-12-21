@@ -25,7 +25,12 @@ const ImageList: React.FC = () => {
   }
 
   const list = images.map((item: any, index: any) => (
-    <Anchor to={`/play/${item.id}`} key={index} className={styles.gridItemContainer}>
+    <Anchor
+      to={`/play/${item.id}`}
+      key={index}
+      className={styles.gridItemContainer}
+      style={{display: 'inherit'}}
+    >
       <Img className={styles.gridItem} src={item.path} alt={item.name} />
       <div className={styles.gridItemHover}>
         <div className={styles.startBtn}>

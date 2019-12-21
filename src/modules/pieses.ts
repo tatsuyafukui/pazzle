@@ -20,7 +20,6 @@ interface IInitialState {
   interval: any;
   bestTime: IBestTime;
   selfTime: any;
-
 }
 
 export interface IBestTime {

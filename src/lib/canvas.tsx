@@ -13,7 +13,9 @@ export const shuffleArray = (arr: ICanvas[]): ICanvas[] => {
 };
 
 export const getSize = (mode: number): number => {
-  const CANVAS_SIZE = 600;
+  const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
+
+  const CANVAS_SIZE = isPhone? 300 : 600;
   let size = 0;
   if (mode === EMode.easy) size = CANVAS_SIZE / EMode.easy;
   if (mode === EMode.normal) size = CANVAS_SIZE / EMode.normal;
@@ -42,7 +44,7 @@ export const createStartColumns = (mode: number, canvasList: ICanvas[]): IColumn
   return columns;
 };
 
-export const createCanvasList = (img: HTMLImageElement, mode: number): ICanvas[] => {
+export const createCanvasList = (img: any, mode: number): ICanvas[] => {
   const size: number = getSize(mode);
   let sy = 0;
   let sx = 0;

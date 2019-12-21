@@ -89,7 +89,18 @@ export const activeImage = (imageId: string) => {
         const img = new Image();
         img.crossOrigin = 'Anonymous';
         img.addEventListener('load', () => {
-          const canvasList = createCanvasList(img, store().pieceReducer.mode);
+          const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
+
+          var scale = isPhone ?0.5:1.0; // 縦横を50%縮小
+          var canvas = document.createElement('canvas');
+          var ctx: any = canvas.getContext('2d');
+          var dstWidth = img.width*scale;
+          var dstHeight = img.height*scale;
+          canvas.width = dstWidth;
+          canvas.height = dstHeight;
+          ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, dstWidth, dstHeight);
+
+          const canvasList = createCanvasList(canvas, store().pieceReducer.mode);
           const newColumns = createStartColumns(store().pieceReducer.mode, canvasList);
           dispatch(columnsSuccess(newColumns));
         });

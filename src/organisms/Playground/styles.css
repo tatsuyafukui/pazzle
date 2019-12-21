@@ -17,3 +17,24 @@
     flex-grow: 1;
     flex-basis: 30%;
 }
+
+
+@media (max-width: 570px) {
+
+    .root {
+        padding-top: 20px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .playingLeft {
+        flex-grow: 1;
+        flex-basis: 100%;
+    }
+
+    .playingRight {
+        flex-basis: 100%;
+    }
+}

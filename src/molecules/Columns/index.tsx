@@ -2,7 +2,6 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import Canvas from '../../atoms/Canvas';
 import { EMode } from '../../types';
-import styles from './styles.css';
 
 interface ICanvas {
   url: string;
@@ -14,17 +13,13 @@ interface IProps {
   mode: number;
   canvasList: any;
 }
+const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
 
 const Column: React.FC<IProps> = props => {
   let size: any;
-  if (props.mode === EMode.easy) size = '200px';
-  if (props.mode === EMode.normal) size = '100px';
-  if (props.mode === EMode.hard) size = '60px';
-
-  let height: any;
-  if (props.mode === EMode.easy) height = styles.easy;
-  if (props.mode === EMode.normal) height = styles.normal;
-  if (props.mode === EMode.hard) height = styles.hard;
+  if (props.mode === EMode.easy) size = isPhone? '100px':'200px';
+  if (props.mode === EMode.normal) size = isPhone? '50px':'100px';
+  if (props.mode === EMode.hard) size = isPhone? '30px':'60px';
 
   const canvasList = props.canvasList.map((item: ICanvas, i: number) => {
     const columnId = i * props.mode + props.column;
@@ -42,18 +37,11 @@ const Column: React.FC<IProps> = props => {
             style={{
               paddingBottom: '100px',
             }}
-            className={height}
           >
             {canvasList.length !== 0 ? (
               canvasList
             ) : (
               <div
-                style={{
-                  minWidth: size,
-                  minHeight: '600px',
-                  width: size,
-                  height: '600px',
-                }}
               />
             )}
             {provided.placeholder}

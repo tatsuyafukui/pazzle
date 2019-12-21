@@ -31,6 +31,8 @@ const Canvas: React.FC<IProps> = props => {
               style={{
                 ...style,
                 border: isCorrect ? '1px solid lightgreen' : 'none',
+                width: `${props.size}px`,
+                height: `${props.size}px`,
               }}
               className={snapshot.isDragging ? styles.border : ''}
             />

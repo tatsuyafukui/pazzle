@@ -18,6 +18,7 @@ const imagesSelector = (state: any) => state.collectionReducer.activeImage;
 const loadingSelector = (state: any) => state.collectionReducer.loading;
 const modeSelector = (state: any) => state.pieceReducer.mode;
 const bestTimeSelector = (state: any) => state.pieceReducer.bestTime;
+const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
 
 const PlayingSummary: React.FC<IProps> = props => {
   const image = useSelector(imagesSelector);
@@ -68,7 +69,7 @@ const PlayingSummary: React.FC<IProps> = props => {
   }
 
   return (
-    <div style={{ marginLeft: '15px' }}>
+    <div style={{ marginLeft: isPhone ? '0':'15px' }}>
       <div>
         <DisplayTime bestTime={bestTime.time} {...props} />
         <DisplayPreview src={image ? image.path : dummy} />

@@ -32,6 +32,10 @@
   color: #fff;
 }
 
+.buttonContainer {
+  padding: 8px;
+}
+
 .submitButton {
   display: block;
   text-align: center;
@@ -97,4 +101,28 @@
 
 .closeBtn:hover {
   background-color: rgba(51,51,51, 0.5);
+}
+
+
+@media (max-width: 570px) {
+  .root {
+    min-width: 0;
+    max-width: 100%;
+    height: 100%;
+  }
+
+
+  .label {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .submitButton {
+    margin: 0;
+  }
+
+  .disableButton {
+    margin: 0;
+  }
+
 }

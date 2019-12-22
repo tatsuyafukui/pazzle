@@ -47,7 +47,7 @@ const signUp = (result: any) => {
     profileImageUrl: profile_image_url_https.split('_normal').join(''),
     name,
   };
-  db.collection('users')
+  db.collection('env').doc(process.env.NODE_ENV).collection('users')
     .doc(id_str)
     .set(user)
     .then((addDoc: any) => {

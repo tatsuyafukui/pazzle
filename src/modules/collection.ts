@@ -36,7 +36,7 @@ const initialState: IinitialState = {
 export const collectionCheck = () => {
   return (dispatch: any) => {
     dispatch(collectionStart());
-    db.collection('images')
+    db.collection('env').doc(process.env.NODE_ENV).collection('images')
       .orderBy('created_at', 'asc')
       .onSnapshot(snapshot => {
         let arr: any = [];
@@ -81,7 +81,7 @@ export const activeImage = (imageId: string) => {
 
   return (dispatch: any, store: any) => {
     dispatch(collectionStart());
-    db.collection('images')
+    db.collection('env').doc(process.env.NODE_ENV).collection('images')
       .doc(imageId)
       .onSnapshot((documentSnapshot: any) => {
 
@@ -112,7 +112,7 @@ export const activeImage = (imageId: string) => {
 export const getCategorys = () => {
 
   return (dispatch: any) => {
-    db.collection('categorys')
+    db.collection('env').doc(process.env.NODE_ENV).collection('categorys')
       .onSnapshot((documentSnapshot: any) => {
         console.log(documentSnapshot.docs[0].id)
         dispatch({

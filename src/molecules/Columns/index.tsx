@@ -21,8 +21,6 @@ const Column: React.FC<IProps> = props => {
   if (props.mode === EMode.normal) size = isPhone? '50px':'100px';
   if (props.mode === EMode.hard) size = isPhone? '30px':'60px';
 
-  // when length 0 , create dummy canvas
-
   const canvasList = props.canvasList.length !== 0 ? props.canvasList.map((item: ICanvas, i: number) => {
     const columnId = i * props.mode + props.column;
     item.isCorrect = columnId === item.id;

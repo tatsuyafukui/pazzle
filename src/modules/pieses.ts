@@ -95,7 +95,7 @@ export const gameStart = (newColumns: any, setInterval: any) => {
 
 export const getUserSelfRecord = (uid: string, imageId: string) => {
   return (dispatch: any) => {
-    db.collection('users')
+    db.collection('env').doc(process.env.NODE_ENV).collection('users')
       .doc(uid)
       .collection('images')
       .doc(imageId)
@@ -135,7 +135,7 @@ export const gameEnd = (user: any, time: number, bestTime: IBestTime, imageId: s
 };
 
 const updateWorldRecord = (imageId: string, newObj: any) => {
-  db.collection('images')
+  db.collection('env').doc(process.env.NODE_ENV).collection('images')
     .doc(imageId)
     .update(newObj)
     .then((addDoc: any) => {
@@ -147,7 +147,7 @@ const updateWorldRecord = (imageId: string, newObj: any) => {
 };
 
 const updateSelfRecord = (uid: string, imageId: string, mode: string, endTime: string) => {
-  db.collection('users')
+  db.collection('env').doc(process.env.NODE_ENV).collection('users')
     .doc(uid)
     .collection('images')
     .doc(imageId)

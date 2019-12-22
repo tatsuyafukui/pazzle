@@ -182,7 +182,7 @@ const UploadForm: React.FC<IProps> = props => {
     }
     const blob = new Blob([barr], { type: 'image/png' });
     const uuid = require('uuid/v1')();
-    const storagePath = `puzzle/${user.uid}/${uuid}/${fileName}`;
+    const storagePath = `puzzle/${process.env.NODE_ENV}/${user.uid}/${uuid}/${fileName}`;
     const task = storage.ref(storagePath).put(blob);
     task.on(
       'state_changed',
@@ -201,10 +201,9 @@ const UploadForm: React.FC<IProps> = props => {
               normalTime: '--:--:--',
               hardTime: '--:--:--',
             };
-            db.collection('images')
+            db.collection('env').doc(process.env.NODE_ENV).collection('images')
               .add(newImage)
               .then((addDoc: any) => {
-                console.log('Document successfully written!');
                 dispatch(toggleUploadModal(props.hasUploadModal));
                 dispatch(showFlash('パズルを作成しました！'));
                 const canvas: any = document.getElementById('cvs');

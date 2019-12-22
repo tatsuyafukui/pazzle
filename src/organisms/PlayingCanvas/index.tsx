@@ -29,7 +29,6 @@ const PlayingCanvas: React.FC<IProps> = props => {
     const newColumns = getNewColumns(columns, source, destination);
     dispatch(changeColumns(newColumns));
   };
-  console.log(columns);
   const columnsEl = columns.map((column: any) => {
     return <Column key={column.id} column={column.id} mode={mode} canvasList={column.tasks} />;
   });

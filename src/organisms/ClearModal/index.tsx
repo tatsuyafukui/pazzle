@@ -14,6 +14,7 @@ interface IProps extends React.AllHTMLAttributes<HTMLElement> {
   othergamehandler?: () => void;
   info: INewRecordInfo;
 }
+const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
 
 const ClearModal: React.FC<IProps> = (props) => {
 
@@ -40,7 +41,7 @@ const ClearModal: React.FC<IProps> = (props) => {
           <div className={styles.contentHeading}>
             <Heading
               visualLevel={1}
-              style={{fontSize: '2.4rem'}}
+              style={{fontSize: isPhone?'2.0rem':'2.4rem'}}
             >
               Congratulations!
             </Heading>

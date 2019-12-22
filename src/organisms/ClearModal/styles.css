@@ -128,3 +128,31 @@
     font-size: 1rem!important;
 }
 
+
+@media (max-width: 570px) {
+
+
+    .content {
+        height: 70%;
+    }
+
+    .continueGame {
+        font-size: 0.9rem!important;
+    }
+
+    .otherGame {
+        font-size: 0.9rem!important;
+    }
+    .buttonContainer {
+        padding: 4px 4px;
+        max-height: 30%;
+        height: 30%;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .buttonContainer button {
+        width: 90%;
+    }
+}

@@ -84,22 +84,22 @@ export const activeImage = (imageId: string) => {
     db.collection('images')
       .doc(imageId)
       .onSnapshot((documentSnapshot: any) => {
-        dispatch(activeImageSuccess(documentSnapshot.data()));
 
         const img = new Image();
         img.crossOrigin = 'Anonymous';
         img.addEventListener('load', () => {
-          const isPhone = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0;
-
-          var scale = isPhone ?0.5:1.0; // 縦横を50%縮小
-          var canvas = document.createElement('canvas');
-          var ctx: any = canvas.getContext('2d');
-          var dstWidth = img.width*scale;
-          var dstHeight = img.height*scale;
+          const scale = (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0?0.5:1.0;
+          const canvas = document.createElement('canvas');
+          const ctx: any = canvas.getContext('2d');
+          const dstWidth = img.width*scale;
+          const dstHeight = img.height*scale;
           canvas.width = dstWidth;
           canvas.height = dstHeight;
           ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, dstWidth, dstHeight);
 
+          dispatch(activeImageSuccess(
+            {...documentSnapshot.data(), path: canvas.toDataURL()}
+          ));
           const canvasList = createCanvasList(canvas, store().pieceReducer.mode);
           const newColumns = createStartColumns(store().pieceReducer.mode, canvasList);
           dispatch(columnsSuccess(newColumns));

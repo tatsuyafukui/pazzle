@@ -3,13 +3,14 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    align-items: center;
 }
 
 .ldsSpinner {
     color: white;
     display: inline-block;
     position: relative;
-    width: 164px;
+    width: 80px;
     height: 164px;
 }
 .ldsSpinner div {

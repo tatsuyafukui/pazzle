@@ -46,6 +46,7 @@ const UploadForm: React.FC<IProps> = props => {
     reader.addEventListener('load', (event: any) => {
       image.addEventListener('load', () => {
         const cvs: any = document.getElementById('cvs');
+        cvs.style.cursor = 'grab';
         const cw = blobSize;
         const ch = blobSize;
         const oh = blobSize;
@@ -84,24 +85,50 @@ const UploadForm: React.FC<IProps> = props => {
         let mouse_down = false; // canvas ドラッグ中フラグ
         let sx = 0; // canvas ドラッグ開始位置
         let sy = 0;
-        cvs.ontouchstart = cvs.onmousedown = function(_ev: any) {
+        /**
+         * ここからSP event
+         * @param _ev
+         */
+        cvs.ontouchstart = function(_ev: any) {
+          console.log('start',_ev.touches[0].pageX)
+          sx = _ev.touches[0].pageX;
+          sy = _ev.touches[0].pageY;
+          return false; // イベントを伝搬しない
+        };
+        cvs.ontouchmove = function(_ev: any) {
+          draw_canvas(ix + (sx - _ev.touches[0].pageX) / v, iy + (sy - _ev.touches[0].pageY) / v);
+          return false; // イベントを伝搬しない
+        };
+        cvs.ontouchend = function(_ev: any) {
+          console.log('end',_ev)
+
+          draw_canvas((ix += (sx - _ev.changedTouches[0].pageX) / v), (iy += (sy - _ev.changedTouches[0].pageY) / v));
+          return false; // イベントを伝搬しない
+        };
+        /**
+         * ここからPC event
+         * @param _ev
+         */
+        cvs.onmousedown = function(_ev: any) {
           // canvas ドラッグ開始位置
+          cvs.style.cursor = 'grabbing';
           mouse_down = true;
           sx = _ev.pageX;
           sy = _ev.pageY;
           return false; // イベントを伝搬しない
         };
-        cvs.ontouchend = cvs.onmouseout = cvs.onmouseup = function(_ev: any) {
-          // canvas ドラッグ終了位置
-          if (!mouse_down) return;
-          mouse_down = false;
-          draw_canvas((ix += (sx - _ev.pageX) / v), (iy += (sy - _ev.pageY) / v));
-          return false; // イベントを伝搬しない
-        };
-        cvs.ontouchmove = cvs.onmousemove = function(_ev: any) {
+        cvs.onmousemove = function(_ev: any) {
           // canvas ドラッグ中
           if (!mouse_down) return;
           draw_canvas(ix + (sx - _ev.pageX) / v, iy + (sy - _ev.pageY) / v);
+          return false; // イベントを伝搬しない
+        };
+        cvs.onmouseout = cvs.onmouseup = function(_ev: any) {
+          // canvas ドラッグ終了位置
+          if (!mouse_down) return;
+          cvs.style.cursor = 'grab';
+          mouse_down = false;
+          draw_canvas((ix += (sx - _ev.pageX) / v), (iy += (sy - _ev.pageY) / v));
           return false; // イベントを伝搬しない
         };
         cvs.onmousewheel = function(_ev: any) {
@@ -109,7 +136,6 @@ const UploadForm: React.FC<IProps> = props => {
           let scl = newScale + _ev.wheelDelta * 0.05;
           if (scl < 10) scl = 10;
           if (scl > 400) scl = 400;
-          console.log(scl);
 
           newScale = scl;
           scaling(newScale);

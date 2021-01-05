@@ -21,7 +21,7 @@
     "@types/react-test-renderer": "^16.9.0",
     "@types/scrollreveal": "^0.0.5",
     "@types/storybook__react": "^4.0.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-eslint": "10.0.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "8.0.5",
